@@ -1,4 +1,4 @@
-var express = require('express')
+/*var express = require('express')
 var app = express()
 
 app.set('port', (process.env.PORT || 5000))
@@ -10,7 +10,19 @@ app.get('/', function(request, response) {
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
-  console.log(process.env.PORT)
-  console.log(process.env.HOST)
-  console.log(process.env.HOSTNAME)
-})
+})*/
+
+//-------------
+
+const WebSocket = require('ws');
+
+const ws = new WebSocket('ws://immense-fortress-84995.herokuapp.com/ws');
+//const ws = new WebSocket('ws://localhost/ws');
+
+ws.on('open', function open() {
+  ws.send('something');
+});
+
+ws.on('message', function incoming(data) {
+  console.log(data);
+});
