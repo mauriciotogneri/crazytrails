@@ -11,16 +11,16 @@ server.listen(port)
 
 var wss = new WebSocketServer({server: server})
 
-wss.on('open', function(ws) {
+wss.on("connection", function(ws) {
 	console.log("It's connected")
 	ws.send("It's connected")
 
-	ws.on('message', function(data) {
+	ws.on("message", function(data) {
 		console.log(data)
 		ws.send(data)
 	})
 
-	ws.on('close', function() {
+	ws.on("close", function() {
 		console.log("It's disconnected")
 	    ws.send("It's disconnected")
 	})
