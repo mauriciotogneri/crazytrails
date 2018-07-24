@@ -16,8 +16,12 @@ app.listen(app.get('port'), function() {
 
 const WebSocket = require('ws');
 
-const ws = new WebSocket('ws://immense-fortress-84995.herokuapp.com/ws');
+//const ws = new WebSocket('ws://immense-fortress-84995.herokuapp.com/ws');
 //const ws = new WebSocket('ws://localhost/ws');
+
+const ws = new WebSocket.Server({
+  port: process.env.PORT
+});
 
 ws.on('open', function open() {
   ws.send('something');
