@@ -1,5 +1,5 @@
-var WebSocketServer = require('ws').Server
-var wss = new WebSocketServer({
+const WebSocketServer = require('ws').Server
+const wss = new WebSocketServer({
 	port: process.env.PORT
 })
 
@@ -12,6 +12,6 @@ wss.on("connection", function(ws)
 
 	ws.on("close", function()
 	{
-		console.log("It's disconnected!")
+		console.log("Disconnected")
 	})
 })
