@@ -48,15 +48,15 @@ var wss = new WebSocketServer({server: server})
 
 wss.on('open', function(ws) {
 	console.log("It's connected")
-	wss.send("It's connected")
-})
+	ws.send("It's connected")
 
-wss.on('message', function incoming(data) {
-	console.log(data)
-	wss.send(data)
-})
+	ws.on('message', function incoming(data) {
+		console.log(data)
+		ws.send(data)
+	})
 
-wss.on('close', function() {
-	console.log("It's disconnected")
-    wss.send("It's disconnected")
+	ws.on('close', function() {
+		console.log("It's disconnected")
+	    ws.send("It's disconnected")
+	})
 })
