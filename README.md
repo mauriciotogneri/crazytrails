@@ -1,2 +1,2 @@
-# testws
+# Test WS
 Testing Web Sockets
