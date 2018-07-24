@@ -14,28 +14,28 @@ app.listen(app.get('port'), function() {
 
 //-------------
 
-/*const WebSocket = require('ws');
+/*const WebSocket = require('ws')
 
-const ws = new WebSocket('ws://immense-fortress-84995.herokuapp.com/ws');
-const ws = new WebSocket('ws://localhost/ws');
+const ws = new WebSocket('ws://immense-fortress-84995.herokuapp.com/ws')
+const ws = new WebSocket('ws://localhost/ws')
 
 const ws = new WebSocket.Server({
   port: process.env.PORT
-});
+})
 
 ws.on('open', function open() {
-  ws.send('something');
-});
+  ws.send('something')
+})
 
 ws.on('message', function incoming(data) {
-  console.log(data);
-});*/
+  console.log(data)
+})*/
 
 //-------------
 
-var WebSocketServer = require("ws").Server
-var http = require("http")
-var express = require("express")
+var WebSocketServer = require('ws').Server
+var http = require('http')
+var express = require('express')
 var app = express()
 var port = process.env.PORT || 5000
 
@@ -46,15 +46,17 @@ server.listen(port)
 
 var wss = new WebSocketServer({server: server})
 
-wss.on("open", function(ws) {
-  wss.send("It's connected")
+wss.on('open', function(ws) {
+	console.log("It's connected")
+	wss.send("It's connected")
 })
 
 wss.on('message', function incoming(data) {
+	console.log(data)
 	wss.send(data)
-  	console.log(data);
 })
 
-wss.on("close", function() {
+wss.on('close', function() {
+	console.log("It's disconnected")
     wss.send("It's disconnected")
 })
