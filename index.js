@@ -18,8 +18,11 @@ const wss = new WebSocketServer({
 
 wss.on("connection", function(ws)
 {
+	console.log(JSON.stringify(ws))
+
 	ws.on("message", function(data)
 	{
+		console.log(JSON.stringify(data))
 		ws.send(data)
 	})
 
