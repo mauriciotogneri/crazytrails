@@ -12,13 +12,13 @@
                 document.querySelector('#pings').appendChild(li)
             }
 
-            ws.onconnect = function()
-            {
+            //ws.onconnect = function()
+            //{
                 setInterval(function()
                 {
                     ws.send(new Date().getTime())
                 }, 1000)
-            }
+            //}
 
         </script>
 
