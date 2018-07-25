@@ -1,17 +1,19 @@
+var WebSocketServer = require("ws").Server
 var http = require("http")
 var express = require("express")
 var app = express()
+var port = process.env.PORT || 5000
 
+var app = express()
 app.use(express.static(__dirname + "/public"))
 
 var server = http.createServer(app)
-server.listen(process.env.PORT)
+server.listen(port)
 
 // -------------------------------------------------
 
-const WebSocketServer = require('ws').Server
 const wss = new WebSocketServer({
-	port: process.env.PORT
+	server: server
 })
 
 wss.on("connection", function(ws)
