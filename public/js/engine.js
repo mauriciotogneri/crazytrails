@@ -1,4 +1,4 @@
-var rectangle
+var head
 
 class Engine
 {
@@ -6,24 +6,25 @@ class Engine
     {
         Engine.canvas = oCanvas.create({
             canvas: "#canvas",
-            fps: 0
+            fps: 0,
+            background: "#222"
         })
     
         Engine.canvas.timeline.stop()
-        Engine.canvas.background.set("#222")
-    
-        rectangle = Engine.canvas.display.rectangle({
-            x: 0,
-            y: 0,
-            width: 20,
-            height: 20,
-            fill: "#0aa"
-        })
-    
-        Engine.canvas.addChild(rectangle)   
+
+        const gameScene = Engine.canvas.scenes.create("game", function(){})
+        
+        head = new Head(gameScene)
         
         Engine.startLoop()
         Network.init()
+
+        Engine.canvas.scenes.load("game")
+    }
+
+    static processInput(direction)
+    {
+        head.updateDirection(direction)
     }
 
     static processMessage(data)
@@ -46,44 +47,7 @@ class Engine
 
     static update(delta)
     {
-        const speed = (300 * delta)
-
-        if (Input.direction == Direction.UP)
-        {
-            rectangle.y -= speed
-        }
-        else if (Input.direction == Direction.DOWN)
-        {
-            rectangle.y += speed
-        }
-        else if (Input.direction == Direction.LEFT)
-        {
-            rectangle.x -= speed
-        }
-        else if (Input.direction == Direction.RIGHT)
-        {
-            rectangle.x += speed
-        }
-    
-        if (rectangle.x < 0)
-        {
-            rectangle.x = 0
-        }
-    
-        if (rectangle.x > 1580)
-        {
-            rectangle.x = 1580
-        }
-    
-        if (rectangle.y < 0)
-        {
-            rectangle.y = 0
-        }
-    
-        if (rectangle.y > 780)
-        {
-            rectangle.y = 780
-        }
+        head.move(delta)
     
         Engine.canvas.redraw()
     }

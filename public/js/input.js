@@ -1,37 +1,30 @@
 class Input
 {
-    constructor()
-    {
-        Input.direction = ''
-    }
-
     static keyDown(code)
     {
-        if ((code == 38) && (Input.direction != Direction.DOWN))
+        if (code == 38)
         {
-            Network.send(Direction.UP)
-            //Input.direction = Direction.UP
+            Engine.processInput(Direction.UP)
         }
-        else if ((code == 40) && (Input.direction != Direction.UP))
+        else if (code == 40)
         {
-            Network.send(Direction.DOWN)
-            //Input.direction = Direction.DOWN
+            Engine.processInput(Direction.DOWN)
         }
-        else if ((code == 37) && (Input.direction != Direction.RIGHT))
+        else if (code == 37)
         {
-            Network.send(Direction.LEFT)
-            //Input.direction = Direction.LEFT
+            Engine.processInput(Direction.LEFT)
         }
-        else if ((code == 39) && (Input.direction != Direction.LEFT))
+        else if (code == 39)
         {
-            Network.send(Direction.RIGHT)
-            //Input.direction = Direction.RIGHT
+            Engine.processInput(Direction.RIGHT)
         }
     }
 }
 
 document.onkeydown = function(event)
 {
-    if (event.repeat) { return }
-    Input.keyDown(event.keyCode)
+    if (!event.repeat)
+    {
+        Input.keyDown(event.keyCode)
+    }
 }
