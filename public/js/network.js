@@ -6,18 +6,8 @@ Network.init = function()
 
     Network.ws.onmessage = function(event)
     {
-        console.log(Object.getOwnPropertyNames(event))
-        Network.process(event.data)
+        Engine.processMessage(event.data)
     }
-    
-    Network.ws.onopen = function()
-    {
-    }
-}
-
-Network.send = function(data)
-{
-    Network.ws.send(data)
 }
 
 Network.remoteAddress = function()
@@ -32,7 +22,7 @@ Network.remoteAddress = function()
     }
 }
 
-Network.process = function(data)
+Network.send = function(data)
 {
-    Input.direction = data
+    Network.ws.send(data)
 }

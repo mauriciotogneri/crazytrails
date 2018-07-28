@@ -1,12 +1,16 @@
 var canvas
 var rectangle
 
-function init()
+Engine = {}
+
+Engine.init = function()
 {
     canvas = oCanvas.create({
-        canvas: "#canvas"
+        canvas: "#canvas",
+        fps: 0
     })
 
+    canvas.timeline.stop()
     canvas.background.set("#222")
 
     rectangle = canvas.display.rectangle({
@@ -19,11 +23,16 @@ function init()
 
     canvas.addChild(rectangle)   
     
-    startLoop()
+    Engine.startLoop()
     Network.init()
 }
 
-function run()
+Engine.processMessage = function(data)
+{
+    Input.direction = data
+}
+
+Engine.run = function()
 {
     var startTime = new Date().getTime()
     var that = this
@@ -33,11 +42,11 @@ function run()
         var currentTime = new Date().getTime()
         var delta = (currentTime - startTime) / 1000
         startTime = currentTime
-        update(delta)
+        Engine.update(delta)
     }
 }
 
-function update(delta)
+Engine.update = function(delta)
 {
     const speed = (300 * delta)
 
@@ -61,7 +70,7 @@ function update(delta)
     canvas.redraw()
 }
 
-function startLoop()
+Engine.startLoop = function()
 {
     var onEachFrame
     
@@ -100,5 +109,5 @@ function startLoop()
     }
 
     window.onEachFrame = onEachFrame
-    window.onEachFrame(run())
+    window.onEachFrame(Engine.run())
 }
