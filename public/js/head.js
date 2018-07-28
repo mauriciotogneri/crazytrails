@@ -37,43 +37,46 @@ class Head
 
     move(delta)
     {
-        const distance = (300 * delta)
+        if (this.direction != '')
+        {
+            const distance = (300 * delta)
+            
+            if (this.direction == Direction.UP)
+            {
+                this.shape.y -= distance
+            }
+            else if (this.direction == Direction.DOWN)
+            {
+                this.shape.y += distance
+            }
+            else if (this.direction == Direction.LEFT)
+            {
+                this.shape.x -= distance
+            }
+            else if (this.direction == Direction.RIGHT)
+            {
+                this.shape.x += distance
+            }
 
-        if (this.direction == Direction.UP)
-        {
-            this.shape.y -= distance
-        }
-        else if (this.direction == Direction.DOWN)
-        {
-            this.shape.y += distance
-        }
-        else if (this.direction == Direction.LEFT)
-        {
-            this.shape.x -= distance
-        }
-        else if (this.direction == Direction.RIGHT)
-        {
-            this.shape.x += distance
-        }
-
-        if (this.shape.x < 0)
-        {
-            this.shape.x = 0
-        }
-    
-        if (this.shape.x > 1580)
-        {
-            this.shape.x = 1580
-        }
-    
-        if (this.shape.y < 0)
-        {
-            this.shape.y = 0
-        }
-    
-        if (this.shape.y > 780)
-        {
-            this.shape.y = 780
+            if (this.shape.x < 0)
+            {
+                this.shape.x = 0
+            }
+        
+            if (this.shape.x > 1580)
+            {
+                this.shape.x = 1580
+            }
+        
+            if (this.shape.y < 0)
+            {
+                this.shape.y = 0
+            }
+        
+            if (this.shape.y > 780)
+            {
+                this.shape.y = 780
+            }
         }
     }
 }
