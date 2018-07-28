@@ -5,7 +5,7 @@
 
             var ws = new WebSocket("wss://websocketsserver.herokuapp.com")
 
-            /*ws.onmessage = function(event)
+            ws.onmessage = function(event)
             {
                 var li = document.createElement('li')
                 li.innerHTML = new String(new Date().getTime() - parseInt(event.data))
@@ -18,14 +18,14 @@
                 {
                     ws.send(new Date().getTime())
                 }, 1000)
-            }*/
+            }
 
         </script>
 
     </head>
     
     <body>
-        
+        <ul id='pings'></ul>
     </body>
 
 </html>

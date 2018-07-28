@@ -18,6 +18,14 @@ const wss = new WebSocketServer({
 
 wss.on("connection", function(ws)
 {
+	console.log(Object.getOwnPropertyNames(ws))
+
+	wss.clients.forEach(function each(client)
+	{
+		console.log(Object.getOwnPropertyNames(client))
+		console.log(JSON.stringify(client))
+	})
+
 	ws.on("message", function(data)
 	{
 		ws.send(data)
