@@ -3,12 +3,16 @@ class Head
     constructor(scene, direction)
     {
         this.direction = ''
+        this.accumulation = 0
+        this.sections = []
+        this.scene = scene
+        this.SIZE = 10
 
         this.shape = Engine.canvas.display.rectangle({
             x: 0,
             y: 0,
-            width: 20,
-            height: 20,
+            width: this.SIZE,
+            height: this.SIZE,
             fill: "#0aa"
         })
 
@@ -40,6 +44,27 @@ class Head
         if (this.direction != '')
         {
             const distance = (300 * delta)
+            this.accumulation += distance
+
+            const h = parseInt(this.shape.x / this.SIZE)
+            const v = parseInt(this.shape.y / this.SIZE)
+
+            if (this.accumulation >= this.SIZE)
+            {
+                this.accumulation -= this.SIZE
+
+                const section = Engine.canvas.display.rectangle({
+                    x: h * this.SIZE,
+                    y: v * this.SIZE,
+                    width: this.SIZE,
+                    height: this.SIZE,
+                    fill: "#0aa"
+                })
+        
+                this.scene.add(section)
+
+                this.sections.push(section)
+            }
             
             if (this.direction == Direction.UP)
             {
@@ -61,21 +86,25 @@ class Head
             if (this.shape.x < 0)
             {
                 this.shape.x = 0
+                this.direction = ''
             }
         
-            if (this.shape.x > 1580)
+            if (this.shape.x > (1600 - this.SIZE))
             {
-                this.shape.x = 1580
+                this.shape.x = (1600 - this.SIZE)
+                this.direction = ''
             }
         
             if (this.shape.y < 0)
             {
                 this.shape.y = 0
+                this.direction = ''
             }
         
-            if (this.shape.y > 780)
+            if (this.shape.y > (800 - this.SIZE))
             {
-                this.shape.y = 780
+                this.shape.y = (800 - this.SIZE)
+                this.direction = ''
             }
         }
     }
