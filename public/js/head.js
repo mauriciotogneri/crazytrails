@@ -1,8 +1,8 @@
 class Head
 {
-    constructor(scene)
+    constructor(scene, direction)
     {
-        this.direction = Direction.RIGHT
+        this.direction = ''
 
         this.shape = Engine.canvas.display.rectangle({
             x: 0,
