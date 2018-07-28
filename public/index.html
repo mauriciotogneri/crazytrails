@@ -1,31 +1,25 @@
 <html>
     <head>
 
-        <script>
+        <meta charset="UTF-8" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        
+        <title>Line Fever</title>
 
-            var ws = new WebSocket("wss://websocketsserver.herokuapp.com")
+        <link type="text/css" rel="stylesheet" href="css/style.css" />
 
-            /*ws.onmessage = function(event)
-            {
-                var li = document.createElement('li')
-                li.innerHTML = new String(new Date().getTime() - parseInt(event.data))
-                document.querySelector('#pings').appendChild(li)
-            }
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.10.0/ocanvas.min.js"></script>
 
-            ws.onopen = function()
-            {
-                setInterval(function()
-                {
-                    ws.send(new Date().getTime())
-                }, 1000)
-            }*/
-
-        </script>
+        <script src="js/engine.js"></script>
+        <script src="js/input.js"></script>
+        <script src="js/network.js"></script>
 
     </head>
     
-    <body>
-        
+    <body onload="init()">
+        <div class="canvas">
+            <canvas id="canvas" width="1600" height="800" style="user-select: none; border: 1px solid #333"></canvas>
+        </div>
     </body>
 
 </html>

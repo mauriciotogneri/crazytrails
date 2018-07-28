@@ -20,11 +20,6 @@ wss.on("connection", function(ws)
 {
 	wss.clients.forEach(function each(client)
 	{
-		console.log(Object.getOwnPropertyNames(client))
-		console.log(client.domain)
-		console.log(client.readyState)
-		console.log(client.protocol)
-		console.log(client._events)
 	})
 
 	ws.on("message", function(data)
