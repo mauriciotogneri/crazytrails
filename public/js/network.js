@@ -1,28 +1,29 @@
-Network = {}
-
-Network.init = function()
+class Network
 {
-    Network.ws = new WebSocket(Network.remoteAddress())
-
-    Network.ws.onmessage = function(event)
+    static init()
     {
-        Engine.processMessage(event.data)
-    }
-}
+        Network.ws = new WebSocket(Network.remoteAddress())
 
-Network.remoteAddress = function()
-{
-    if (window.location.hostname == "localhost")
-    {
-        return "ws://" + window.location.hostname + ":5000"
+        Network.ws.onmessage = function(event)
+        {
+            Engine.processMessage(event.data)
+        }
     }
-    else
-    {
-        return "wss://" + window.location.hostname
-    }
-}
 
-Network.send = function(data)
-{
-    Network.ws.send(data)
+    static remoteAddress()
+    {
+        if (window.location.hostname == "localhost")
+        {
+            return "ws://" + window.location.hostname + ":5000"
+        }
+        else
+        {
+            return "wss://" + window.location.hostname
+        }
+    }
+
+    static send(data)
+    {
+        Network.ws.send(data)
+    }
 }
