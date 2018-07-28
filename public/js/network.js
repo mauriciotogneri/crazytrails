@@ -1,18 +1,38 @@
-var ws = new WebSocket("wss://websocketsserver.herokuapp.com")
+Network = {}
 
-ws.onmessage = function(event)
+Network.init = function()
 {
-    /*var li = document.createElement('li')
-    li.innerHTML = new String(new Date().getTime() - parseInt(event.data))
-    document.querySelector('#pings').appendChild(li)*/
-    Input.direction = event.data
+    Network.ws = new WebSocket(Network.remoteAddress())
+
+    Network.ws.onmessage = function(event)
+    {
+        console.log(Object.getOwnPropertyNames(event))
+        Network.process(event.data)
+    }
+    
+    Network.ws.onopen = function()
+    {
+    }
 }
 
-ws.onopen = function()
+Network.send = function(data)
 {
+    Network.ws.send(data)
 }
 
-function sendMessage(data)
+Network.remoteAddress = function()
 {
-    ws.send(data)
+    if (window.location.hostname == "localhost")
+    {
+        return "ws://" + window.location.hostname + ":5000"
+    }
+    else
+    {
+        return "wss://" + window.location.hostname
+    }
+}
+
+Network.process = function(data)
+{
+    Input.direction = data
 }

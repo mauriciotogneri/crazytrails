@@ -18,6 +18,8 @@ const wss = new WebSocketServer({
 
 wss.on("connection", function(ws)
 {
+	console.log('New connection')
+
 	wss.clients.forEach(function each(client)
 	{
 	})

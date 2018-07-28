@@ -20,6 +20,7 @@ function init()
     canvas.addChild(rectangle)   
     
     startLoop()
+    Network.init()
 }
 
 function run()
