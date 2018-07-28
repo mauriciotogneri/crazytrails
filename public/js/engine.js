@@ -1,113 +1,132 @@
-var canvas
 var rectangle
 
-Engine = {}
-
-Engine.init = function()
+class Engine
 {
-    canvas = oCanvas.create({
-        canvas: "#canvas",
-        fps: 0
-    })
-
-    canvas.timeline.stop()
-    canvas.background.set("#222")
-
-    rectangle = canvas.display.rectangle({
-        x: 0,
-        y: 0,
-        width: 20,
-        height: 20,
-        fill: "#0aa"
-    })
-
-    canvas.addChild(rectangle)   
+    static init()
+    {
+        Engine.canvas = oCanvas.create({
+            canvas: "#canvas",
+            fps: 0
+        })
     
-    Engine.startLoop()
-    Network.init()
-}
-
-Engine.processMessage = function(data)
-{
-    Input.direction = data
-}
-
-Engine.run = function()
-{
-    var startTime = new Date().getTime()
-    var that = this
+        Engine.canvas.timeline.stop()
+        Engine.canvas.background.set("#222")
     
-    return function()
-    {
-        var currentTime = new Date().getTime()
-        var delta = (currentTime - startTime) / 1000
-        startTime = currentTime
-        Engine.update(delta)
-    }
-}
-
-Engine.update = function(delta)
-{
-    const speed = (300 * delta)
-
-    if (Input.direction == Direction.UP)
-    {
-        rectangle.y -= speed
-    }
-    else if (Input.direction == Direction.DOWN)
-    {
-        rectangle.y += speed
-    }
-    else if (Input.direction == Direction.LEFT)
-    {
-        rectangle.x -= speed
-    }
-    else if (Input.direction == Direction.RIGHT)
-    {
-        rectangle.x += speed
-    }
-
-    canvas.redraw()
-}
-
-Engine.startLoop = function()
-{
-    var onEachFrame
+        rectangle = Engine.canvas.display.rectangle({
+            x: 0,
+            y: 0,
+            width: 20,
+            height: 20,
+            fill: "#0aa"
+        })
     
-    if (window.webkitRequestAnimationFrame)
+        Engine.canvas.addChild(rectangle)   
+        
+        Engine.startLoop()
+        Network.init()
+    }
+
+    static processMessage(data)
     {
-        onEachFrame = function(cb)
+        Input.direction = data
+    }
+
+    static run()
+    {
+        var startTime = new Date().getTime()
+    
+        return function()
         {
-            var _cb = function()
+            var currentTime = new Date().getTime()
+            var delta = (currentTime - startTime) / 1000
+            startTime = currentTime
+            Engine.update(delta)
+        }
+    }
+
+    static update(delta)
+    {
+        const speed = (300 * delta)
+
+        if (Input.direction == Direction.UP)
+        {
+            rectangle.y -= speed
+        }
+        else if (Input.direction == Direction.DOWN)
+        {
+            rectangle.y += speed
+        }
+        else if (Input.direction == Direction.LEFT)
+        {
+            rectangle.x -= speed
+        }
+        else if (Input.direction == Direction.RIGHT)
+        {
+            rectangle.x += speed
+        }
+    
+        if (rectangle.x < 0)
+        {
+            rectangle.x = 0
+        }
+    
+        if (rectangle.x > 1580)
+        {
+            rectangle.x = 1580
+        }
+    
+        if (rectangle.y < 0)
+        {
+            rectangle.y = 0
+        }
+    
+        if (rectangle.y > 780)
+        {
+            rectangle.y = 780
+        }
+    
+        Engine.canvas.redraw()
+    }
+
+    static startLoop()
+    {
+        var onEachFrame
+    
+        if (window.webkitRequestAnimationFrame)
+        {
+            onEachFrame = function(cb)
             {
-                cb()
-                webkitRequestAnimationFrame(_cb)
+                var _cb = function()
+                {
+                    cb()
+                    webkitRequestAnimationFrame(_cb)
+                }
+                
+                _cb()
             }
-            
-            _cb()
         }
-    }
-    else if (window.mozRequestAnimationFrame)
-    {
-        onEachFrame = function(cb)
+        else if (window.mozRequestAnimationFrame)
         {
-            var _cb = function()
+            onEachFrame = function(cb)
             {
-                cb()
-                mozRequestAnimationFrame(_cb)
+                var _cb = function()
+                {
+                    cb()
+                    mozRequestAnimationFrame(_cb)
+                }
+                
+                _cb()
             }
-            
-            _cb()
         }
-    }
-    else
-    {
-        onEachFrame = function(cb)
+        else
         {
-            setInterval(cb, parseInt(1000 / 60))
+            onEachFrame = function(cb)
+            {
+                setInterval(cb, parseInt(1000 / 60))
+            }
         }
+    
+        window.onEachFrame = onEachFrame
+        window.onEachFrame(Engine.run())
     }
-
-    window.onEachFrame = onEachFrame
-    window.onEachFrame(Engine.run())
 }
