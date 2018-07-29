@@ -4,22 +4,14 @@ class Engine
 {
     static init()
     {
-        Engine.canvas = oCanvas.create({
-            canvas: "#canvas",
-            fps: 0,
-            background: "#222"
-        })
-    
-        Engine.canvas.timeline.stop()
-
-        const gameScene = Engine.canvas.scenes.create("game", function(){})
+        var canvas = document.getElementById("canvas")
+        paper.setup(canvas)
+        //background: "#222"
         
-        head = new Head(gameScene)
+        head = new Head()
         
         Engine.startLoop()
         Network.init()
-
-        Engine.canvas.scenes.load("game")
     }
 
     static processInput(direction)
@@ -48,8 +40,6 @@ class Engine
     static update(delta)
     {
         head.move(delta)
-    
-        Engine.canvas.redraw()
     }
 
     static startLoop()

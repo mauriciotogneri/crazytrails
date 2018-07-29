@@ -3,20 +3,15 @@ class Head
     constructor(scene, direction)
     {
         this.direction = ''
-        this.accumulation = 0
-        this.sections = []
-        this.scene = scene
         this.SIZE = 10
 
-        this.shape = Engine.canvas.display.rectangle({
-            x: 0,
-            y: 0,
-            width: this.SIZE,
-            height: this.SIZE,
-            fill: "#0aa"
+        this.path = new paper.Path({
+            strokeColor: '#00A1CA',
+            strokeWidth: this.SIZE,
+            strokeCap: 'round',
+            fullySelected: true
         })
-
-        scene.add(this.shape)
+        this.path.add(new paper.Point(800, 400))
     }
 
     updateDirection(value)
@@ -44,66 +39,57 @@ class Head
         if (this.direction != '')
         {
             const distance = (300 * delta)
-            this.accumulation += distance
+            const segments = this.path.segments
+            var lastPoint = segments[segments.length - 1].lastPoint
 
-            const h = parseInt(this.shape.x / this.SIZE)
-            const v = parseInt(this.shape.y / this.SIZE)
-
-            if (this.accumulation >= this.SIZE)
+            if (!lastPoint)
             {
-                this.accumulation -= this.SIZE
-
-                const section = Engine.canvas.display.rectangle({
-                    x: h * this.SIZE,
-                    y: v * this.SIZE,
-                    width: this.SIZE,
-                    height: this.SIZE,
-                    fill: "#0aa"
-                })
-        
-                this.scene.add(section)
-
-                this.sections.push(section)
+                lastPoint = segments[segments.length - 1].point
             }
+
+            var x = lastPoint.x
+            var y = lastPoint.y
             
             if (this.direction == Direction.UP)
             {
-                this.shape.y -= distance
+                y -= distance
             }
             else if (this.direction == Direction.DOWN)
             {
-                this.shape.y += distance
+                y += distance
             }
             else if (this.direction == Direction.LEFT)
             {
-                this.shape.x -= distance
+                x -= distance
             }
             else if (this.direction == Direction.RIGHT)
             {
-                this.shape.x += distance
+                x += distance
             }
 
-            if (this.shape.x < 0)
+            this.path.add(new paper.Point(x, y))
+
+            if (x < 0)
             {
-                this.shape.x = 0
+                //this.shape.x = 0
                 this.direction = ''
             }
         
-            if (this.shape.x > (1600 - this.SIZE))
+            if (x > (1600 - this.SIZE))
             {
-                this.shape.x = (1600 - this.SIZE)
+                //this.shape.x = (1600 - this.SIZE)
                 this.direction = ''
             }
         
-            if (this.shape.y < 0)
+            if (y < 0)
             {
-                this.shape.y = 0
+                //this.shape.y = 0
                 this.direction = ''
             }
         
-            if (this.shape.y > (800 - this.SIZE))
+            if (y > (800 - this.SIZE))
             {
-                this.shape.y = (800 - this.SIZE)
+                //this.shape.y = (800 - this.SIZE)
                 this.direction = ''
             }
         }
