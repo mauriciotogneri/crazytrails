@@ -1,30 +1,24 @@
 class Input
 {
-    static keyDown(code)
+    static keyPress(code, pressed)
     {
-        if (code == 38)
+        if (code == 37)
         {
-            Engine.processInput(Direction.UP)
-        }
-        else if (code == 40)
-        {
-            Engine.processInput(Direction.DOWN)
-        }
-        else if (code == 37)
-        {
-            Engine.processInput(Direction.LEFT)
+            Engine.processInput(Direction.LEFT, pressed)
         }
         else if (code == 39)
         {
-            Engine.processInput(Direction.RIGHT)
+            Engine.processInput(Direction.RIGHT, pressed)
         }
     }
 }
 
 document.onkeydown = function(event)
 {
-    if (!event.repeat)
-    {
-        Input.keyDown(event.keyCode)
-    }
+    Input.keyPress(event.keyCode, true)
+}
+
+document.onkeyup = function(event)
+{
+    Input.keyPress(event.keyCode, false)
 }

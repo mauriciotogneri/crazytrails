@@ -14,9 +14,9 @@ class Engine
         Network.init()
     }
 
-    static processInput(direction)
+    static processInput(direction, pressed)
     {
-        head.updateDirection(direction)
+        head.updateDirection(direction, pressed)
     }
 
     static processMessage(data)
