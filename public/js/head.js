@@ -1,6 +1,6 @@
 class Head
 {
-    constructor(scene, direction)
+    constructor()
     {
         this.direction = ''
         this.SIZE = 10
@@ -11,7 +11,13 @@ class Head
             strokeCap: 'round',
             fullySelected: true
         })
-        this.path.add(new paper.Point(800, 400))
+
+        this.head = new paper.Point({
+            x: 800,
+            y: 400
+        })
+
+        this.path.add(this.head)
     }
 
     updateDirection(value)
@@ -39,59 +45,49 @@ class Head
         if (this.direction != '')
         {
             const distance = (300 * delta)
-            const segments = this.path.segments
-            var lastPoint = segments[segments.length - 1].lastPoint
-
-            if (!lastPoint)
-            {
-                lastPoint = segments[segments.length - 1].point
-            }
-
-            var x = lastPoint.x
-            var y = lastPoint.y
             
             if (this.direction == Direction.UP)
             {
-                y -= distance
+                this.head.y -= distance
             }
             else if (this.direction == Direction.DOWN)
             {
-                y += distance
+                this.head.y += distance
             }
             else if (this.direction == Direction.LEFT)
             {
-                x -= distance
+                this.head.x -= distance
             }
             else if (this.direction == Direction.RIGHT)
             {
-                x += distance
+                this.head.x += distance
             }
 
-            this.path.add(new paper.Point(x, y))
+            if (this.head.x < 0)
+            {
+                this.head.x = 0
+                this.direction = ''
+            }
+            
+            if (this.head.x > (1600 - this.SIZE))
+            {
+                this.head.x = (1600 - this.SIZE)
+                this.direction = ''
+            }
+        
+            if (this.head.y < 0)
+            {
+                this.head.y = 0
+                this.direction = ''
+            }
+        
+            if (this.head.y > (800 - this.SIZE))
+            {
+                this.head.y = (800 - this.SIZE)
+                this.direction = ''
+            }
 
-            if (x < 0)
-            {
-                //this.shape.x = 0
-                this.direction = ''
-            }
-        
-            if (x > (1600 - this.SIZE))
-            {
-                //this.shape.x = (1600 - this.SIZE)
-                this.direction = ''
-            }
-        
-            if (y < 0)
-            {
-                //this.shape.y = 0
-                this.direction = ''
-            }
-        
-            if (y > (800 - this.SIZE))
-            {
-                //this.shape.y = (800 - this.SIZE)
-                this.direction = ''
-            }
+            this.path.add(this.head)
         }
     }
 }
