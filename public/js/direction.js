@@ -1,18 +1,14 @@
-Direction = {
-    UP: 'up',
-    DOWN: 'down',
-    LEFT: 'left',
-    RIGHT: 'right'
-}
-
-Direction.fromInput = function(code)
+class Direction
 {
-    if (code == 37)
+    static fromInput(code)
     {
-        return Direction.LEFT
-    }
-    else if (code == 39)
-    {
-        return Direction.RIGHT
+        if (code == 37)
+        {
+            return DIRECTION_LEFT
+        }
+        else if (code == 39)
+        {
+            return DIRECTION_RIGHT
+        }
     }
 }

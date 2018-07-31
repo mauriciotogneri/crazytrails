@@ -29,8 +29,16 @@ class Engine
             player1 = new Head(400, 400, 180, '#E93844')
         }
    
-        Engine.startLoop()
+        //Engine.startLoop()
         Network.init()
+
+        paper.view.onFrame = function(event)
+        {
+            if (event.count % (60/FPS) === 0)
+            {
+                Engine.update(event.delta)
+            }
+        } 
     }
 
     static processInput(direction, pressed)

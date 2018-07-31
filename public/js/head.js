@@ -2,12 +2,11 @@ class Head
 {
     constructor(x, y, angle, color)
     {
-        this.direction = ''
-        this.SIZE = 10
+        this.direction = 0
 
         this.path = new paper.Path({
             strokeColor: color,
-            strokeWidth: this.SIZE,
+            strokeWidth: HEAD_SIZE,
             strokeCap: 'round'/*,
             fullySelected: true*/
         })
@@ -29,13 +28,10 @@ class Head
             {
                 this.pressed = pressed
 
-                var data = {
-                    direction: direction,
-                    pressed: pressed
-                }
-
-                data.angle = this.angle
-                data.position = {
+                const data = {
+                    d: direction,
+                    p: pressed,
+                    a: this.angle,
                     x: this.head.x,
                     y: this.head.y
                 }
@@ -49,13 +45,13 @@ class Head
 
     processRemoteInput(data)
     {
-        this.updatePosition(data.direction, data.pressed)
+        this.updatePosition(data.d, data.p)
 
-        if ((data.angle) && (data.position))
+        if (data.a && data.x && data.y)
         {
-            this.angle  = data.angle
-            this.head.x = data.position.x
-            this.head.y = data.position.y
+            this.angle  = data.a
+            this.head.x = data.x
+            this.head.y = data.y
         }
     }
 
@@ -67,21 +63,21 @@ class Head
         }
         else if (direction == this.direction)
         {
-            this.direction = ''
+            this.direction = 0
         }  
     }
 
     move(delta)
     {
-        const distance = (delta * 150)
-        const angle = (delta * 150)
+        const distance = (delta * DISTANCE_RATE)
+        const angle = (delta * ANGLE_RATE)
         var turned = true
         
-        if (this.direction == Direction.LEFT)
+        if (this.direction == DIRECTION_LEFT)
         {
             this.angle -= angle
         }
-        else if (this.direction == Direction.RIGHT)
+        else if (this.direction == DIRECTION_RIGHT)
         {
             this.angle += angle
         }
@@ -105,25 +101,21 @@ class Head
         if (this.head.x < 0)
         {
             this.head.x = 0
-            //this.direction = ''
         }
         
-        if (this.head.x > (800 - this.SIZE))
+        if (this.head.x > (800 - HEAD_SIZE))
         {
-            this.head.x = (800 - this.SIZE)
-            //this.direction = ''
+            this.head.x = (800 - HEAD_SIZE)
         }
     
         if (this.head.y < 0)
         {
             this.head.y = 0
-            //this.direction = ''
         }
-    
-        if (this.head.y > (800 - this.SIZE))
+        
+        if (this.head.y > (800 - HEAD_SIZE))
         {
-            this.head.y = (800 - this.SIZE)
-            //this.direction = ''
+            this.head.y = (800 - HEAD_SIZE)
         }
 
         this.path.add(this.head)
