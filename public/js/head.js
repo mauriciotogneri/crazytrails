@@ -53,7 +53,7 @@ class Head
             this.direction = ''
         }
 
-        this.angle = data.angle
+        //this.angle = data.angle
         //this.head.x = data.position.x
         //this.head.y = data.position.y
     }
