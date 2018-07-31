@@ -28,19 +28,14 @@ class Head
             {
                 this.pressed = pressed
 
-                var data = {
-                    d: direction,
-                    p: pressed
-                }
+                const array = new Float32Array(5)
+                array[0] = direction
+                array[1] = pressed ? 1 : 0
+                array[2] = this.angle
+                array[3] = this.head.x
+                array[4] = this.head.y
 
-                if (!pressed)
-                {
-                    data.a = this.angle
-                    data.x = this.head.x
-                    data.y = this.head.y
-                }
-
-                Network.send(data)
+                Network.send(array)
             }
         }
 
@@ -49,14 +44,19 @@ class Head
 
     processRemoteInput(data)
     {
-        this.updatePosition(data.d, data.p)
+        const array = new Float32Array(data)
 
-        if (data.a && data.x && data.y)
-        {
-            this.angle  = data.a
-            this.head.x = data.x
-            this.head.y = data.y
-        }
+        const direction = array[0]
+        const pressed = array[1]
+        const angle = array[2]
+        const x = array[3]
+        const y = array[4]
+
+        this.updatePosition(direction, pressed)
+
+        this.angle  = angle
+        this.head.x = x
+        this.head.y = y
     }
 
     updatePosition(direction, pressed)

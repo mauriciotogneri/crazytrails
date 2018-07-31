@@ -10,6 +10,14 @@ class Engine
         const canvas = document.getElementById("canvas")
         paper.setup(canvas)
 
+        paper.view.onFrame = function(event)
+        {
+            if (event.count % (60/FPS) === 0)
+            {
+                Engine.update(event.delta)
+            }
+        }
+
         const background  = new paper.Path.Rectangle({
             point: [0, 0],
             size: [800,800],
@@ -28,17 +36,8 @@ class Engine
             player2 = new Head(400, 400, 0, '#00A1CA')
             player1 = new Head(400, 400, 180, '#E93844')
         }
-   
-        //Engine.startLoop()
-        Network.init()
 
-        paper.view.onFrame = function(event)
-        {
-            if (event.count % (60/FPS) === 0)
-            {
-                Engine.update(event.delta)
-            }
-        } 
+        Network.init()
     }
 
     static processInput(direction, pressed)
@@ -51,64 +50,9 @@ class Engine
         player2.processRemoteInput(data)
     }
 
-    static run()
-    {
-        var startTime = new Date().getTime()
-    
-        return function()
-        {
-            var currentTime = new Date().getTime()
-            var delta = (currentTime - startTime) / 1000
-            startTime = currentTime
-            Engine.update(delta)
-        }
-    }
-
     static update(delta)
     {
         player1.move(delta)
         player2.move(delta)
-    }
-
-    static startLoop()
-    {
-        var onEachFrame
-    
-        if (window.webkitRequestAnimationFrame)
-        {
-            onEachFrame = function(cb)
-            {
-                var _cb = function()
-                {
-                    cb()
-                    webkitRequestAnimationFrame(_cb)
-                }
-                
-                _cb()
-            }
-        }
-        else if (window.mozRequestAnimationFrame)
-        {
-            onEachFrame = function(cb)
-            {
-                var _cb = function()
-                {
-                    cb()
-                    mozRequestAnimationFrame(_cb)
-                }
-                
-                _cb()
-            }
-        }
-        else
-        {
-            onEachFrame = function(cb)
-            {
-                setInterval(cb, parseInt(1000 / 60))
-            }
-        }
-    
-        window.onEachFrame = onEachFrame
-        window.onEachFrame(Engine.run())
     }
 }

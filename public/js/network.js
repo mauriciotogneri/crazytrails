@@ -3,12 +3,11 @@ class Network
     static init()
     {
         Network.ws = new WebSocket(Network.remoteAddress())
+        Network.ws.binaryType = 'arraybuffer'
 
         Network.ws.onmessage = function(event)
         {
-            console.log(new Date() + " => " + event.data)
-
-            Engine.processMessage(JSON.parse(event.data))
+            Engine.processMessage(event.data)
         }
     }
 
@@ -26,6 +25,6 @@ class Network
 
     static send(data)
     {
-        Network.ws.send(JSON.stringify(data))
+        Network.ws.send(data)
     }
 }
