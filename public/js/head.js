@@ -68,12 +68,12 @@ class Head
             this.direction = ''
         }
 
-        if ((data.angle) && (data.position))
+        /*if ((data.angle) && (data.position))
         {
             this.angle = data.angle
             this.head.x = data.position.x
             this.head.y = data.position.y
-        }
+        }*/
     }
 
     move(delta)
