@@ -28,12 +28,16 @@ class Head
             {
                 this.pressed = pressed
 
-                const data = {
+                var data = {
                     d: direction,
-                    p: pressed,
-                    a: this.angle,
-                    x: this.head.x,
-                    y: this.head.y
+                    p: pressed
+                }
+
+                if (!pressed)
+                {
+                    data.a = this.angle
+                    data.x = this.head.x
+                    data.y = this.head.y
                 }
 
                 Network.send(data)
