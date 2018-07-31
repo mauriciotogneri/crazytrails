@@ -6,6 +6,8 @@ class Network
 
         Network.ws.onmessage = function(event)
         {
+            console.log(new Date() + " => " + event.data)
+
             Engine.processMessage(JSON.parse(event.data))
         }
     }

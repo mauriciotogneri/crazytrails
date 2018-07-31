@@ -28,7 +28,7 @@ class Engine
             player2 = new Head(400, 400, 0, '#00A1CA')
             player1 = new Head(400, 400, 180, '#E93844')
         }
-        
+   
         Engine.startLoop()
         Network.init()
     }

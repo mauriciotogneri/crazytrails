@@ -30,10 +30,6 @@ wss.on("connection", function(ws)
 		{
 			clientsCount++
 
-			/*console.log(client !== ws)
-			console.log(client.readyState)
-			console.log(WebSocketServer.OPEN)*/
-
 			if ((client !== ws) && (client.readyState === 1))
 			{
 				client.send(data)
