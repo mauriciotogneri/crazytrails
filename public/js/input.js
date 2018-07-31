@@ -2,14 +2,7 @@ class Input
 {
     static keyPress(code, pressed)
     {
-        if (code == 37)
-        {
-            Engine.processInput(Direction.LEFT, pressed)
-        }
-        else if (code == 39)
-        {
-            Engine.processInput(Direction.RIGHT, pressed)
-        }
+        Engine.processInput(Direction.fromInput(code), pressed)
     }
 }
 

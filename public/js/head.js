@@ -11,24 +11,51 @@ class Head
             strokeCap: 'round',
             fullySelected: true
         })
-
-        this.head  = new paper.Point(800, 400)
+        
+        this.head  = new paper.Point(400, 400)
         this.angle = 0
 
         this.path.add(this.head)
         this.path.add(this.head)
     }
 
-    updateDirection(value, pressed)
+    processLocalInput(value, pressed)
     {
-        if (pressed)
+        Network.send({
+            direction: value,
+            pressed: pressed,
+            angle: this.angle,
+            position: 
+            {
+                x: this.head.x,
+                y: this.head.y
+            }
+        })
+
+        /*if (pressed)
         {
             this.direction = value
         }
         else if (value == this.direction)
         {
             this.direction = ''
+        }*/
+    }
+
+    processRemoteInput(data)
+    {
+        if (data.pressed)
+        {
+            this.direction = data.direction
         }
+        else if (data.direction == this.direction)
+        {
+            this.direction = ''
+        }
+
+        this.angle = data.angle
+        this.head.x = data.position.x
+        this.head.y = data.position.y
     }
 
     move(delta)
@@ -68,9 +95,9 @@ class Head
             //this.direction = ''
         }
         
-        if (this.head.x > (1600 - this.SIZE))
+        if (this.head.x > (800 - this.SIZE))
         {
-            this.head.x = (1600 - this.SIZE)
+            this.head.x = (800 - this.SIZE)
             //this.direction = ''
         }
     

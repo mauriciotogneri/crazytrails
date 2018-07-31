@@ -6,7 +6,7 @@ class Network
 
         Network.ws.onmessage = function(event)
         {
-            Engine.processMessage(event.data)
+            Engine.processMessage(JSON.parse(event.data))
         }
     }
 
@@ -24,6 +24,6 @@ class Network
 
     static send(data)
     {
-        Network.ws.send(data)
+        Network.ws.send(JSON.stringify(data))
     }
 }

@@ -4,9 +4,16 @@ class Engine
 {
     static init()
     {
-        var canvas = document.getElementById("canvas")
+        const canvas = document.getElementById("canvas")
         paper.setup(canvas)
-        //background: "#222"
+
+        const background  = new paper.Path.Rectangle({
+            point: [0, 0],
+            size: [800,800],
+            strokeColor: '#333',
+            fillColor: '#111'
+        })
+        background.sendToBack()
         
         head = new Head()
         
@@ -16,12 +23,12 @@ class Engine
 
     static processInput(direction, pressed)
     {
-        head.updateDirection(direction, pressed)
+        head.processLocalInput(direction, pressed)
     }
 
     static processMessage(data)
     {
-        Input.direction = data
+        head.processRemoteInput(data)
     }
 
     static run()
