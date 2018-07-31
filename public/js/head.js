@@ -27,16 +27,21 @@ class Head
         {
             this.pressed = pressed
 
-            Network.send({
+            var data = {
                 direction: direction,
-                pressed: pressed/*,
-                angle: this.angle,
-                position: 
-                {
+                pressed: pressed
+            }
+
+            if (!pressed)
+            {
+                data.angle = this.angle
+                data.position = {
                     x: this.head.x,
                     y: this.head.y
-                }*/
-            })
+                }
+            }
+
+            Network.send(data)
         }
 
         /*if (pressed)
@@ -49,8 +54,11 @@ class Head
         }*/
     }
 
-    processRemoteInput(direction, pressed)
+    processRemoteInput(data)
     {
+        const direction = data.direction
+        const pressed = data.pressed
+
         if (pressed)
         {
             this.direction = direction
@@ -60,9 +68,12 @@ class Head
             this.direction = ''
         }
 
-        //this.angle = angle
-        //this.head.x = position.x
-        //this.head.y = position.y
+        if ((data.angle) && (data.position))
+        {
+            this.angle = data.angle
+            this.head.x = data.position.x
+            this.head.y = data.position.y
+        }
     }
 
     move(delta)
