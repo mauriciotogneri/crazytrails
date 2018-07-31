@@ -34,13 +34,10 @@ class Head
                     pressed: pressed
                 }
 
-                if (!pressed)
-                {
-                    data.angle = this.angle
-                    data.position = {
-                        x: this.head.x,
-                        y: this.head.y
-                    }
+                data.angle = this.angle
+                data.position = {
+                    x: this.head.x,
+                    y: this.head.y
                 }
 
                 Network.send(data)
