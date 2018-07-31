@@ -33,8 +33,8 @@ class Head
 
     move(delta)
     {
-        const distance = (delta * 200)
-        const angle = (delta * 300)
+        const distance = (delta * 150)
+        const angle = (delta * 150)
         var turned = true
         
         if (this.direction == Direction.LEFT)
