@@ -1,9 +1,12 @@
-var head
+var player1
+var player2
 
 class Engine
 {
     static init()
     {
+        const playerType = prompt()
+
         const canvas = document.getElementById("canvas")
         paper.setup(canvas)
 
@@ -15,7 +18,16 @@ class Engine
         })
         background.sendToBack()
         
-        head = new Head()
+        if (playerType == "1")
+        {
+            player1 = new Head(400, 400, 0, '#00A1CA')
+            player2 = new Head(400, 400, 180, '#E93844')
+        }
+        else
+        {
+            player2 = new Head(400, 400, 0, '#00A1CA')
+            player1 = new Head(400, 400, 180, '#E93844')
+        }
         
         Engine.startLoop()
         Network.init()
@@ -23,12 +35,12 @@ class Engine
 
     static processInput(direction, pressed)
     {
-        head.processLocalInput(direction, pressed)
+        player1.processLocalInput(direction, pressed)
     }
 
     static processMessage(data)
     {
-        head.processRemoteInput(data)
+        player2.processRemoteInput(data)
     }
 
     static run()
@@ -46,7 +58,8 @@ class Engine
 
     static update(delta)
     {
-        head.move(delta)
+        player1.move(delta)
+        player2.move(delta)
     }
 
     static startLoop()

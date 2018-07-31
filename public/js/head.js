@@ -1,19 +1,19 @@
 class Head
 {
-    constructor()
+    constructor(x, y, angle, color)
     {
         this.direction = ''
         this.SIZE = 10
 
         this.path = new paper.Path({
-            strokeColor: '#00A1CA',
+            strokeColor: color,
             strokeWidth: this.SIZE,
             strokeCap: 'round',
             fullySelected: true
         })
         
-        this.head  = new paper.Point(400, 400)
-        this.angle = 0
+        this.head  = new paper.Point(x, y)
+        this.angle = angle
 
         this.path.add(this.head)
         this.path.add(this.head)
@@ -25,48 +25,34 @@ class Head
     {
         if (this.pressed != pressed)
         {
-            this.pressed = pressed
-
-            var data = {
-                direction: direction,
-                pressed: pressed
-            }
-
-            if (!pressed)
+            if ((!pressed) || (pressed && direction))
             {
-                data.angle = this.angle
-                data.position = {
-                    x: this.head.x,
-                    y: this.head.y
+                this.pressed = pressed
+
+                var data = {
+                    direction: direction,
+                    pressed: pressed
                 }
+
+                /*if (!pressed)
+                {
+                    data.angle = this.angle
+                    data.position = {
+                        x: this.head.x,
+                        y: this.head.y
+                    }
+                }*/
+
+                Network.send(data)
             }
-
-            Network.send(data)
         }
 
-        /*if (pressed)
-        {
-            this.direction = direction
-        }
-        else if (direction == this.direction)
-        {
-            this.direction = ''
-        }*/
+        this.updatePosition(direction, pressed)
     }
 
     processRemoteInput(data)
     {
-        const direction = data.direction
-        const pressed = data.pressed
-
-        if (pressed)
-        {
-            this.direction = direction
-        }
-        else if (direction == this.direction)
-        {
-            this.direction = ''
-        }
+        this.updatePosition(data.direction, data.pressed)
 
         /*if ((data.angle) && (data.position))
         {
@@ -74,6 +60,18 @@ class Head
             this.head.x = data.position.x
             this.head.y = data.position.y
         }*/
+    }
+
+    updatePosition(direction, pressed)
+    {
+        if (pressed)
+        {
+            this.direction = direction
+        }
+        else if (direction == this.direction)
+        {
+            this.direction = ''
+        }  
     }
 
     move(delta)

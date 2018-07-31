@@ -20,15 +20,27 @@ wss.on("connection", function(ws)
 {
 	console.log('New connection')
 
-	wss.clients.forEach(function each(client)
-	{
-	})
-
 	ws.on("message", function(data)
 	{
 		console.log(data)
+		
+		var clientsCount = 0
 
-		ws.send(data)
+		wss.clients.forEach(function(client)
+		{
+			clientsCount++
+
+			/*console.log(client !== ws)
+			console.log(client.readyState)
+			console.log(WebSocketServer.OPEN)*/
+
+			if ((client !== ws) && (client.readyState === 1))
+			{
+				client.send(data)
+			}
+		})
+
+		console.log("CLIENT COUNT: " + clientsCount)
 	})
 
 	ws.on("close", function()
