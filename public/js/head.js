@@ -8,8 +8,8 @@ class Head
         this.path = new paper.Path({
             strokeColor: color,
             strokeWidth: this.SIZE,
-            strokeCap: 'round',
-            fullySelected: true
+            strokeCap: 'round'/*,
+            fullySelected: true*/
         })
         
         this.head  = new paper.Point(x, y)
