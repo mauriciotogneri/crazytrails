@@ -54,8 +54,8 @@ class Head
         }
 
         this.angle = data.angle
-        this.head.x = data.position.x
-        this.head.y = data.position.y
+        //this.head.x = data.position.x
+        //this.head.y = data.position.y
     }
 
     move(delta)
