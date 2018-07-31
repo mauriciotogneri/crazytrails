@@ -17,45 +17,52 @@ class Head
 
         this.path.add(this.head)
         this.path.add(this.head)
+
+        this.pressed = false
     }
 
-    processLocalInput(value, pressed)
+    processLocalInput(direction, pressed)
     {
-        Network.send({
-            direction: value,
-            pressed: pressed,
-            angle: this.angle,
-            position: 
-            {
-                x: this.head.x,
-                y: this.head.y
-            }
-        })
+        if (this.pressed != pressed)
+        {
+            this.pressed = pressed
+
+            Network.send({
+                direction: direction,
+                pressed: pressed/*,
+                angle: this.angle,
+                position: 
+                {
+                    x: this.head.x,
+                    y: this.head.y
+                }*/
+            })
+        }
 
         /*if (pressed)
         {
-            this.direction = value
+            this.direction = direction
         }
-        else if (value == this.direction)
+        else if (direction == this.direction)
         {
             this.direction = ''
         }*/
     }
 
-    processRemoteInput(data)
+    processRemoteInput(direction, pressed)
     {
-        if (data.pressed)
+        if (pressed)
         {
-            this.direction = data.direction
+            this.direction = direction
         }
-        else if (data.direction == this.direction)
+        else if (direction == this.direction)
         {
             this.direction = ''
         }
 
-        //this.angle = data.angle
-        //this.head.x = data.position.x
-        //this.head.y = data.position.y
+        //this.angle = angle
+        //this.head.x = position.x
+        //this.head.y = position.y
     }
 
     move(delta)

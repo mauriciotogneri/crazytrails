@@ -28,7 +28,7 @@ class Engine
 
     static processMessage(data)
     {
-        head.processRemoteInput(data)
+        head.processRemoteInput(data.direction, data.pressed)
     }
 
     static run()
