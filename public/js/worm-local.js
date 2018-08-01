@@ -14,7 +14,7 @@ class WormLocal extends Worm
 
     processInput(direction, pressed)
     {
-        if (this.pressed != pressed)
+        if ((this.pressed != pressed) || (this.direction != direction))
         {
             this.pressed = pressed
 
