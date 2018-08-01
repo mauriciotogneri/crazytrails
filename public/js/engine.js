@@ -28,13 +28,13 @@ class Engine
         
         if (playerType == "1")
         {
-            player1 = new Worm(400, 400, 0, '#00A1CA')
-            player2 = new Worm(400, 400, 180, '#E93844')
+            player1 = new Worm(400, 400, 0, '#00A1CA', true)
+            player2 = new Worm(400, 400, 180, '#E93844', false)
         }
         else
         {
-            player2 = new Worm(400, 400, 0, '#00A1CA')
-            player1 = new Worm(400, 400, 180, '#E93844')
+            player2 = new Worm(400, 400, 0, '#00A1CA', false)
+            player1 = new Worm(400, 400, 180, '#E93844', true)
         }
 
         Network.init()
@@ -42,7 +42,10 @@ class Engine
 
     static processInput(direction, pressed)
     {
-        player1.processLocalInput(direction, pressed)
+        if (player1)
+        {
+            player1.processLocalInput(direction, pressed)
+        }
     }
 
     static processMessage(data)

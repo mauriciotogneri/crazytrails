@@ -1,8 +1,10 @@
 class Worm
 {
-    constructor(x, y, angle, color)
+    constructor(x, y, angle, color, isLocal)
     {
         this.direction = 0
+        this.drawing   = false
+        this.pressed   = false
 
         this.path = new paper.Path({
             strokeColor: color,
@@ -14,10 +16,27 @@ class Worm
         this.head  = new paper.Point(x, y)
         this.angle = angle
 
-        this.path.add(this.head)
-        this.path.add(this.head)
+        this.circle = new paper.Path.Circle({
+            center: [x, y],
+            radius: HEAD_SIZE/2,
+            fillColor: color
+        })
 
-        this.pressed = false
+        if (isLocal)
+        {
+            var that = this
+            setTimeout(function()
+            {
+                that.startDrawing()
+            }, 3000)
+        }
+    }
+
+    startDrawing()
+    {
+        this.drawing = true
+        this.path.add(this.head)
+        this.path.add(this.head)
     }
 
     processLocalInput(direction, pressed)
@@ -28,12 +47,13 @@ class Worm
             {
                 this.pressed = pressed
 
-                const array = new Float32Array(5)
+                const array = new Float32Array(6)
                 array[0] = direction
                 array[1] = pressed ? 1 : 0
                 array[2] = this.angle
                 array[3] = this.head.x
                 array[4] = this.head.y
+                array[5] = this.drawing ? 1 : 0
 
                 Network.send(array)
             }
@@ -46,10 +66,18 @@ class Worm
     {
         const array = new Float32Array(data)
         const direction = array[0]
-        const pressed = array[1]
+        const pressed = array[1] == 1
         const angle = array[2]
         const x = array[3]
         const y = array[4]
+        const drawing = array[5] == 1
+
+        if (drawing != this.drawing)
+        {
+            this.startDrawing()
+        }
+
+        this.drawing = drawing
 
         this.updatePosition(direction, pressed)
 
@@ -57,8 +85,11 @@ class Worm
         this.head.x = x
         this.head.y = y
 
-        this.removeLastPoint()
-        this.path.add(this.head)
+        if (this.drawing)
+        {
+            this.removeLastPoint()
+            this.path.add(this.head)
+        }
     }
 
     updatePosition(direction, pressed)
@@ -97,17 +128,22 @@ class Worm
             turned = false
         }
 
-        if (!turned)
-        {
-            this.removeLastPoint()
-        }
-
-        var vector = new paper.Point({
+        const vector = new paper.Point({
             length: distance,
             angle: this.angle
         })
 
         this.head = this.head.add(vector)
+
+        if (!this.drawing)
+        {
+            this.circle.remove()
+            this.circle = new paper.Path.Circle({
+                center: [this.head.x, this.head.y],
+                radius: HEAD_SIZE / 2,
+                fillColor: this.circle.fillColor
+            })
+        }
 
         if (this.head.x < 0)
         {
@@ -129,6 +165,14 @@ class Worm
             this.head.y = (800 - HEAD_SIZE)
         }
 
-        this.path.add(this.head)
+        if (this.drawing)
+        {
+            if (!turned)
+            {
+                this.removeLastPoint()
+            }
+
+            this.path.add(this.head)
+        }
     }
 }
