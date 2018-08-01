@@ -1,5 +1,5 @@
-var player1
-var player2
+var playerLocal
+var playerRemote
 
 class Engine
 {
@@ -18,23 +18,23 @@ class Engine
             }
         }
 
-        const background  = new paper.Path.Rectangle({
+        const background = new paper.Path.Rectangle({
             point: [0, 0],
             size: [800,800],
-            strokeColor: '#333',
+            strokeColor: '#777',
             fillColor: '#111'
         })
         background.sendToBack()
         
         if (playerType == "1")
         {
-            player1 = new Worm(400, 400, 0, '#00A1CA', true)
-            player2 = new Worm(400, 400, 180, '#E93844', false)
+            playerLocal = new WormLocal(400, 400, 0, COLOR.blue)
+            playerRemote = new WormRemote(400, 400, 180, COLOR.red)
         }
         else
         {
-            player2 = new Worm(400, 400, 0, '#00A1CA', false)
-            player1 = new Worm(400, 400, 180, '#E93844', true)
+            playerRemote = new WormRemote(400, 400, 0, COLOR.blue)
+            playerLocal = new WormLocal(400, 400, 180, COLOR.red)
         }
 
         Network.init()
@@ -42,20 +42,23 @@ class Engine
 
     static processInput(direction, pressed)
     {
-        if (player1)
+        if (playerLocal)
         {
-            player1.processLocalInput(direction, pressed)
+            playerLocal.processInput(direction, pressed)
         }
     }
 
     static processMessage(data)
     {
-        player2.processRemoteInput(data)
+        if (playerRemote)
+        {
+            playerRemote.processInput(data)
+        }
     }
 
     static update(delta)
     {
-        player1.move(delta)
-        player2.move(delta)
+        playerLocal.update(delta)
+        playerRemote.update(delta)
     }
 }
