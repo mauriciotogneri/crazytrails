@@ -4,7 +4,6 @@ class Worm
     {
         this.direction = DIRECTION_STRAIGHT
         this.drawing   = false
-        this.pressed   = false
 
         this.path = new paper.Path({
             strokeColor: color,
@@ -28,18 +27,6 @@ class Worm
         this.drawing = true
         this.path.add(this.head)
         this.path.add(this.head)
-    }
-
-    updateDirection(direction, pressed)
-    {
-        if (pressed)
-        {
-            this.direction = direction
-        }
-        else if (direction == this.direction)
-        {
-            this.direction = DIRECTION_STRAIGHT
-        }  
     }
 
     removeLastPoint()

@@ -7,21 +7,15 @@ class WormRemote extends Worm
 
     processInput(data)
     {
-        const array = new Float32Array(data)
-        const direction = array[0]
-        const pressed = array[1] == 1
-        const angle = array[2]
-        const x = array[3]
-        const y = array[4]
-        const drawing = array[5] == 1
+        const array    = new Float32Array(data)
+        const drawing  = array[4] == 1
 
-        this.updateDirection(direction, pressed)
+        this.direction = array[0]
+        this.angle     = array[1]
+        this.head.x    = array[2]
+        this.head.y    = array[3]
 
-        this.angle  = angle
-        this.head.x = x
-        this.head.y = y
-
-        if (drawing != this.drawing)
+        if (this.drawing != drawing)
         {
             this.startDrawing()
         }

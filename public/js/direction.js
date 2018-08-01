@@ -10,5 +10,9 @@ class Direction
         {
             return DIRECTION_RIGHT
         }
+        else
+        {
+            return DIRECTION_OTHER
+        }
     }
 }

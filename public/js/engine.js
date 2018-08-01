@@ -40,11 +40,11 @@ class Engine
         Network.init()
     }
 
-    static processInput(direction, pressed)
+    static processInput(direction)
     {
         if (playerLocal)
         {
-            playerLocal.processInput(direction, pressed)
+            playerLocal.processInput(direction)
         }
     }
 

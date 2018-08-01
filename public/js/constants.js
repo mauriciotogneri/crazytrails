@@ -1,5 +1,6 @@
 const DEBUG_ENABLED = false
 
+const DIRECTION_OTHER    = -1
 const DIRECTION_STRAIGHT = 0
 const DIRECTION_LEFT     = 1
 const DIRECTION_RIGHT    = 2

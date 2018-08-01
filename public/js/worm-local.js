@@ -8,34 +8,25 @@ class WormLocal extends Worm
         setTimeout(function()
         {
             that.startDrawing()
-            that.sendPositionUpdate(that.direction)
+            that.sendPositionUpdate()
         }, RESPAWN_TIME)
     }
 
-    processInput(direction, pressed)
+    processInput(direction)
     {
-        if ((this.pressed != pressed) || (this.direction != direction))
-        {
-            this.pressed = pressed
+        this.direction = direction
 
-            if ((!pressed) || (pressed && direction))
-            {
-                this.sendPositionUpdate(direction)
-            }
-        }
-
-        this.updateDirection(direction, pressed)
+        this.sendPositionUpdate()
     }
 
-    sendPositionUpdate(direction)
+    sendPositionUpdate()
     {
         const array = new Float32Array(6)
-        array[0] = direction
-        array[1] = this.pressed ? 1 : 0
-        array[2] = this.angle
-        array[3] = this.head.x
-        array[4] = this.head.y
-        array[5] = this.drawing ? 1 : 0
+        array[0] = this.direction
+        array[1] = this.angle
+        array[2] = this.head.x
+        array[3] = this.head.y
+        array[4] = this.drawing ? 1 : 0
 
         Network.send(array)
     }
