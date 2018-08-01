@@ -49,12 +49,12 @@ class WormRemote extends Worm
     closestSegment(x, y)
     {
         var index = -1
-        var min   = 1
+        var min   = 2
 
         const point = new paper.Point([x, y])
         const segments = this.path.segments
 
-        for (var i = segments.length - 10; (i >= 0) && (i < segments.length); i++)
+        for (var i = segments.length - 20; (i >= 0) && (i < segments.length); i++)
         {
             var distance = segments[i].point.getDistance(point)
 
