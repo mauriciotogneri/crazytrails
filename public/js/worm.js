@@ -41,9 +41,9 @@ class Worm
             this.head.x = 0
         }
         
-        if (this.head.x > (800 - HEAD_SIZE))
+        if (this.head.x > (MAP_SIZE - HEAD_SIZE))
         {
-            this.head.x = (800 - HEAD_SIZE)
+            this.head.x = (MAP_SIZE - HEAD_SIZE)
         }
     
         if (this.head.y < 0)
@@ -51,9 +51,9 @@ class Worm
             this.head.y = 0
         }
         
-        if (this.head.y > (800 - HEAD_SIZE))
+        if (this.head.y > (MAP_SIZE - HEAD_SIZE))
         {
-            this.head.y = (800 - HEAD_SIZE)
+            this.head.y = (MAP_SIZE - HEAD_SIZE)
         }
     }
 

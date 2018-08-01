@@ -7,7 +7,9 @@ class Engine
     {
         const playerType = prompt()
 
-        const canvas = document.getElementById("canvas")
+        const canvas  = document.getElementById("canvas")
+        canvas.width  = MAP_SIZE
+        canvas.height = MAP_SIZE
         paper.setup(canvas)
 
         paper.view.onFrame = function(event)
@@ -20,7 +22,7 @@ class Engine
 
         const background = new paper.Path.Rectangle({
             point: [0, 0],
-            size: [800,800],
+            size: [MAP_SIZE, MAP_SIZE],
             strokeColor: '#777',
             fillColor: '#111'
         })

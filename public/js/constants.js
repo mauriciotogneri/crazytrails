@@ -5,6 +5,7 @@ const DIRECTION_STRAIGHT = 0
 const DIRECTION_LEFT     = 1
 const DIRECTION_RIGHT    = 2
 
+const MAP_SIZE  = 800
 const HEAD_SIZE = 8
 
 const FPS = 30
