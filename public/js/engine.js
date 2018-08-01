@@ -45,7 +45,7 @@ class Engine
         {
             new paper.Path.Circle({
                 center: [element.x, element.y],
-                radius: 3,
+                radius: 1,
                 fillColor: '#f00'
             })
         })
