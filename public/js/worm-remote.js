@@ -3,6 +3,8 @@ class WormRemote extends Worm
     constructor(x, y, angle, color)
     {
         super(x, y, angle, color)
+
+        this.received = []
     }
 
     processInput(data)
@@ -14,6 +16,11 @@ class WormRemote extends Worm
         this.angle     = array[1]
         this.head.x    = array[2]
         this.head.y    = array[3]
+
+        this.received.push({
+            x: this.head.x,
+            y: this.head.y
+        })
 
         if (this.drawing != drawing)
         {
@@ -29,18 +36,30 @@ class WormRemote extends Worm
 
     debug()
     {
-        var text = ''
+        var text1 = ''
+        var text2 = ''
 
         this.path.segments.forEach(element =>
         {
-            if (text != '')
+            if (text1 != '')
             {
-                text += ","
+                text1 += ","
             }
 
-            text += element.point
+            text1 += element.point
         })
 
-        console.log("[" + text + "]")
+        this.received.forEach(element =>
+        {
+            if (text2 != '')
+            {
+                text2 += ","
+            }
+
+            text2 += "{ x: " + element.x + ", y: " + element.y + " }"
+        })
+
+        console.log("[" + text1 + "]")
+        console.log("[" + text2 + "]")
     }
 }
