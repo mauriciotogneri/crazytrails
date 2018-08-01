@@ -28,16 +28,32 @@ class Engine
         
         if (playerType == "1")
         {
-            playerLocal = new WormLocal(400, 400, 0, COLOR.blue)
+            playerLocal  = new WormLocal(400, 400, 0, COLOR.blue)
             playerRemote = new WormRemote(400, 400, 180, COLOR.red)
         }
         else
         {
             playerRemote = new WormRemote(400, 400, 0, COLOR.blue)
-            playerLocal = new WormLocal(400, 400, 180, COLOR.red)
+            playerLocal  = new WormLocal(400, 400, 180, COLOR.red)
         }
 
         Network.init()
+
+        const array = []
+        
+        array.forEach(element =>
+        {
+            new paper.Path.Circle({
+                center: [element.x, element.y],
+                radius: 3,
+                fillColor: '#f00'
+            })
+        })
+    }
+
+    static debug()
+    {
+        playerRemote.debug()
     }
 
     static processInput(direction)

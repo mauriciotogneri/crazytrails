@@ -26,4 +26,21 @@ class WormRemote extends Worm
             this.path.add(this.head)
         }
     }
+
+    debug()
+    {
+        var text = ''
+
+        this.path.segments.forEach(element =>
+        {
+            if (text != '')
+            {
+                text += ","
+            }
+
+            text += element.point
+        })
+
+        console.log("[" + text + "]")
+    }
 }
