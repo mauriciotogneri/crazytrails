@@ -7,8 +7,8 @@ class Worm
         this.path = new paper.Path({
             strokeColor: color,
             strokeWidth: HEAD_SIZE,
-            strokeCap: 'round',
-            fullySelected: true
+            strokeCap: 'round'/*,
+            fullySelected: true*/
         })
         
         this.head  = new paper.Point(x, y)
@@ -56,6 +56,9 @@ class Worm
         this.angle  = angle
         this.head.x = x
         this.head.y = y
+
+        this.removeLastPoint()
+        this.path.add(this.head)
     }
 
     updatePosition(direction, pressed)
@@ -68,6 +71,11 @@ class Worm
         {
             this.direction = 0
         }  
+    }
+
+    removeLastPoint()
+    {
+        this.path.removeSegment(this.path.segments.length - 1)
     }
 
     move(delta)
@@ -91,7 +99,7 @@ class Worm
 
         if (!turned)
         {
-            this.path.removeSegment(this.path.segments.length - 1)
+            this.removeLastPoint()
         }
 
         var vector = new paper.Point({
