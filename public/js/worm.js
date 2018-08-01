@@ -69,4 +69,49 @@ class Worm
             this.head.y = (800 - HEAD_SIZE)
         }
     }
+
+    update(delta)
+    {
+        const distance = (delta * DISTANCE_RATE)
+        const rotation = (delta * ROTATION_RATE)
+        
+        if (this.direction == DIRECTION_LEFT)
+        {
+            this.angle -= rotation
+        }
+        else if (this.direction == DIRECTION_RIGHT)
+        {
+            this.angle += rotation
+        }
+
+        const vector = new paper.Point({
+            length: distance,
+            angle: this.angle
+        })
+
+        this.head = this.head.add(vector)
+
+        this.checkBoundaries()
+
+        if (!this.drawing)
+        {
+            this.circle.remove()
+            this.circle = new paper.Path.Circle({
+                center: [this.head.x, this.head.y],
+                radius: HEAD_SIZE / 2,
+                fillColor: this.circle.fillColor
+            })
+        }
+        else
+        {
+            this.circle.remove()
+
+            if (this.direction == DIRECTION_STRAIGHT)
+            {
+                this.removeLastPoint()
+            }
+
+            this.path.add(this.head)
+        }
+    }
 }
