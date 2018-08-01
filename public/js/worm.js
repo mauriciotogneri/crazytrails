@@ -73,16 +73,16 @@ class Worm
     move(delta)
     {
         const distance = (delta * DISTANCE_RATE)
-        const angle = (delta * ANGLE_RATE)
-        var turned = true
+        const rotation = (delta * ROTATION_RATE)
+        var turned     = true
         
         if (this.direction == DIRECTION_LEFT)
         {
-            this.angle -= angle
+            this.angle -= rotation
         }
         else if (this.direction == DIRECTION_RIGHT)
         {
-            this.angle += angle
+            this.angle += rotation
         }
         else
         {
@@ -91,8 +91,7 @@ class Worm
 
         if (!turned)
         {
-            const segments = this.path.segments
-            this.path.removeSegment(segments.length - 1)
+            this.path.removeSegment(this.path.segments.length - 1)
         }
 
         var vector = new paper.Point({
