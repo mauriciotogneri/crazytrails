@@ -29,7 +29,7 @@ class Worm
         this.path.add(this.head)
     }
 
-    removeLastPoint()
+    removeLastSegment()
     {
         this.path.removeSegment(this.path.segments.length - 1)
     }
@@ -95,7 +95,7 @@ class Worm
 
             if (this.direction == DIRECTION_STRAIGHT)
             {
-                this.removeLastPoint()
+                this.removeLastSegment()
             }
 
             this.path.add(this.head)

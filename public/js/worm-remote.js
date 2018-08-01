@@ -29,9 +29,43 @@ class WormRemote extends Worm
         
         if (this.drawing)
         {
-            this.removeLastPoint()
+            const closest = this.closestSegment(this.head.x, this.head.y)
+
+            if (closest != -1)
+            {
+                console.log('FEW: ' + (this.path.segments.length - closest))
+                this.path.removeSegments(closest)
+            }
+            else
+            {
+                this.removeLastSegment()
+                console.log('ONE')
+            }
+
             this.path.add(this.head)
         }
+    }
+
+    closestSegment(x, y)
+    {
+        var index = -1
+        var min   = 1
+
+        const point = new paper.Point([x, y])
+        const segments = this.path.segments
+
+        for (var i = segments.length - 10; (i >= 0) && (i < segments.length); i++)
+        {
+            var distance = segments[i].point.getDistance(point)
+
+            if (distance < min)
+            {
+                min = distance
+                index = i
+            }
+        }
+
+        return index
     }
 
     debug()
