@@ -33,13 +33,11 @@ class WormRemote extends Worm
 
             if (closest != -1)
             {
-                console.log('FEW: ' + (this.path.segments.length - closest))
                 this.path.removeSegments(closest)
             }
             else
             {
                 this.removeLastSegment()
-                console.log('ONE')
             }
 
             this.path.add(this.head)
@@ -66,34 +64,5 @@ class WormRemote extends Worm
         }
 
         return index
-    }
-
-    debug()
-    {
-        var text1 = ''
-        var text2 = ''
-
-        this.path.segments.forEach(element =>
-        {
-            if (text1 != '')
-            {
-                text1 += ","
-            }
-
-            text1 += element.point
-        })
-
-        this.received.forEach(element =>
-        {
-            if (text2 != '')
-            {
-                text2 += ","
-            }
-
-            text2 += "{ x: " + element.x + ", y: " + element.y + " }"
-        })
-
-        console.log("[" + text1 + "]")
-        console.log("[" + text2 + "]")
     }
 }

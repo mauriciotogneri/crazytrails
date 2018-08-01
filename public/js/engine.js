@@ -40,26 +40,6 @@ class Engine
         }
 
         Network.init()
-
-        const array1 = []
-        array1.forEach(element =>
-        {
-            new paper.Path.Circle({
-                center: [element.x, element.y],
-                radius: 1,
-                fillColor: '#f00'
-            })
-        })
-
-        const array2 = []
-        array2.forEach(element =>
-        {
-            new paper.Path.Circle({
-                center: [element.x, element.y],
-                radius: 1,
-                fillColor: '#ff0'
-            })
-        })
     }
 
     static debug()
