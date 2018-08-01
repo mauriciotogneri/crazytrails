@@ -1,4 +1,4 @@
-class Head
+class Worm
 {
     constructor(x, y, angle, color)
     {
@@ -7,8 +7,8 @@ class Head
         this.path = new paper.Path({
             strokeColor: color,
             strokeWidth: HEAD_SIZE,
-            strokeCap: 'round'/*,
-            fullySelected: true*/
+            strokeCap: 'round',
+            fullySelected: true
         })
         
         this.head  = new paper.Point(x, y)
@@ -45,7 +45,6 @@ class Head
     processRemoteInput(data)
     {
         const array = new Float32Array(data)
-
         const direction = array[0]
         const pressed = array[1]
         const angle = array[2]
@@ -100,6 +99,7 @@ class Head
             length: distance,
             angle: this.angle
         })
+
         this.head = this.head.add(vector)
 
         if (this.head.x < 0)
