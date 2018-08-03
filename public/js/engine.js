@@ -67,5 +67,52 @@ class Engine
     {
         playerLocal.update(delta)
         playerRemote.update(delta)
+
+        Engine.checkCollisions()
+    }
+
+    static checkCollisions()
+    {
+        if (Engine.checkCollisionWithRemote() || Engine.checkCollisionWithLocal())
+        {
+            document.querySelector('body').style.backgroundColor = '#ff0'
+        }
+        else
+        {
+            document.querySelector('body').style.backgroundColor = '#000'
+        }
+    }
+
+    static checkCollisionWithRemote()
+    {
+        return playerRemote.path.hitTest(playerLocal.head, { 
+            segments: true,
+            stroke: true,
+            fill: true,
+            tolerance: HEAD_SIZE/2 })
+    }
+
+    static checkCollisionWithLocal()
+    {
+        const newPath = playerLocal.path.clone()
+
+        if (newPath.segments.length > 5)
+        {
+            newPath.removeSegments(newPath.segments.length - 5)
+            
+            const result =  newPath.hitTest(playerLocal.head, { 
+                segments: true,
+                stroke: true,
+                fill: true,
+                tolerance: HEAD_SIZE/2 })
+
+            newPath.remove()
+
+            return result
+        }
+        else
+        {
+            return false;
+        }
     }
 }
