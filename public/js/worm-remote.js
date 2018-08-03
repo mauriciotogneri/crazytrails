@@ -3,31 +3,47 @@ class WormRemote extends Worm
     constructor(x, y, angle, color)
     {
         super(x, y, angle, color)
-
-        this.received = []
     }
 
     processInput(data)
     {
         const view = new DataView(data)
-        const drawing  = view.getUint8(0) == 1
+        const drawing   = view.getUint8(0) == 1
+        const direction = view.getUint8(1)
+        const from      = view.getUint16(4)
+        const points    = view.getUint16(6)
+        const angle     = view.getFloat32(8)
 
-        this.direction = view.getUint8(1)
-        this.angle     = view.getFloat32(4)
-        this.head.x    = view.getFloat32(8)
-        this.head.y    = view.getFloat32(12)
+        this.path.removeSegments(from)
 
-        this.received.push({
-            x: this.head.x,
-            y: this.head.y
-        })
+        this.direction = direction
+        this.angle     = angle
+
+        var index = 12
+        var x = 0
+        var y = 0
+
+        for (var i = 0; i < points; i++)
+        {
+            x = view.getFloat32(index)
+            y = view.getFloat32(index + 4)
+
+            index += 8
+
+            this.path.add(new paper.Point([x, y]))
+        }
+
+        this.head.x = x
+        this.head.y = y
+
+        console.log(data.byteLength)
 
         if (this.drawing != drawing)
         {
             this.startDrawing()
         }
         
-        if (this.drawing)
+        /*if (this.drawing)
         {
             const closest = this.closestSegment(this.head.x, this.head.y)
 
@@ -41,10 +57,10 @@ class WormRemote extends Worm
             }
 
             this.path.add(this.head)
-        }
+        }*/
     }
 
-    closestSegment(x, y)
+    /*closestSegment(x, y)
     {
         var index = -1
         var min   = 2
@@ -64,5 +80,5 @@ class WormRemote extends Worm
         }
 
         return index
-    }
+    }*/
 }
