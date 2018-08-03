@@ -9,13 +9,13 @@ class WormRemote extends Worm
 
     processInput(data)
     {
-        const array    = new Float32Array(data)
-        const drawing  = array[4] == 1
+        const view = new DataView(data)
+        const drawing  = view.getUint8(0) == 1
 
-        this.direction = array[0]
-        this.angle     = array[1]
-        this.head.x    = array[2]
-        this.head.y    = array[3]
+        this.direction = view.getUint8(1)
+        this.angle     = view.getFloat32(4)
+        this.head.x    = view.getFloat32(8)
+        this.head.y    = view.getFloat32(12)
 
         this.received.push({
             x: this.head.x,

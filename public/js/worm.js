@@ -71,6 +71,8 @@ class Worm
             this.angle += rotation
         }
 
+        this.angle = this.angle % 360
+
         const vector = new paper.Point({
             length: distance,
             angle: this.angle

@@ -21,13 +21,15 @@ class WormLocal extends Worm
 
     sendPositionUpdate()
     {
-        const array = new Float32Array(6)
-        array[0] = this.direction
-        array[1] = this.angle
-        array[2] = this.head.x
-        array[3] = this.head.y
-        array[4] = this.drawing ? 1 : 0
+        const buffer = new ArrayBuffer(1 + 1 + 1 + 1 + 4 + 4 + 4)
+        
+        const view = new DataView(buffer)
+        view.setUint8(0, this.drawing ? 1 : 0)
+        view.setUint8(1, this.direction)
+        view.setFloat32(4, this.angle)
+        view.setFloat32(8, this.head.x)
+        view.setFloat32(12, this.head.y)
 
-        Network.send(array)
+        Network.send(buffer)
     }
 }
