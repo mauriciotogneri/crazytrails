@@ -33,8 +33,6 @@ class WormRemote extends Worm
         this.head.x = x
         this.head.y = y
 
-        console.log(data.byteLength)
-
         if (this.drawing != drawing)
         {
             this.startDrawing()

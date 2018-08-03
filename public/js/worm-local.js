@@ -36,25 +36,6 @@ class WormLocal extends Worm
             binary.float(point.y)
         })
 
-        //---------------
-
-        const binary2    = new Binary(binary.build())
-        const drawing   = binary2.bool()
-        const direction = binary2.ubyte()
-        const from      = binary2.uint()
-        const points    = binary2.uint()
-        const angle     = binary2.float()
-        console.log()
-
-        for (var i = 0; i < points; i++)
-        {
-            var x = binary2.float()
-            var y = binary2.float()
-            console.log()
-        }
-
-        //---------------
-
         Network.send(binary.build())
     }
 
@@ -63,15 +44,17 @@ class WormLocal extends Worm
         var from   = 0
         var segments = []
 
-        //if (this.path.segments.length < 10)
-        //{
+        const TEST_SIZE = 10
+
+        if (this.path.segments.length < TEST_SIZE)
+        {
             segments = this.path.segments
-        /*}
+        }
         else
         {
-            from = this.path.segments.length - 10
+            from = this.path.segments.length - TEST_SIZE
             segments = this.path.segments.slice(from, this.path.segments.length)
-        }*/
+        }
 
         return {
             from: from,
