@@ -54,15 +54,15 @@ class WormLocal extends Worm
         var from   = 0
         var segments = []
 
-        if (this.path.segments.length < 10)
-        {
+        //if (this.path.segments.length < 10)
+        //{
             segments = this.path.segments
-        }
+        /*}
         else
         {
             from = this.path.segments.length - 10
             segments = this.path.segments.slice(from, this.path.segments.length)
-        }
+        }*/
 
         return {
             from: from,
