@@ -62,7 +62,7 @@ class Binary
     {
         if (typeof value != 'undefined')
         {
-            return this.put(value, type)
+            return this.put(type, value)
         }
         else
         {
@@ -70,54 +70,59 @@ class Binary
         }
     }
 
-    put(value, type)
+    put(type, value)
     {
-        this.size += this.size % type
+        this.size += this.size % type.size
 
         this.values.push(value)
         this.types.push(type)
         this.positions.push(this.size)
 
-        this.size += type
+        this.size += type.size
 
         return this.size
     }
 
     get(type)
     {
-        this.size += this.size % type
+        const position = this.size + (this.size % type.size)
+        this.size = position + type.size
 
-        if (type == TYPE.byte)
+        if (type == TYPE.bool)
         {
-            return view.getUint8(this.size)
+            return this.view.getUint8(position)
+        }
+        else if (type == TYPE.byte)
+        {
+            return this.view.getInt8(position)
         }
         else if (type == TYPE.ubyte)
         {
-            return view.getUint8(this.size)
+            return this.view.getUint8(position)
         }
         else if (type == TYPE.short)
         {
-            return view.getInt16(this.size)
+            return this.view.getInt16(position)
         }
         else if (type == TYPE.ushort)
         {
-            return view.getUint16(this.size)
+            return this.view.getUint16(position)
         }
         else if (type == TYPE.int)
         {
-            return view.getInt32(this.size)
+            return this.view.getInt32(position)
         }
         else if (type == TYPE.uint)
         {
-            return view.getUint32(this.size)
+            return this.view.getUint32(position)
         }
         else if (type == TYPE.float)
         {
-            return view.getFloat32(this.size)
+            return this.view.getFloat32(position)
         }
         else if (type == TYPE.double)
         {
-            return view.getFloat64(this.size)
+            return this.view.getFloat64(position)
         }
     }
 
@@ -132,7 +137,11 @@ class Binary
             var type     = this.types[i]
             var position = this.positions[i]
 
-            if (type == TYPE.byte)
+            if (type == TYPE.bool)
+            {
+                view.setUint8(position, value)
+            }
+            else if (type == TYPE.byte)
             {
                 view.setInt8(position, value)
             }

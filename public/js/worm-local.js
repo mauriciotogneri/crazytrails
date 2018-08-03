@@ -23,30 +23,39 @@ class WormLocal extends Worm
     {
         const last = this.lastPositions()
 
-        const buffer = new ArrayBuffer(1 + 1 + 1 + 1 + 2 + 2 + 4 + (last.points.length * 4 * 2))
-        
-        const view = new DataView(buffer)
-        view.setUint8(0, this.drawing ? 1 : 0)
-        view.setUint8(1, this.direction)
-        view.setUint8(2, 0) // unused
-        view.setUint8(3, 0) // unused
-
-        view.setUint16(4, last.from)
-        view.setUint16(6, last.points.length)
-
-        view.setFloat32(8, this.angle)
-        
-        var index = 12
+        const binary = new Binary()
+        binary.bool(this.drawing ? 1 : 0)
+        binary.ubyte(this.direction)
+        binary.uint(last.from)
+        binary.uint(last.points.length)
+        binary.float(this.angle)
 
         last.points.forEach(point =>
         {
-            view.setFloat32(index,     point.x)
-            view.setFloat32(index + 4, point.y)
-
-            index += 8
+            binary.float(point.x)
+            binary.float(point.y)
         })
 
-        Network.send(buffer)
+        //---------------
+
+        const binary2    = new Binary(binary.build())
+        const drawing   = binary2.bool()
+        const direction = binary2.ubyte()
+        const from      = binary2.uint()
+        const points    = binary2.uint()
+        const angle     = binary2.float()
+        console.log()
+
+        for (var i = 0; i < points; i++)
+        {
+            var x = binary2.float()
+            var y = binary2.float()
+            console.log()
+        }
+
+        //---------------
+
+        Network.send(binary.build())
     }
 
     lastPositions()

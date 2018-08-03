@@ -7,28 +7,25 @@ class WormRemote extends Worm
 
     processInput(data)
     {
-        const view = new DataView(data)
-        const drawing   = view.getUint8(0) == 1
-        const direction = view.getUint8(1)
-        const from      = view.getUint16(4)
-        const points    = view.getUint16(6)
-        const angle     = view.getFloat32(8)
+        const binary    = new Binary(data)
+        const drawing   = binary.bool()
+        const direction = binary.ubyte()
+        const from      = binary.uint()
+        const points    = binary.uint()
+        const angle     = binary.float()
 
         this.path.removeSegments(from)
 
         this.direction = direction
         this.angle     = angle
 
-        var index = 12
         var x = 0
         var y = 0
 
         for (var i = 0; i < points; i++)
         {
-            x = view.getFloat32(index)
-            y = view.getFloat32(index + 4)
-
-            index += 8
+            x = binary.float()
+            y = binary.float()
 
             this.path.add(new paper.Point([x, y]))
         }
