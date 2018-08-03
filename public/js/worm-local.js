@@ -29,6 +29,8 @@ class WormLocal extends Worm
         binary.uint(last.from)
         binary.uint(last.points.length)
         binary.float(this.angle)
+        binary.float(this.head.x)
+        binary.float(this.head.y)
 
         last.points.forEach(point =>
         {
