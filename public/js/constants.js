@@ -15,6 +15,17 @@ const ROTATION_RATE = (60/FPS) * 160
 
 const RESPAWN_TIME = 2000
 
+const TYPE = {
+    byte:   1,
+    ubyte:  1,
+    short:  2,
+    ushort: 2,
+    int:    4,
+    uint:   4,
+    float:  4,
+    double: 8
+}
+
 const COLOR = {
     blue: '#00A1CA',
     red: '#E93844',
