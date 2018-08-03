@@ -14,13 +14,13 @@ class WormRemote extends Worm
         const points    = binary.uint()
         const angle     = binary.float()
 
-        this.path.removeSegments(from)
-
         this.direction = direction
         this.angle     = angle
 
-        var x = 0
-        var y = 0
+        var x = this.head.x
+        var y = this.head.y
+
+        this.path.removeSegments(from)
 
         for (var i = 0; i < points; i++)
         {

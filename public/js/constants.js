@@ -8,6 +8,8 @@ const DIRECTION_RIGHT    = 2
 const MAP_SIZE  = 800
 const HEAD_SIZE = 8
 
+const CORRECTION_SIZE = 60
+
 const FPS = 30
 
 const DISTANCE_RATE = (60/FPS) * 120

@@ -41,18 +41,16 @@ class WormLocal extends Worm
 
     lastPositions()
     {
-        var from   = 0
+        var from = 0
         var segments = []
 
-        const TEST_SIZE = 10
-
-        if (this.path.segments.length < TEST_SIZE)
+        if (this.path.segments.length < CORRECTION_SIZE)
         {
             segments = this.path.segments
         }
         else
         {
-            from = this.path.segments.length - TEST_SIZE
+            from = this.path.segments.length - CORRECTION_SIZE
             segments = this.path.segments.slice(from, this.path.segments.length)
         }
 
