@@ -1,6 +1,9 @@
 var playerLocal
 var playerRemote
 
+var frames   = 0
+var lastTime = new Date().getTime()
+
 class Engine
 {
     static init()
@@ -69,6 +72,23 @@ class Engine
         playerRemote.update(delta)
 
         Engine.checkCollisions()
+        Engine.updateFPS()
+    }
+
+    static updateFPS()
+    {
+        frames++
+
+        const now  = new Date().getTime()
+        const diff = now - lastTime
+
+        if (diff > 1000)
+        {
+            document.querySelector('#fps').innerHTML = 'FPS: ' + frames
+
+            lastTime = now
+            frames   = 0
+        }
     }
 
     static checkCollisions()
