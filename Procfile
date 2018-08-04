@@ -1,1 +1,1 @@
-web: node index.js
+web: java -jar target/crazytrails-0.0.1.jar
