@@ -1,4 +1,4 @@
-package com.mauriciotogneri.ws;
+package com.mauriciotogneri.crazytrails;
 
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;

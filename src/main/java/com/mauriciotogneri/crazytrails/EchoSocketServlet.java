@@ -1,4 +1,4 @@
-package com.mauriciotogneri.ws;
+package com.mauriciotogneri.crazytrails;
 
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;

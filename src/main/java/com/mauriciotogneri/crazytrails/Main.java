@@ -1,4 +1,4 @@
-package com.mauriciotogneri.ws;
+package com.mauriciotogneri.crazytrails;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
