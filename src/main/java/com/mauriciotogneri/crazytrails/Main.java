@@ -1,7 +1,8 @@
 package com.mauriciotogneri.crazytrails;
 
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.DefaultServlet;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
@@ -11,18 +12,18 @@ public class Main
     {
         Server server = new Server(Integer.valueOf(System.getenv("PORT")));
 
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.setContextPath("/");
-        server.setHandler(context);
+        ServletContextHandler servletContext = new ServletContextHandler();
+        servletContext.setContextPath("/");
 
-        ServletHolder wsHolder = new ServletHolder("echo", new EchoSocketServlet());
-        context.addServlet(wsHolder, "/server");
+        ServletHolder servletHolder = new ServletHolder(new EchoSocketServlet());
+        servletContext.addServlet(servletHolder, "/server");
 
-        String urlBase = Main.class.getProtectionDomain().getCodeSource().getLocation().toExternalForm();
-        ServletHolder defHolder = new ServletHolder("default", new DefaultServlet());
-        defHolder.setInitParameter("resourceBase", urlBase);
-        defHolder.setInitParameter("dirAllowed", "false");
-        context.addServlet(defHolder, "/");
+        String publicDir = Main.class.getClassLoader().getResource("public").toExternalForm();
+        ResourceHandler resourceHandler = new ResourceHandler();
+        resourceHandler.setDirectoriesListed(false);
+        resourceHandler.setResourceBase(publicDir);
+
+        server.setHandler(new HandlerList(resourceHandler, servletContext));
 
         server.start();
         server.join();

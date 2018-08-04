@@ -21,7 +21,7 @@ function getKeyCode(ev) {
 
 var wstool = {
     connect : function() {
-        var location = document.location.toString().replace('http://', 'ws://') + "server";
+        var location = "ws://localhost:5000/server"
 
         wstool.info("Document URI: " + document.location);
         wstool.info("WS URI: " + location);
