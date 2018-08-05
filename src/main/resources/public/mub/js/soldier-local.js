@@ -8,16 +8,13 @@ class SoldierLocal extends Soldier
     processKeyboardInput(input)
     {
         this.input = input
+
+        this.sendPositionUpdate()
     }
 
     processMouseInput(point)
     {
         this.pointer = point
-    }
-
-    update(delta)
-    {
-        super.update(delta)
 
         this.sendPositionUpdate()
     }
