@@ -15,7 +15,6 @@ class SoldierLocal extends Soldier
     processMouseInput(point)
     {
         this.angle = point.subtract(this.position).angle
-        console.log(this.angle)
     }
 
     sendPositionUpdate()
