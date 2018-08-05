@@ -50,7 +50,6 @@ document.onkeydown = function(event)
 {
     if (!event.repeat)
     {
-        
         Input.keyPress(event.keyCode, true)
     }
 }

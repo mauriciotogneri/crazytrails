@@ -1,5 +1,9 @@
 package com.mauriciotogneri.crazytrails;
 
+import com.mauriciotogneri.crazytrails.servers.CrazyTrailsServer;
+import com.mauriciotogneri.crazytrails.servers.MubServer;
+import com.mauriciotogneri.crazytrails.servers.PingServer;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
@@ -21,6 +25,9 @@ public class Main
 
         ServletHolder servletCrazyTrails = new ServletHolder(servletFor(CrazyTrailsServer.class));
         servletContext.addServlet(servletCrazyTrails, "/ws/crazytrails");
+
+        ServletHolder servletMub = new ServletHolder(servletFor(MubServer.class));
+        servletContext.addServlet(servletMub, "/ws/mub");
 
         ServletHolder servletPing = new ServletHolder(servletFor(PingServer.class));
         servletContext.addServlet(servletPing, "/ws/ping");

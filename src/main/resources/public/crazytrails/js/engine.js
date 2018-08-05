@@ -45,11 +45,6 @@ class Engine
         Network.init()
     }
 
-    static debug()
-    {
-        playerRemote.debug()
-    }
-
     static processInput(direction)
     {
         if (playerLocal)

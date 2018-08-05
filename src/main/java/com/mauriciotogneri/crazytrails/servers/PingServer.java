@@ -1,4 +1,4 @@
-package com.mauriciotogneri.crazytrails;
+package com.mauriciotogneri.crazytrails.servers;
 
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 

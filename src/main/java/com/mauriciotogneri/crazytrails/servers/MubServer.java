@@ -1,15 +1,14 @@
-package com.mauriciotogneri.crazytrails;
+package com.mauriciotogneri.crazytrails.servers;
 
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrazyTrailsServer extends WebSocketAdapter
+public class MubServer extends WebSocketAdapter
 {
     private static List<RemoteEndpoint> remotes = new ArrayList<>();
 
@@ -33,7 +32,7 @@ public class CrazyTrailsServer extends WebSocketAdapter
     }
 
     @Override
-    public void onWebSocketBinary(byte[] payload, int offset, int length)
+    public void onWebSocketText(String message)
     {
         RemoteEndpoint own = getRemote();
 
@@ -43,7 +42,7 @@ public class CrazyTrailsServer extends WebSocketAdapter
             {
                 try
                 {
-                    remote.sendBytes(ByteBuffer.wrap(payload, offset, length));
+                    remote.sendString(message);
                 }
                 catch (IOException e)
                 {
