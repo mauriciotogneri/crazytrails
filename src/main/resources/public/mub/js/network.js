@@ -34,6 +34,9 @@ class Network
 
     static send(data)
     {
-        Network.ws.send(JSON.stringify(data))
+        if (Network.ws.readyState == Network.ws.OPEN)
+        {
+            Network.ws.send(JSON.stringify(data))
+        }
     }
 }
