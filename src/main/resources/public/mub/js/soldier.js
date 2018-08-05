@@ -2,8 +2,7 @@ class Soldier
 {
     constructor(x, y, angle, color)
     {
-        this.x = x
-        this.y = y
+        this.position = new paper.Point(x, y)
         this.angle = angle
         this.input = new Input(false, false, false, false)
 
@@ -20,27 +19,27 @@ class Soldier
         
         if (this.input.left)
         {
-            this.x -= distance
+            this.position.x -= distance
         }
         
         if (this.input.right)
         {
-            this.x += distance
+            this.position.x += distance
         }
         
         if (this.input.up)
         {
-            this.y -= distance
+            this.position.y -= distance
         }
         
         if (this.input.down)
         {
-            this.y += distance
+            this.position.y += distance
         }
 
         this.circle.remove()
         this.circle = new paper.Path.Circle({
-            center: [this.x, this.y],
+            center: [this.position.x, this.position.y],
             radius: CIRCLE_RADIUS,
             fillColor: this.circle.fillColor
         })

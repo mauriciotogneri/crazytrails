@@ -20,6 +20,11 @@ class Engine
             }
         }
 
+        new paper.Tool().onMouseMove = function(event)
+        {
+            Engine.processMouseInput(event.point)
+        }
+
         const background = new paper.Path.Rectangle({
             point: [0, 0],
             size: [MAP_SIZE, MAP_SIZE],
@@ -42,11 +47,19 @@ class Engine
         Network.init()
     }
 
-    static processInput(input)
+    static processMouseInput(point)
     {
         if (playerLocal)
         {
-            playerLocal.processInput(input)
+            playerLocal.processMouseInput(point)
+        }
+    }
+
+    static processKeyboardInput(input)
+    {
+        if (playerLocal)
+        {
+            playerLocal.processKeyboardInput(input)
         }
     }
 
@@ -54,7 +67,7 @@ class Engine
     {
         if (playerRemote)
         {
-            playerRemote.processInput(data)
+            playerRemote.processMessage(data)
         }
     }
 

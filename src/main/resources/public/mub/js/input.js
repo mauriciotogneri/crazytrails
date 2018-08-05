@@ -16,7 +16,7 @@ class Input
         {
             Input.map[direction] = pressed
 
-            Engine.processInput(new Input(
+            Engine.processKeyboardInput(new Input(
                 Input.map[DIRECTION_LEFT],
                 Input.map[DIRECTION_RIGHT],
                 Input.map[DIRECTION_UP],

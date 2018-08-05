@@ -5,10 +5,10 @@ class SoldierRemote extends Soldier
         super(x, y, angle, color)
     }
 
-    processInput(data)
+    processMessage(data)
     {
-        this.x     = data.x
-        this.y     = data.y
+        this.position.x = data.position.x
+        this.position.y = data.position.y
         this.angle = data.angle
         this.input = data.input
     }

@@ -5,18 +5,26 @@ class SoldierLocal extends Soldier
         super(x, y, angle, color)
     }
 
-    processInput(input)
+    processKeyboardInput(input)
     {
         this.input = input
 
         this.sendPositionUpdate()
     }
 
+    processMouseInput(point)
+    {
+        this.angle = point.subtract(this.position).angle
+        console.log(this.angle)
+    }
+
     sendPositionUpdate()
     {
         const data = {
-            x: this.x,
-            y: this.y,
+            position: {
+                x: this.position.x,
+                y: this.position.y
+            },
             angle: this.angle,
             input: this.input
         }
