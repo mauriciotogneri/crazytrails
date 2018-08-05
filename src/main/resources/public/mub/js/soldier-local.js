@@ -5,9 +5,9 @@ class SoldierLocal extends Soldier
         super(x, y, angle, color)
     }
 
-    processInput(direction)
+    processInput(input)
     {
-        this.direction = direction
+        this.input = input
 
         this.sendPositionUpdate()
     }
@@ -15,10 +15,10 @@ class SoldierLocal extends Soldier
     sendPositionUpdate()
     {
         const data = {
-            direction: this.direction,
-            angle: this.angle,
             x: this.x,
-            y: this.y
+            y: this.y,
+            angle: this.angle,
+            input: this.input
         }
 
         Network.send(data)

@@ -42,11 +42,11 @@ class Engine
         Network.init()
     }
 
-    static processInput(direction)
+    static processInput(input)
     {
         if (playerLocal)
         {
-            playerLocal.processInput(direction)
+            playerLocal.processInput(input)
         }
     }
 

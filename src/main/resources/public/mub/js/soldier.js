@@ -5,11 +5,11 @@ class Soldier
         this.x = x
         this.y = y
         this.angle = angle
-        this.direction = DIRECTION_NONE
+        this.input = new Input(false, false, false, false)
 
         this.circle = new paper.Path.Circle({
             center: [x, y],
-            radius: 30,
+            radius: CIRCLE_RADIUS,
             fillColor: color
         })
     }
@@ -18,27 +18,30 @@ class Soldier
     {
         const distance = (delta * DISTANCE_RATE)
         
-        if (this.direction == DIRECTION_LEFT)
+        if (this.input.left)
         {
             this.x -= distance
         }
-        else if (this.direction == DIRECTION_RIGHT)
+        
+        if (this.input.right)
         {
             this.x += distance
         }
-        else if (this.direction == DIRECTION_UP)
+        
+        if (this.input.up)
         {
             this.y -= distance
         }
-        else if (this.direction == DIRECTION_DOWN)
+        
+        if (this.input.down)
         {
             this.y += distance
         }
-        
+
         this.circle.remove()
         this.circle = new paper.Path.Circle({
             center: [this.x, this.y],
-            radius: HEAD_SIZE / 2,
+            radius: CIRCLE_RADIUS,
             fillColor: this.circle.fillColor
         })
     }

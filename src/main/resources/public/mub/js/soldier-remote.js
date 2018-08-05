@@ -7,9 +7,9 @@ class SoldierRemote extends Soldier
 
     processInput(data)
     {
-        this.x         = data.x
-        this.y         = data.y
-        this.angle     = data.angle
-        this.direction = data.direction
+        this.x     = data.x
+        this.y     = data.y
+        this.angle = data.angle
+        this.input = data.input
     }
 }
