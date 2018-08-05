@@ -13,7 +13,7 @@ const CIRCLE_RADIUS = 30
 
 const FPS = 30
 
-const DISTANCE_RATE = (60/FPS) * 120
+const DISTANCE_RATE = (60/FPS) * 200
 
 const COLOR = {
     blue: '#00A1CA',

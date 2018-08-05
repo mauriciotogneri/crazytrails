@@ -12,12 +12,15 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
+import java.io.File;
+
 import javax.servlet.Servlet;
 
 public class Main
 {
     public static void main(String[] args) throws Exception
     {
+        Boolean isLocal = Boolean.parseBoolean(System.getenv("IS_LOCAL"));
         Server server = new Server(Integer.valueOf(System.getenv("PORT")));
 
         ServletContextHandler servletContext = new ServletContextHandler();
@@ -32,15 +35,27 @@ public class Main
         ServletHolder servletPing = new ServletHolder(servletFor(PingServer.class));
         servletContext.addServlet(servletPing, "/ws/ping");
 
-        String publicDir = Main.class.getClassLoader().getResource("public").toExternalForm();
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(false);
-        resourceHandler.setResourceBase(publicDir);
+        resourceHandler.setResourceBase(publicDir(isLocal));
+        resourceHandler.setCacheControl("max-age=0,public");
 
         server.setHandler(new HandlerList(resourceHandler, servletContext));
 
         server.start();
         server.join();
+    }
+
+    private static String publicDir(boolean isLocal)
+    {
+        if (isLocal)
+        {
+            return String.format("%s/src/main/resources/public", new File(".").getAbsolutePath());
+        }
+        else
+        {
+            return Main.class.getClassLoader().getResource("public").toExternalForm();
+        }
     }
 
     private static Servlet servletFor(Class<?> clazz)
