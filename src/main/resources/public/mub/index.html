@@ -21,6 +21,8 @@
 
         <script>
         
+            paper.install(window)
+
             window.onerror = function(message, url, line, column, error)
             {
                 document.querySelector('#error').innerHTML += message + "\n"

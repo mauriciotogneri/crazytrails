@@ -3,6 +3,8 @@ class SoldierLocal extends Soldier
     constructor(x, y, angle, color)
     {
         super(x, y, angle, color)
+
+        this.lastMousePosition = new Point(0, 0)
     }
 
     processKeyboardInput(input)
@@ -14,7 +16,15 @@ class SoldierLocal extends Soldier
 
     processMouseInput(point)
     {
+        this.lastMousePosition = point
         this.angle = point.subtract(this.position).angle
+    }
+
+    update(delta)
+    {
+        super.update(delta)
+
+        this.processMouseInput(this.lastMousePosition)
     }
 
     sendPositionUpdate()

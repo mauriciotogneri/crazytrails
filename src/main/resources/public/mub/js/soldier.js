@@ -2,15 +2,24 @@ class Soldier
 {
     constructor(x, y, angle, color)
     {
-        this.position = new paper.Point(x, y)
+        this.position = new Point(x, y)
         this.angle = angle
         this.input = new Input(false, false, false, false)
 
-        this.circle = new paper.Path.Circle({
-            center: [x, y],
+        const circle = new Path.Circle({
+            center: [0, 0],
             radius: CIRCLE_RADIUS,
             fillColor: color
         })
+
+        const pointer = new Path.Circle({
+            center: [0, -10],
+            radius: CIRCLE_RADIUS/5,
+            fillColor: '#FFFFFF'
+        })
+
+        this.character = new Group({ transformContent: false, children: [circle, pointer] })
+        this.character.position = new Point(x, y)
     }
 
     update(delta)
@@ -37,11 +46,7 @@ class Soldier
             this.position.y += distance
         }
 
-        this.circle.remove()
-        this.circle = new paper.Path.Circle({
-            center: [this.position.x, this.position.y],
-            radius: CIRCLE_RADIUS,
-            fillColor: this.circle.fillColor
-        })
+        this.character.position = new Point(this.position.x, this.position.y)
+        this.character.rotation = this.angle + 90
     }
 }

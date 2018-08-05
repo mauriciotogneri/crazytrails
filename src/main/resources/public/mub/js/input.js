@@ -14,19 +14,27 @@ class Input
 
         if (direction != DIRECTION_OTHER)
         {
-            Input.map[direction] = pressed
+            Input.keysPressed[direction] = pressed
 
             Engine.processKeyboardInput(new Input(
-                Input.map[DIRECTION_LEFT],
-                Input.map[DIRECTION_RIGHT],
-                Input.map[DIRECTION_UP],
-                Input.map[DIRECTION_DOWN]
+                Input.keysPressed[DIRECTION_LEFT],
+                Input.keysPressed[DIRECTION_RIGHT],
+                Input.keysPressed[DIRECTION_UP],
+                Input.keysPressed[DIRECTION_DOWN]
             ))
+        }
+    }
+
+    static init()
+    {
+        new Tool().onMouseMove = function(event)
+        {
+            Engine.processMouseInput(event.point)
         }
     }
 }
 
-Input.map = []
+Input.keysPressed = []
 
 document.onkeydown = function(event)
 {

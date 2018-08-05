@@ -20,12 +20,7 @@ class Engine
             }
         }
 
-        new paper.Tool().onMouseMove = function(event)
-        {
-            Engine.processMouseInput(event.point)
-        }
-
-        const background = new paper.Path.Rectangle({
+        const background = new Path.Rectangle({
             point: [0, 0],
             size: [MAP_SIZE, MAP_SIZE],
             strokeColor: '#777',
@@ -44,6 +39,7 @@ class Engine
             playerLocal  = new SoldierLocal(400, 400, 180, COLOR.red)
         }
 
+        Input.init()
         Network.init()
     }
 
