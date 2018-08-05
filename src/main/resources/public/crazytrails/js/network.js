@@ -20,11 +20,11 @@ class Network
     {
         if (window.location.hostname == "localhost")
         {
-            return "ws://" + window.location.hostname + ":5000/server"
+            return "ws://" + window.location.hostname + ":5000/ws/crazytrails"
         }
         else
         {
-            return "wss://" + window.location.hostname + "/server"
+            return "wss://" + window.location.hostname + "/ws/crazytrails"
         }
     }
 

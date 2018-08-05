@@ -9,7 +9,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EchoSocket extends WebSocketAdapter
+public class CrazyTrailsServer extends WebSocketAdapter
 {
     private static List<RemoteEndpoint> remotes = new ArrayList<>();
 
@@ -30,18 +30,6 @@ public class EchoSocket extends WebSocketAdapter
     public void onWebSocketError(Throwable cause)
     {
         cause.printStackTrace();
-    }
-
-    public void onWebSocketText(String message)
-    {
-        try
-        {
-            getRemote().sendString(message);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     @Override

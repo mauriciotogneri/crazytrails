@@ -5,6 +5,10 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
+import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
+
+import javax.servlet.Servlet;
 
 public class Main
 {
@@ -15,8 +19,11 @@ public class Main
         ServletContextHandler servletContext = new ServletContextHandler();
         servletContext.setContextPath("/");
 
-        ServletHolder servletHolder = new ServletHolder(new EchoSocketServlet());
-        servletContext.addServlet(servletHolder, "/server");
+        ServletHolder servletCrazyTrails = new ServletHolder(servletFor(CrazyTrailsServer.class));
+        servletContext.addServlet(servletCrazyTrails, "/ws/crazytrails");
+
+        ServletHolder servletPing = new ServletHolder(servletFor(PingServer.class));
+        servletContext.addServlet(servletPing, "/ws/ping");
 
         String publicDir = Main.class.getClassLoader().getResource("public").toExternalForm();
         ResourceHandler resourceHandler = new ResourceHandler();
@@ -27,5 +34,17 @@ public class Main
 
         server.start();
         server.join();
+    }
+
+    private static Servlet servletFor(Class<?> clazz)
+    {
+        return new WebSocketServlet()
+        {
+            @Override
+            public void configure(WebSocketServletFactory factory)
+            {
+                factory.register(clazz);
+            }
+        };
     }
 }
