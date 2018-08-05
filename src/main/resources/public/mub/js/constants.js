@@ -9,9 +9,9 @@ const DIRECTION_DOWN  = 4
 
 const MAP_SIZE = 800
 
-const CIRCLE_RADIUS = 30
+const CIRCLE_RADIUS = 15
 
-const FPS = 30
+const FPS = 60
 
 const DISTANCE_RATE = (60/FPS) * 200
 

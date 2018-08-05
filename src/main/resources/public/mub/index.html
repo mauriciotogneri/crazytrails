@@ -19,11 +19,21 @@
         <script src="js/input.js"></script>
         <script src="js/network.js"></script>
 
+        <script>
+        
+            window.onerror = function(message, url, line, column, error)
+            {
+                document.querySelector('#error').innerHTML += message + "\n"
+            }
+
+        </script>
+
     </head>
 
     <body onload="Engine.init()">
         <div class="canvas">
             <canvas id="canvas" style="user-select: none"></canvas>
+            <div id="error" class="error"></div>
         </div>
     </body>
 

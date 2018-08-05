@@ -18,3 +18,10 @@ body
     left: 0;
     right: 0;
 }
+
+.error
+{
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    color: white;
+}
