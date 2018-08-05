@@ -12,14 +12,6 @@ class Engine
         canvas.height = MAP_SIZE
         paper.setup(canvas)
 
-        paper.view.onFrame = function(event)
-        {
-            if (event.count % (60/FPS) === 0)
-            {
-                Engine.update(event.delta)
-            }
-        }
-
         const background = new Path.Rectangle({
             point: [0, 0],
             size: [MAP_SIZE, MAP_SIZE],
@@ -30,17 +22,28 @@ class Engine
         
         if (playerType == "1")
         {
-            playerLocal  = new SoldierLocal(400, 400, 0, COLOR.blue)
-            playerRemote = new SoldierRemote(400, 400, 180, COLOR.red)
+            playerLocal  = new SoldierLocal(600, 400, COLOR.blue)
+            playerRemote = new SoldierRemote(200, 400, COLOR.red)
         }
         else
         {
-            playerRemote = new SoldierRemote(400, 400, 0, COLOR.blue)
-            playerLocal  = new SoldierLocal(400, 400, 180, COLOR.red)
+            playerRemote = new SoldierRemote(600, 400, COLOR.blue)
+            playerLocal  = new SoldierLocal(200, 400, COLOR.red)
         }
 
         Input.init()
-        Network.init()
+        Network.init(Engine.start)
+    }
+
+    static start()
+    {
+        paper.view.onFrame = function(event)
+        {
+            if (event.count % (60/FPS) === 0)
+            {
+                Engine.update(event.delta)
+            }
+        }
     }
 
     static processMouseInput(point)

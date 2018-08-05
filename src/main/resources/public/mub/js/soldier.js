@@ -1,10 +1,10 @@
 class Soldier
 {
-    constructor(x, y, angle, color)
+    constructor(x, y, color)
     {
         this.position = new Point(x, y)
-        this.angle = angle
-        this.input = new Input(false, false, false, false)
+        this.pointer  = new Point(0, 0)
+        this.input    = new Input(false, false, false, false)
 
         const circle = new Path.Circle({
             center: [0, 0],
@@ -13,7 +13,7 @@ class Soldier
         })
 
         const pointer = new Path.Circle({
-            center: [0, -10],
+            center: [10, 0],
             radius: CIRCLE_RADIUS/5,
             fillColor: '#FFFFFF'
         })
@@ -47,6 +47,6 @@ class Soldier
         }
 
         this.character.position = new Point(this.position.x, this.position.y)
-        this.character.rotation = this.angle + 90
+        this.character.rotation = this.pointer.subtract(this.position).angle
     }
 }

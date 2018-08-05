@@ -1,8 +1,13 @@
 class Network
 {
-    static init()
+    static init(callback)
     {
         Network.ws = new WebSocket(Network.remoteAddress())
+
+        Network.ws.onopen = function()
+        {
+            callback()
+        }
 
         Network.ws.onmessage = function(event)
         {
