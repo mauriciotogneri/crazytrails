@@ -1,15 +1,27 @@
 <html>
-    <head>
+<head>
 
-        <script>
+    <script>
 
-            var ws = new WebSocket(remoteAddress())
+            const ws = new WebSocket(remoteAddress())
+            var totalTime = 0
+            var totalMessages = 0
 
             ws.onmessage = function(event)
             {
-                var li = document.createElement('li')
-                li.innerHTML = new String(new Date().getTime() - parseInt(event.data))
+                const time = new Date().getTime() - parseInt(event.data)
+
+                totalTime += time
+                totalMessages++
+
+                const li = document.createElement('li')
+                li.innerHTML = time
                 document.querySelector('#pings').appendChild(li)
+
+                const avg = document.querySelector('#avg')
+                avg.innerHTML = parseInt(totalTime/totalMessages)
+
+                window.scrollTo(0,document.body.scrollHeight)
             }
 
             ws.onopen = function()
@@ -32,12 +44,14 @@
                 }
             }
 
-        </script>
 
-    </head>
-    
-    <body>
-        <ul id='pings'></ul>
-    </body>
+    </script>
+
+</head>
+
+<body>
+<ul id='pings'></ul>
+<div>AVERAGE: <span id="avg"></span></div>
+</body>
 
 </html>
