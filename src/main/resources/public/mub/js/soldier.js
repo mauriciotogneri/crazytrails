@@ -12,12 +12,6 @@ class Soldier
             fillColor: color
         })
 
-        const tree = new Path.Circle({
-            center: [0, 0],
-            radius: CIRCLE_RADIUS,
-            fillColor: '#00FF00'
-        })
-
         const pointer = new Path.Circle({
             center: [10, 0],
             radius: CIRCLE_RADIUS/5,
