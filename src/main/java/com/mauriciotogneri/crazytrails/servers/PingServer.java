@@ -3,18 +3,20 @@ package com.mauriciotogneri.crazytrails.servers;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 public class PingServer extends WebSocketAdapter
 {
-    public void onWebSocketText(String message)
+    @Override
+    public void onWebSocketBinary(byte[] payload, int offset, int length)
     {
         try
         {
-            getRemote().sendString(message);
+            getRemote().sendBytes(ByteBuffer.wrap(payload, offset, length));
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            onWebSocketError(e);
         }
     }
 }

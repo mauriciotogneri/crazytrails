@@ -4,12 +4,15 @@
     <script>
 
             const ws = new WebSocket(remoteAddress())
+            ws.binaryType = 'arraybuffer'
+
             var totalTime = 0
             var totalMessages = 0
 
             ws.onmessage = function(event)
             {
-                const time = new Date().getTime() - parseInt(event.data)
+                const array = new Float64Array(event.data)
+                const time = new Date().getTime() - array[0]
 
                 totalTime += time
                 totalMessages++
@@ -28,7 +31,10 @@
             {
                 setInterval(function()
                 {
-                    ws.send(new Date().getTime())
+                    const array = new Float64Array(1)
+                    array[0] = new Date().getTime() 
+                    
+                    ws.send(array)
                 }, 1000)
             }
 
