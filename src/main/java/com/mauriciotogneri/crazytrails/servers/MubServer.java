@@ -56,6 +56,19 @@ public class MubServer extends WebSocketAdapter
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int length)
     {
+        System.out.println(ByteBuffer.wrap(payload, 0, 4).getFloat());
+        System.out.println(ByteBuffer.wrap(payload, 4, 4).getFloat());
+
+        System.out.println(ByteBuffer.wrap(payload, 8, 4).getFloat());
+        System.out.println(ByteBuffer.wrap(payload, 12, 4).getFloat());
+
+        System.out.println(ByteBuffer.wrap(payload, 16, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 17, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 18, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 19, 1).get());
+
+        System.out.println("===================================");
+
         RemoteEndpoint own = getRemote();
 
         for (RemoteEndpoint remote : remotes)
