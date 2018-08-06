@@ -21,27 +21,19 @@ public class Main
     public static void main(String[] args) throws Exception
     {
         Boolean isLocal = Boolean.parseBoolean(System.getenv("IS_LOCAL"));
-        Server server = new Server(Integer.valueOf(System.getenv("PORT")));
 
-        ServletContextHandler servletContext = new ServletContextHandler();
-        servletContext.setContextPath("/");
-
-        ServletHolder servletCrazyTrails = new ServletHolder(servletFor(CrazyTrailsServer.class));
-        servletContext.addServlet(servletCrazyTrails, "/ws/crazytrails");
-
-        ServletHolder servletMub = new ServletHolder(servletFor(MubServer.class));
-        servletContext.addServlet(servletMub, "/ws/mub");
-
-        ServletHolder servletPing = new ServletHolder(servletFor(PingServer.class));
-        servletContext.addServlet(servletPing, "/ws/ping");
+        ServletContextHandler servletContext = new ServletContextHandler(null, "/");
+        servletContext.addServlet(new ServletHolder(servletFor(CrazyTrailsServer.class)), "/ws/crazytrails");
+        servletContext.addServlet(new ServletHolder(servletFor(MubServer.class)), "/ws/mub");
+        servletContext.addServlet(new ServletHolder(servletFor(PingServer.class)), "/ws/ping");
 
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(false);
         resourceHandler.setResourceBase(publicDir(isLocal));
         resourceHandler.setCacheControl("max-age=0,public");
 
+        Server server = new Server(Integer.valueOf(System.getenv("PORT")));
         server.setHandler(new HandlerList(resourceHandler, servletContext));
-
         server.start();
         server.join();
     }
