@@ -13,9 +13,8 @@ class Engine
         paper.setup(canvas)
 
         const background = new Path.Rectangle({
-            point: [0, 0],
-            size: [MAP_SIZE, MAP_SIZE],
-            strokeColor: '#777',
+            center: [0, 0],
+            size: [MAP_SIZE * 2, MAP_SIZE * 2],
             fillColor: '#111'
         })
         background.sendToBack()
