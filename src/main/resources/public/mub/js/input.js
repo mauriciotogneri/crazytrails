@@ -35,6 +35,10 @@ class Input
 }
 
 Input.keysPressed = []
+Input.keysPressed[DIRECTION_LEFT]  = false
+Input.keysPressed[DIRECTION_RIGHT] = false
+Input.keysPressed[DIRECTION_UP]    = false
+Input.keysPressed[DIRECTION_DOWN]  = false
 
 document.onkeydown = function(event)
 {

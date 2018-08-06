@@ -21,18 +21,19 @@ class SoldierLocal extends Soldier
 
     sendPositionUpdate()
     {
-        const data = {
-            position: {
-                x: this.position.x,
-                y: this.position.y
-            },
-            pointer: {
-                x: this.pointer.x,
-                y: this.pointer.y
-            },
-            input: this.input
-        }
+        const binary = new Binary()
 
-        Network.send(data)
+        binary.float(this.position.x)
+        binary.float(this.position.y)
+
+        binary.float(this.pointer.x)
+        binary.float(this.pointer.y)
+        
+        binary.bool(this.input.left)
+        binary.bool(this.input.right)
+        binary.bool(this.input.up)
+        binary.bool(this.input.down)
+
+        Network.send(binary.build())
     }
 }

@@ -3,6 +3,7 @@ class Network
     static init(callback)
     {
         Network.ws = new WebSocket(Network.remoteAddress())
+        Network.ws.binaryType = 'arraybuffer'
 
         Network.ws.onopen = function()
         {
@@ -11,7 +12,7 @@ class Network
 
         Network.ws.onmessage = function(event)
         {
-            Engine.processMessage(JSON.parse(event.data))
+            Engine.processMessage(event.data)
         }
 
         Network.ws.onclose = function(event)
@@ -36,7 +37,7 @@ class Network
     {
         if (Network.ws.readyState == Network.ws.OPEN)
         {
-            Network.ws.send(JSON.stringify(data))
+            Network.ws.send(data)
         }
     }
 }

@@ -5,6 +5,7 @@ import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,28 @@ public class MubServer extends WebSocketAdapter
                 }
                 catch (IOException e)
                 {
-                    e.printStackTrace();
+                    onWebSocketError(e);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onWebSocketBinary(byte[] payload, int offset, int length)
+    {
+        RemoteEndpoint own = getRemote();
+
+        for (RemoteEndpoint remote : remotes)
+        {
+            if (remote != own)
+            {
+                try
+                {
+                    remote.sendBytes(ByteBuffer.wrap(payload, offset, length));
+                }
+                catch (IOException e)
+                {
+                    onWebSocketError(e);
                 }
             }
         }
