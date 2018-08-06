@@ -51,7 +51,12 @@ class Soldier
         this.position.x += xDistance
         this.position.y += yDistance
 
-        this.character.position = new Point(this.position.x, this.position.y)
+        this.pointer.x  += xDistance
+        this.pointer.y  += yDistance
+
+        this.character.position.x = this.position.x
+        this.character.position.y = this.position.y
+
         this.character.rotation = this.pointer.subtract(this.position).angle
 
         if ((xDistance != 0) || (yDistance != 0))
