@@ -21,7 +21,7 @@ class SoldierLocal extends Soldier
 
     onSoldierMove(xDistance, yDistance)
     {
-        paper.view.scrollBy(new Point(xDistance, yDistance))
+        //paper.view.scrollBy(new Point(xDistance, yDistance))
     }
 
     sendPositionUpdate()

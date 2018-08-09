@@ -9,6 +9,7 @@
         <link type="text/css" rel="stylesheet" href="css/style.css" />
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js"></script>
+        <script src="https://zeronest.com/games/platform/js/libs/box2dweb-2.1.a.3.min.js"></script>
 
         <script src="js/constants.js"></script>
         <script src="js/binary.js"></script>
@@ -35,9 +36,10 @@
 
     <body onload="Engine.init()">
         <div class="canvas">
-            <canvas id="canvas" style="user-select: none"></canvas>
+            <canvas id="debug" width="800" height="800" style="user-select: none; border: solid 1px white"></canvas>
             <div id="error" class="error"></div>
         </div>
+        <!--<canvas id="canvas" style="user-select: none; border: solid 1px blue"></canvas>-->
     </body>
 
 </html>
