@@ -15,9 +15,12 @@ class Game
             options: {
               width: document.body.clientWidth,
               height: document.body.clientHeight,
+              wireframeBackground: '#222',
               background: 'red',
               wireframes: true,
-              showAngleIndicator: false
+              showVelocity: true,
+              showCollisions: true,
+              showAngleIndicator: true
             }
         })
 
@@ -37,10 +40,21 @@ class Game
             }
         });
 
+        var mouseConstraint = Matter.MouseConstraint.create(this.engine, {
+            element: $("#canvas"),
+            constraint: {
+              render: {
+                visible: true
+              },
+              stiffness:0.8
+            }
+          });
+
         Matter.World.add(this.engine.world, [boxA, boxB, ground, ball]);
+        Matter.World.add(this.engine.world, mouseConstraint);
 
         // run the engine
-        Matter.Engine.run(this.engine);
+        //Matter.Engine.run(this.engine);
 
         // run the renderer
         Matter.Render.run(this.render);
@@ -60,6 +74,8 @@ class Game
 
         //Input.init()
         //Network.init(Engine.start)
+
+        this.start()
     }
 
     setupPlayers()
@@ -80,9 +96,9 @@ class Game
         //paper.view.setCenter((playerType == "1") ? [600, 400] : [200, 400])
     }
 
-    static start()
+    start()
     {
-        requestAnimationFrame(mainLoop)
+        //requestAnimationFrame(mainLoop)
         /*paper.view.onFrame = function(event)
         {
             if (event.count % (60/FPS) === 0)
@@ -90,9 +106,20 @@ class Game
                 Engine.update(event.delta)
             }
         }*/
+
+        const runner = Matter.Runner.create({
+            delta: 1000 / FPS,
+            isFixed: false,
+            enabled: true
+        })
+        Matter.Runner.run(runner, this.engine)
+        Matter.Events.on(runner, "afterUpdate", function(event)
+        {
+            //console.log(event.timestamp, event.source)  
+        })
     }
 
-    static processMouseInput(point)
+    processMouseInput(point)
     {
         if (this.playerLocal)
         {
@@ -100,7 +127,7 @@ class Game
         }
     }
 
-    static processKeyboardInput(input)
+    processKeyboardInput(input)
     {
         if (this.playerLocal)
         {
@@ -108,7 +135,7 @@ class Game
         }
     }
 
-    static processMessage(data)
+    processMessage(data)
     {
         if (this.playerRemote)
         {
@@ -116,25 +143,22 @@ class Game
         }
     }
 
-    static update(delta)
+    update(delta)
     {
-        this.playerLocal.update(delta)
-        this.playerRemote.update(delta)
+        //this.playerLocal.update(delta)
+        //this.playerRemote.update(delta)
 
-        Engine.world.DrawDebugData()
-        Engine.world.Step(delta, 8, 3)
-        Engine.world.ClearForces()
+        Matter.Engine.update(this.engine, 1000 / FPS)
     }
 }
 
 var lastFrameTimeMs = 0
-var maxFPS = 60
 var delta = 0
 var timestep = 1000 / 60
 
 function mainLoop(timestamp)
 {
-    if (timestamp < lastFrameTimeMs + (1000 / maxFPS))
+    if (timestamp < lastFrameTimeMs + (1000 / FPS))
     {
         requestAnimationFrame(mainLoop)
         return
@@ -145,7 +169,7 @@ function mainLoop(timestamp)
 
     while (delta >= timestep)
     {
-        Engine.update(timestep)
+        game.update(timestep)
         delta -= timestep;
     }
     requestAnimationFrame(mainLoop)
