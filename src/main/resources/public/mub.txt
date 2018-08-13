@@ -4,6 +4,7 @@ game modes:
 	capture the flag: you and your team must pick up the flag from the other teams base, and carry the flag back to your team's flag to gain a point. Only by teams.
 	one flag: instead one flag per team, there is a white flag in the middle of the map and each team has to take it to their own bases.
 	destroy the base: each team has to the destroy the other team's base.
+	counter strike: each team has a bomb that need to plant in the other team base
 
 weapons:
 	- fist:
