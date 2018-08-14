@@ -1,4 +1,4 @@
-class Keyboard
+class Controls
 {
     constructor()
     {
@@ -7,6 +7,27 @@ class Keyboard
         this.keysPressed[DIRECTION_RIGHT] = false
         this.keysPressed[DIRECTION_UP]    = false
         this.keysPressed[DIRECTION_DOWN]  = false
+
+        $('#canvas').onmousemove = function(event)
+        {
+            game.processMouseInput(new InputMouse(event.clientX, event.clientY))
+        }
+
+        document.onkeydown = function(event)
+        {
+            if (!event.repeat)
+            {
+                controls.keyPress(event.keyCode, true)
+            }
+        }
+
+        document.onkeyup = function(event)
+        {
+            if (!event.repeat)
+            {
+                controls.keyPress(event.keyCode, false)
+            }
+        }
     }
 
     keyPress(code, pressed)
@@ -17,7 +38,7 @@ class Keyboard
         {
             this.keysPressed[direction] = pressed
 
-            game.processKeyboardInput(new Input(
+            game.processKeyboardInput(new InputKeyboard(
                 this.keysPressed[DIRECTION_LEFT],
                 this.keysPressed[DIRECTION_RIGHT],
                 this.keysPressed[DIRECTION_UP],
@@ -48,29 +69,5 @@ class Keyboard
         {
             return DIRECTION_OTHER
         }
-    }
-
-    /*init()
-    {
-        new Tool().onMouseMove = function(event)
-        {
-            game.processMouseInput(event.point)
-        }
-    }*/
-}
-
-document.onkeydown = function(event)
-{
-    if (!event.repeat)
-    {
-        input.keyPress(event.keyCode, true)
-    }
-}
-
-document.onkeyup = function(event)
-{
-    if (!event.repeat)
-    {
-        input.keyPress(event.keyCode, false)
     }
 }

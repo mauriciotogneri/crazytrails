@@ -1,4 +1,4 @@
-class Input
+class InputKeyboard
 {
     constructor(left, right, up, down)
     {

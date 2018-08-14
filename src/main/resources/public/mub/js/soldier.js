@@ -2,9 +2,8 @@ class Soldier
 {
     constructor(x, y, color)
     {
-        this.position = new Point(x, y)
-        this.sight    = new Point(0, 0)
-        this.input    = new Input(false, false, false, false)
+        this.inputMouse    = new InputMouse(0, 0)
+        this.inputKeyboard = new InputKeyboard(false, false, false, false)
 
         /*const circle = new Path.Circle({
             center: [0, 0],
@@ -16,12 +15,15 @@ class Soldier
             center: [10, 0],
             radius: CIRCLE_RADIUS/5,
             fillColor: '#FFFFFF'
-        })*/
+        })
+        
+        this.character = new Group({ transformContent: false, children: [circle, pointer] })
+        this.character.position = new Point(x, y)*/
 
         this.body = Matter.Bodies.circle(x, y, CIRCLE_RADIUS, {
             density: 1,
             friction: 0,
-            frictionAir: 0,
+            frictionAir: 0.5,
             restitution: 0,
             render: {
                 fillStyle: '#00FF00',
@@ -31,50 +33,41 @@ class Soldier
         })
 
         physics.addBody(this.body)
-
-        //this.character = new Group({ transformContent: false, children: [circle, pointer] })
-        //this.character.position = new Point(x, y)
     }
 
     update(delta)
     {
-        const distance = (delta * DISTANCE_RATE) * 1000
+        const distance = (delta * DISTANCE_RATE) * 0.5
         var xDistance  = 0
         var yDistance  = 0
         
-        if (this.input.left)
+        if (this.inputKeyboard.left)
         {
             xDistance = -distance
         }
-        else if (this.input.right)
+        else if (this.inputKeyboard.right)
         {
             xDistance = distance
         }
         
-        if (this.input.up)
+        if (this.inputKeyboard.up)
         {
             yDistance = -distance
         }
-        else if (this.input.down)
+        else if (this.inputKeyboard.down)
         {
             yDistance = distance
         }
 
-        this.position.x += xDistance
-        this.position.y += yDistance
+        this.inputMouse.move(xDistance, yDistance)
 
         if ((xDistance != 0) || (yDistance != 0))
         {
-            //this.body.ApplyForce(new box2d.b2Vec2(xDistance, yDistance), this.body.GetWorldCenter())
+            Matter.Body.setVelocity(this.body, Matter.Vector.create(xDistance, yDistance))
         }
 
-        this.sight.x += xDistance
-        this.sight.y += yDistance
-
-        //this.character.position.x = this.position.x
-        //this.character.position.y = this.position.y
-
-        //this.character.rotation = this.pointer.subtract(this.position).angle
+        var angle = this.inputMouse.angleTo(new Point(this.body.position.x, this.body.position.y))
+        Matter.Body.setAngle(this.body, angle * (Math.PI / 180))
 
         if ((xDistance != 0) || (yDistance != 0))
         {

@@ -42,11 +42,11 @@ class Game
         //paper.view.setCenter((playerType == "1") ? [600, 400] : [200, 400])
     }
 
-    processMouseInput(point)
+    processMouseInput(input)
     {
         if (this.playerLocal)
         {
-            this.playerLocal.processMouseInput(point)
+            this.playerLocal.processMouseInput(input)
         }
     }
 
@@ -69,5 +69,11 @@ class Game
         {
             this.playerRemote.processMessage(data)
         }
+    }
+
+    update(delta)
+    {
+        this.playerLocal.update(delta)
+        this.playerRemote.update(delta)
     }
 }

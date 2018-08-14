@@ -7,14 +7,14 @@ class SoldierLocal extends Soldier
 
     processKeyboardInput(input)
     {
-        this.input = input
+        this.inputKeyboard = input
 
         this.sendPositionUpdate()
     }
 
-    processMouseInput(point)
+    processMouseInput(input)
     {
-        this.pointer = point
+        this.inputMouse = input
 
         this.sendPositionUpdate()
     }
@@ -28,16 +28,16 @@ class SoldierLocal extends Soldier
     {
         const binary = new Binary()
 
-        binary.float(this.position.x)
-        binary.float(this.position.y)
+        binary.float(this.body.position.x)
+        binary.float(this.body.position.y)
 
-        binary.float(this.pointer.x)
-        binary.float(this.pointer.y)
+        binary.float(this.inputMouse.x)
+        binary.float(this.inputMouse.y)
 
-        binary.bool(this.input.left)
-        binary.bool(this.input.right)
-        binary.bool(this.input.up)
-        binary.bool(this.input.down)
+        binary.bool(this.inputKeyboard.left)
+        binary.bool(this.inputKeyboard.right)
+        binary.bool(this.inputKeyboard.up)
+        binary.bool(this.inputKeyboard.down)
 
         network.sendBinary(binary.build())
     }

@@ -34,7 +34,7 @@ class Physics
         Matter.Runner.run(runner, this.engine)
         Matter.Events.on(runner, "afterUpdate", function(event)
         {
-            //console.log(event.timestamp, event.source)  
+            game.update(event.source.delta)
         })
     }
 

@@ -9,15 +9,17 @@ class SoldierRemote extends Soldier
     {
         const binary     = new Binary(data)
         
-        this.position.x  = binary.float()
-        this.position.y  = binary.float()
+        var x = binary.float()
+        var y = binary.float()
 
-        this.pointer.x   = binary.float()
-        this.pointer.y   = binary.float()
+        Matter.Body.setPosition(this.body, Matter.Vector.create(x, y))
 
-        this.input.left  = binary.bool()
-        this.input.right = binary.bool()
-        this.input.up    = binary.bool()
-        this.input.down  = binary.bool()
+        this.inputMouse.x = binary.float()
+        this.inputMouse.y = binary.float()
+
+        this.inputKeyboard.left  = binary.bool()
+        this.inputKeyboard.right = binary.bool()
+        this.inputKeyboard.up    = binary.bool()
+        this.inputKeyboard.down  = binary.bool()
     }
 }
