@@ -1,27 +1,33 @@
 class Network
 {
-    static init(callback)
+    constructor()
     {
-        Network.ws = new WebSocket(Network.remoteAddress())
-        Network.ws.binaryType = 'arraybuffer'
+        this.ws = new WebSocket(this.remoteAddress())
+        this.ws.binaryType = 'arraybuffer'
 
-        Network.ws.onopen = function()
+        this.ws.onopen = function()
         {
-            callback()
         }
 
-        Network.ws.onmessage = function(event)
+        this.ws.onmessage = function(event)
         {
-            Engine.processMessage(event.data)
+            if (typeof event.data == "string")
+            {
+                game.processStringMessage(event.data)
+            }
+            else
+            {
+                game.processBinaryMessage(event.data)
+            }
         }
 
-        Network.ws.onclose = function(event)
+        this.ws.onclose = function(event)
         {
             console.log("Connection closed!")
         }
     }
 
-    static remoteAddress()
+    remoteAddress()
     {
         if (window.location.hostname == "localhost")
         {
@@ -33,11 +39,19 @@ class Network
         }
     }
 
-    static send(data)
+    sendJson(data)
     {
-        if (Network.ws.readyState == Network.ws.OPEN)
+        if (this.ws.readyState == this.ws.OPEN)
         {
-            Network.ws.send(data)
+            this.ws.send(JSON.stringify(data))
+        }
+    }
+
+    sendBinary(data)
+    {
+        if (this.ws.readyState == this.ws.OPEN)
+        {
+            this.ws.send(data)
         }
     }
 }

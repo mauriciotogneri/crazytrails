@@ -3,7 +3,7 @@ class Soldier
     constructor(x, y, color)
     {
         this.position = new Point(x, y)
-        this.pointer  = new Point(0, 0)
+        this.sight    = new Point(0, 0)
         this.input    = new Input(false, false, false, false)
 
         /*const circle = new Path.Circle({
@@ -18,20 +18,19 @@ class Soldier
             fillColor: '#FFFFFF'
         })*/
 
-        const fixDef = new box2d.b2FixtureDef()
-        fixDef.density     = 0
-        fixDef.friction    = 0
-        fixDef.restitution = 0
-        fixDef.shape = new box2d.b2CircleShape(CIRCLE_RADIUS)
+        this.body = Matter.Bodies.circle(x, y, CIRCLE_RADIUS, {
+            density: 1,
+            friction: 0,
+            frictionAir: 0,
+            restitution: 0,
+            render: {
+                fillStyle: '#00FF00',
+                strokeStyle: '#0000FF',
+                lineWidth: 3
+            }
+        })
 
-        const bodyDef = new box2d.b2BodyDef()
-        bodyDef.type = box2d.b2Body.b2_dynamicBody
-        bodyDef.position.x = x
-        bodyDef.position.y = y
-        bodyDef.linearDamping = 0.01
-
-        this.body = Engine.world.CreateBody(bodyDef)
-        this.body.CreateFixture(fixDef)
+        Matter.World.add(game.engine.world, this.body)
 
         //this.character = new Group({ transformContent: false, children: [circle, pointer] })
         //this.character.position = new Point(x, y)
@@ -39,7 +38,7 @@ class Soldier
 
     update(delta)
     {
-        const distance = (delta * DISTANCE_RATE) * 1000
+        /*const distance = (delta * DISTANCE_RATE) * 1000
         var xDistance  = 0
         var yDistance  = 0
         
@@ -66,11 +65,11 @@ class Soldier
 
         if ((xDistance != 0) || (yDistance != 0))
         {
-            this.body.ApplyForce(new box2d.b2Vec2(xDistance, yDistance), this.body.GetWorldCenter())
+            //this.body.ApplyForce(new box2d.b2Vec2(xDistance, yDistance), this.body.GetWorldCenter())
         }
 
-        this.pointer.x += xDistance
-        this.pointer.y += yDistance
+        this.sight.x += xDistance
+        this.sight.y += yDistance
 
         //this.character.position.x = this.position.x
         //this.character.position.y = this.position.y
@@ -80,7 +79,7 @@ class Soldier
         if ((xDistance != 0) || (yDistance != 0))
         {
             this.onSoldierMove(xDistance, yDistance)
-        }
+        }*/
     }
 
     onSoldierMove(xDistance, yDistance)

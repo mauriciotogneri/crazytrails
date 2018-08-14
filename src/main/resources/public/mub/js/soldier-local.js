@@ -39,6 +39,6 @@ class SoldierLocal extends Soldier
         binary.bool(this.input.up)
         binary.bool(this.input.down)
 
-        Network.send(binary.build())
+        network.sendBinary(binary.build())
     }
 }

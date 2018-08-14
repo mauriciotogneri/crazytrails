@@ -12,18 +12,20 @@
         <script src="https://cdn.jsdelivr.net/npm/matter-js@0.14.2/build/matter.js"></script>
 
         <script src="js/constants.js"></script>
-        <!--<script src="js/binary.js"></script>-->
-        <!--<script src="js/direction.js"></script>-->
-        <!--<script src="js/soldier.js"></script>-->
-        <!--<script src="js/soldier-local.js"></script>-->
-        <!--<script src="js/soldier-remote.js"></script>-->
+        <script src="js/binary.js"></script>
+        <script src="js/input.js"></script>
+        <script src="js/keyboard.js"></script>
+        <script src="js/soldier.js"></script>
+        <script src="js/soldier-local.js"></script>
+        <script src="js/soldier-remote.js"></script>
         <script src="js/game.js"></script>
-        <!--<script src="js/input.js"></script>-->
-        <!--<script src="js/network.js"></script>-->
+        <script src="js/network.js"></script>
 
         <script>
 
             var game
+            var keyboard
+            var network
 
             function $(name)
             {
@@ -33,7 +35,12 @@
             function init()
             {
                 paper.install(window)
+
+                keyboard = new Keyboard()
+                network = new Network()
                 game = new Game()
+
+                game.init()
             }
 
         </script>
