@@ -30,7 +30,7 @@ class Soldier
             }
         })
 
-        Matter.World.add(game.engine.world, this.body)
+        physics.addBody(this.body)
 
         //this.character = new Group({ transformContent: false, children: [circle, pointer] })
         //this.character.position = new Point(x, y)
@@ -38,7 +38,7 @@ class Soldier
 
     update(delta)
     {
-        /*const distance = (delta * DISTANCE_RATE) * 1000
+        const distance = (delta * DISTANCE_RATE) * 1000
         var xDistance  = 0
         var yDistance  = 0
         
@@ -79,7 +79,7 @@ class Soldier
         if ((xDistance != 0) || (yDistance != 0))
         {
             this.onSoldierMove(xDistance, yDistance)
-        }*/
+        }
     }
 
     onSoldierMove(xDistance, yDistance)

@@ -15,6 +15,7 @@
         <script src="js/binary.js"></script>
         <script src="js/input.js"></script>
         <script src="js/keyboard.js"></script>
+        <script src="js/physics.js"></script>
         <script src="js/soldier.js"></script>
         <script src="js/soldier-local.js"></script>
         <script src="js/soldier-remote.js"></script>
@@ -26,6 +27,7 @@
             var game
             var keyboard
             var network
+            var physics
 
             function $(name)
             {
@@ -37,8 +39,9 @@
                 paper.install(window)
 
                 keyboard = new Keyboard()
-                network = new Network()
-                game = new Game()
+                network  = new Network()
+                physics  = new Physics()
+                game     = new Game()
 
                 game.init()
             }
