@@ -13,7 +13,7 @@ const CIRCLE_RADIUS = 15
 
 const FPS = 60
 
-const DISTANCE_RATE = (60/FPS)
+const DISTANCE_RATE = (60/FPS) * 0.3
 
 const TYPE = {
     bool: {

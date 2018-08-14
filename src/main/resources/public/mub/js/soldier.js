@@ -37,7 +37,7 @@ class Soldier
 
     update(delta)
     {
-        const distance = (delta * DISTANCE_RATE) * 0.5
+        const distance = (delta * DISTANCE_RATE)
         var xDistance  = 0
         var yDistance  = 0
         
@@ -59,7 +59,7 @@ class Soldier
             yDistance = distance
         }
 
-        this.inputMouse.move(xDistance, yDistance)
+        //this.inputMouse.move(xDistance, yDistance)
 
         if ((xDistance != 0) || (yDistance != 0))
         {

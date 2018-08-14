@@ -14,7 +14,7 @@ class Physics
                 wireframeBackground: '#222',
                 background: 'red',
                 wireframes: true,
-                showVelocity: true,
+                showVelocity: false,
                 showCollisions: true,
                 showAngleIndicator: true
             }
