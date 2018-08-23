@@ -14,9 +14,36 @@ class SoldierLocal extends Soldier
 
     processMouseInput(input)
     {
-        this.inputMouse = input
+        var newAngle = this.effectiveAngle(input)
 
-        this.sendPositionUpdate()
+        if (newAngle != this.angle)
+        {
+            this.angle = newAngle
+            this.sendPositionUpdate()
+        }
+    }
+
+    effectiveAngle(input)
+    {
+        var angle = input.angleTo(new Point(this.body.position.x, this.body.position.y))
+        angle = (angle + 360) % 360
+        
+        if ((angle >= 45) && (angle <= 135)) // up
+        {
+            return 90 * (Math.PI / 180)
+        }
+        else if ((angle >= 135) && (angle <= 225)) // right
+        {
+            return 180 * (Math.PI / 180)
+        }
+        else if ((angle >= 225) && (angle <= 315)) // down
+        {
+            return -90 * (Math.PI / 180)
+        }
+        else if ((angle >= 315) || (angle <= 45)) // left
+        {
+            return 0 * (Math.PI / 180)
+        }
     }
 
     onSoldierMove(xDistance, yDistance)
@@ -31,8 +58,7 @@ class SoldierLocal extends Soldier
         binary.float(this.body.position.x)
         binary.float(this.body.position.y)
 
-        binary.float(this.inputMouse.x)
-        binary.float(this.inputMouse.y)
+        binary.float(this.angle)
 
         binary.bool(this.inputKeyboard.left)
         binary.bool(this.inputKeyboard.right)

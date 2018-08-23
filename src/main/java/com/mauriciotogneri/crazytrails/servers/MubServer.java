@@ -60,12 +60,11 @@ public class MubServer extends WebSocketAdapter
         System.out.println(ByteBuffer.wrap(payload, 4, 4).getFloat());
 
         System.out.println(ByteBuffer.wrap(payload, 8, 4).getFloat());
-        System.out.println(ByteBuffer.wrap(payload, 12, 4).getFloat());
 
-        System.out.println(ByteBuffer.wrap(payload, 16, 1).get());
-        System.out.println(ByteBuffer.wrap(payload, 17, 1).get());
-        System.out.println(ByteBuffer.wrap(payload, 18, 1).get());
-        System.out.println(ByteBuffer.wrap(payload, 19, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 12, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 13, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 14, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 15, 1).get());
 
         System.out.println("===================================");
 
