@@ -20,7 +20,7 @@ class Soldier
         this.character = new Group({ transformContent: false, children: [circle, pointer] })
         this.character.position = new Point(x, y)*/
 
-        this.body = Matter.Bodies.circle(x, y, CIRCLE_RADIUS, {
+        this.body = Matter.Bodies.rectangle(x, y, SQUARE_SIZE, SQUARE_SIZE, {
             density: 1,
             friction: 0,
             frictionAir: 0.5,
@@ -63,11 +63,29 @@ class Soldier
 
         if ((xDistance != 0) || (yDistance != 0))
         {
-            Matter.Body.setVelocity(this.body, Matter.Vector.create(xDistance, yDistance))
+            //Matter.Body.setVelocity(this.body, Matter.Vector.create(xDistance, yDistance))
+            Matter.Body.setPosition(this.body, Matter.Vector.create(this.body.position.x + xDistance, this.body.position.y + yDistance))
         }
 
         var angle = this.inputMouse.angleTo(new Point(this.body.position.x, this.body.position.y))
-        Matter.Body.setAngle(this.body, angle * (Math.PI / 180))
+        angle = (angle + 360) % 360
+        
+        if ((angle >= 45) && (angle <= 135)) // up
+        {
+            Matter.Body.setAngle(this.body, 90 * (Math.PI / 180))
+        }
+        else if ((angle >= 135) && (angle <= 225)) // right
+        {
+            Matter.Body.setAngle(this.body, 180 * (Math.PI / 180))
+        }
+        else if ((angle >= 225) && (angle <= 315)) // down
+        {
+            Matter.Body.setAngle(this.body, -90 * (Math.PI / 180))
+        }
+        else if ((angle >= 315) || (angle <= 45)) // left
+        {
+            Matter.Body.setAngle(this.body, 0 * (Math.PI / 180))
+        }
 
         if ((xDistance != 0) || (yDistance != 0))
         {

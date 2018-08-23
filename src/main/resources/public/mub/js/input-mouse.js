@@ -14,6 +14,6 @@ class InputMouse
 
     angleTo(point)
     {
-        return new Point(this.x, this.y).subtract(point).angle
+        return point.subtract(new Point(this.x, this.y)).angle
     }
 }
