@@ -30,19 +30,19 @@ class SoldierLocal extends Soldier
         
         if ((angle >= 45) && (angle <= 135)) // up
         {
-            return 90 * (Math.PI / 180)
+            return Math.PI / 2
         }
         else if ((angle >= 135) && (angle <= 225)) // right
         {
-            return 180 * (Math.PI / 180)
+            return Math.PI
         }
         else if ((angle >= 225) && (angle <= 315)) // down
         {
-            return -90 * (Math.PI / 180)
+            return -Math.PI / 2
         }
         else if ((angle >= 315) || (angle <= 45)) // left
         {
-            return 0 * (Math.PI / 180)
+            return 0
         }
     }
 
