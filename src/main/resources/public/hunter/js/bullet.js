@@ -12,6 +12,8 @@ class Bullet
         Matter.Body.setVelocity(this.body, this.velocity(angle))
 
         physics.addBody(this.body, this, CLASS.bullet)
+
+        sound.pistol()
     }
 
     x(value, angle)

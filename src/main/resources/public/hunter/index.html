@@ -9,7 +9,8 @@
         <link type="text/css" rel="stylesheet" href="css/style.css" />
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/matter-js@0.14.2/build/matter.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/matter-js@0.14.2/build/matter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.14/howler.min.js"></script>
 
         <script src="js/constants.js"></script>
         <script src="js/binary.js"></script>
@@ -23,6 +24,7 @@
         <script src="js/bullet.js"></script>
         <script src="js/game.js"></script>
         <script src="js/api.js"></script>
+        <script src="js/sound.js"></script>
         <script src="js/network.js"></script>
 
         <script>
@@ -31,6 +33,7 @@
             var controls
             var network
             var physics
+            var sound
 
             function $(name)
             {
@@ -45,6 +48,7 @@
                 network  = new Network()
                 physics  = new Physics()
                 game     = new Game()
+                sound    = new Sound()
 
                 game.init()
             }
