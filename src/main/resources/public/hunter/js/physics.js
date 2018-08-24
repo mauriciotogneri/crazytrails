@@ -36,10 +36,36 @@ class Physics
         {
             game.update(event.source.delta)
         })
+        Matter.Events.on(this.engine, "collisionStart", function(event)
+        {
+            var pairs = event.pairs[0]
+
+            console.log(pairs.bodyA.object)
+            console.log(pairs.bodyA.class)
+
+            console.log(pairs.bodyB.object)
+            console.log(pairs.bodyB.class)
+
+            if (pairs.bodyA.label == "Circle Body")
+            {
+                Matter.World.remove(physics.engine.world, pairs.bodyA)
+            }
+
+            if (pairs.bodyB.label == "Circle Body")
+            {
+                Matter.World.remove(physics.engine.world, pairs.bodyB)
+            }
+        })
     }
 
-    addBody(body)
+    addBody(body, object, clazz)
     {
+        if (object)
+        {
+            body.object = object
+            body.class  = clazz
+        }
+
         Matter.World.add(this.engine.world, body)
     }
 }

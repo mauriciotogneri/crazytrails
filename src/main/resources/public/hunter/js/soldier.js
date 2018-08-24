@@ -32,7 +32,7 @@ class Soldier
             }
         })
 
-        physics.addBody(this.body)
+        physics.addBody(this.body, this, CLASS.soldier)
     }
 
     update(delta)

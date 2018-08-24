@@ -15,47 +15,47 @@ class Binary
 
     bool(value)
     {
-        return this.process(TYPE.bool, value)
+        return this.process(BINARY_TYPE.bool, value)
     }
 
     byte(value)
     {
-        return this.process(TYPE.byte, value)
+        return this.process(BINARY_TYPE.byte, value)
     }
 
     ubyte(value)
     {
-        return this.process(TYPE.ubyte, value)
+        return this.process(BINARY_TYPE.ubyte, value)
     }
 
     short(value)
     {
-        return this.process(TYPE.short, value)
+        return this.process(BINARY_TYPE.short, value)
     }
 
     ushort(value)
     {
-        return this.process(TYPE.ushort, value)
+        return this.process(BINARY_TYPE.ushort, value)
     }
 
     int(value)
     {
-        return this.process(TYPE.int, value)
+        return this.process(BINARY_TYPE.int, value)
     }
 
     uint(value)
     {
-        return this.process(TYPE.uint, value)
+        return this.process(BINARY_TYPE.uint, value)
     }
 
     float(value)
     {
-        return this.process(TYPE.float, value)
+        return this.process(BINARY_TYPE.float, value)
     }
 
     double(value)
     {
-        return this.process(TYPE.double, value)
+        return this.process(BINARY_TYPE.double, value)
     }
 
     process(type, value)
@@ -88,39 +88,39 @@ class Binary
         const position = this.size + (this.size % type.size)
         this.size = position + type.size
 
-        if (type == TYPE.bool)
+        if (type == BINARY_TYPE.bool)
         {
             return this.view.getUint8(position)
         }
-        else if (type == TYPE.byte)
+        else if (type == BINARY_TYPE.byte)
         {
             return this.view.getInt8(position)
         }
-        else if (type == TYPE.ubyte)
+        else if (type == BINARY_TYPE.ubyte)
         {
             return this.view.getUint8(position)
         }
-        else if (type == TYPE.short)
+        else if (type == BINARY_TYPE.short)
         {
             return this.view.getInt16(position)
         }
-        else if (type == TYPE.ushort)
+        else if (type == BINARY_TYPE.ushort)
         {
             return this.view.getUint16(position)
         }
-        else if (type == TYPE.int)
+        else if (type == BINARY_TYPE.int)
         {
             return this.view.getInt32(position)
         }
-        else if (type == TYPE.uint)
+        else if (type == BINARY_TYPE.uint)
         {
             return this.view.getUint32(position)
         }
-        else if (type == TYPE.float)
+        else if (type == BINARY_TYPE.float)
         {
             return this.view.getFloat32(position)
         }
-        else if (type == TYPE.double)
+        else if (type == BINARY_TYPE.double)
         {
             return this.view.getFloat64(position)
         }
@@ -137,39 +137,39 @@ class Binary
             var type     = this.types[i]
             var position = this.positions[i]
 
-            if (type == TYPE.bool)
+            if (type == BINARY_TYPE.bool)
             {
                 view.setUint8(position, value)
             }
-            else if (type == TYPE.byte)
+            else if (type == BINARY_TYPE.byte)
             {
                 view.setInt8(position, value)
             }
-            else if (type == TYPE.ubyte)
+            else if (type == BINARY_TYPE.ubyte)
             {
                 view.setUint8(position, value)
             }
-            else if (type == TYPE.short)
+            else if (type == BINARY_TYPE.short)
             {
                 view.setInt16(position, value)
             }
-            else if (type == TYPE.ushort)
+            else if (type == BINARY_TYPE.ushort)
             {
                 view.setUint16(position, value)
             }
-            else if (type == TYPE.int)
+            else if (type == BINARY_TYPE.int)
             {
                 view.setInt32(position, value)
             }
-            else if (type == TYPE.uint)
+            else if (type == BINARY_TYPE.uint)
             {
                 view.setUint32(position, value)
             }
-            else if (type == TYPE.float)
+            else if (type == BINARY_TYPE.float)
             {
                 view.setFloat32(position, value)
             }
-            else if (type == TYPE.double)
+            else if (type == BINARY_TYPE.double)
             {
                 view.setFloat64(position, value)
             }

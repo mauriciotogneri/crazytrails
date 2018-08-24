@@ -11,7 +11,7 @@ class Bullet
 
         Matter.Body.setVelocity(this.body, this.velocity(angle))
 
-        physics.addBody(this.body)
+        physics.addBody(this.body, this, CLASS.bullet)
     }
 
     x(value, angle)

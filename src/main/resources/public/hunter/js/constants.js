@@ -18,7 +18,12 @@ const FPS = 60
 
 const DISTANCE_RATE = (60/FPS) * 0.15
 
-const TYPE = {
+const CLASS = {
+    soldier: "soldier",
+    bullet: "bullet"
+}
+
+const BINARY_TYPE = {
     bool: {
         code: 1,
         size: 1
