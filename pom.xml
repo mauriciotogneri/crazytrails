@@ -6,15 +6,15 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mauriciotogneri</groupId>
-    <artifactId>crazytrails</artifactId>
+    <artifactId>momogames</artifactId>
     <version>0.0.1</version>
-    <name>CrazyTrails</name>
+    <name>Momo Games</name>
     <packaging>jar</packaging>
-    <url>https://github.com/mauriciotogneri/crazytrails</url>
+    <url>https://github.com/mauriciotogneri/momogames</url>
     <licenses>
         <license>
             <name>MIT</name>
-            <url>https://github.com/mauriciotogneri/crazytrails/blob/master/LICENSE.md</url>
+            <url>https://github.com/mauriciotogneri/momogames/blob/master/LICENSE.md</url>
             <distribution>site</distribution>
         </license>
     </licenses>
@@ -47,7 +47,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.mauriciotogneri.crazytrails.Main</mainClass>
+                            <mainClass>com.mauriciotogneri.momogames.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

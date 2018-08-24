@@ -1,8 +1,7 @@
-package com.mauriciotogneri.crazytrails;
+package com.mauriciotogneri.momogames;
 
-import com.mauriciotogneri.crazytrails.servers.CrazyTrailsServer;
-import com.mauriciotogneri.crazytrails.servers.MubServer;
-import com.mauriciotogneri.crazytrails.servers.PingServer;
+import com.mauriciotogneri.momogames.servers.HunterServer;
+import com.mauriciotogneri.momogames.servers.PingServer;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
@@ -23,8 +22,7 @@ public class Main
         Boolean isLocal = Boolean.parseBoolean(System.getenv("IS_LOCAL"));
 
         ServletContextHandler servletContext = new ServletContextHandler(null, "/");
-        servletContext.addServlet(new ServletHolder(servletFor(CrazyTrailsServer.class)), "/ws/crazytrails");
-        servletContext.addServlet(new ServletHolder(servletFor(MubServer.class)), "/ws/mub");
+        servletContext.addServlet(new ServletHolder(servletFor(HunterServer.class)), "/ws/hunter");
         servletContext.addServlet(new ServletHolder(servletFor(PingServer.class)), "/ws/ping");
 
         ResourceHandler resourceHandler = new ResourceHandler();

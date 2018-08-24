@@ -1,1 +1,1 @@
-web: java -jar target/crazytrails-0.0.1.jar
+web: java -jar target/momogames-0.0.1.jar

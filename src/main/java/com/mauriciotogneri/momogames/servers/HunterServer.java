@@ -1,4 +1,4 @@
-package com.mauriciotogneri.crazytrails.servers;
+package com.mauriciotogneri.momogames.servers;
 
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
@@ -9,7 +9,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrazyTrailsServer extends WebSocketAdapter
+public class HunterServer extends WebSocketAdapter
 {
     private static List<RemoteEndpoint> remotes = new ArrayList<>();
 
@@ -33,8 +33,41 @@ public class CrazyTrailsServer extends WebSocketAdapter
     }
 
     @Override
+    public void onWebSocketText(String message)
+    {
+        RemoteEndpoint own = getRemote();
+
+        for (RemoteEndpoint remote : remotes)
+        {
+            if (remote != own)
+            {
+                try
+                {
+                    remote.sendString(message);
+                }
+                catch (IOException e)
+                {
+                    onWebSocketError(e);
+                }
+            }
+        }
+    }
+
+    @Override
     public void onWebSocketBinary(byte[] payload, int offset, int length)
     {
+        System.out.println(ByteBuffer.wrap(payload, 0, 4).getFloat());
+        System.out.println(ByteBuffer.wrap(payload, 4, 4).getFloat());
+
+        System.out.println(ByteBuffer.wrap(payload, 8, 4).getFloat());
+
+        System.out.println(ByteBuffer.wrap(payload, 12, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 13, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 14, 1).get());
+        System.out.println(ByteBuffer.wrap(payload, 15, 1).get());
+
+        System.out.println("===================================");
+
         RemoteEndpoint own = getRemote();
 
         for (RemoteEndpoint remote : remotes)
@@ -47,7 +80,7 @@ public class CrazyTrailsServer extends WebSocketAdapter
                 }
                 catch (IOException e)
                 {
-                    e.printStackTrace();
+                    onWebSocketError(e);
                 }
             }
         }

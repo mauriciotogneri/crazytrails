@@ -1,4 +1,4 @@
-package com.mauriciotogneri.crazytrails.servers;
+package com.mauriciotogneri.momogames.servers;
 
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
