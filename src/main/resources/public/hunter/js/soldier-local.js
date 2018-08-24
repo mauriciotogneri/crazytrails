@@ -70,7 +70,7 @@ class SoldierLocal extends Soldier
         {
             var position = this.body.position
             new Bullet(position.x, position.y, parseInt(this.angle))
-            Api.shootBullet(position.x, position.y, parseInt(this.angle))
+            Api.newBullet.send(position.x, position.y, parseInt(this.angle))
             this.startFiringTimeout()
         }
     }
@@ -90,7 +90,7 @@ class SoldierLocal extends Soldier
 
     sendPositionUpdate()
     {
-        Api.sendPosition(
+        Api.newPosition.send(
             this.body.position.x,
             this.body.position.y,
             this.angle,

@@ -7,7 +7,7 @@ class SoldierRemote extends Soldier
 
     processNewPosition(binary)
     {
-        const data = Api.sendPositionResponse(binary)
+        const data = Api.newPosition.receive(binary)
 
         Matter.Body.setPosition(this.body, Matter.Vector.create(data.x, data.y))
 

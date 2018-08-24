@@ -4,27 +4,28 @@ class Api
     {
         return new Binary(binary).ubyte()
     }
+}
 
-    static sendPosition(x, y, angle, left, right, up, down)
+Api.newPosition = {
+
+    send: function(x, y, angle, left, right, up, down)
     {
         const binary = new Binary()
 
-        binary.ubyte(API_OPERATION.sendPosition)
+        binary.ubyte(API_OPERATION.newPosition)
 
         binary.float(x)
         binary.float(y)
-
         binary.float(angle)
-
         binary.bool(left)
         binary.bool(right)
         binary.bool(up)
         binary.bool(down)
 
         network.sendBinary(binary.build())
-    }
-
-    static sendPositionResponse(data)
+    },
+    
+    receive: function(data)
     {
         const binary = new Binary(data)
         binary.ubyte()
@@ -39,22 +40,24 @@ class Api
             down:  binary.bool(),
         }
     }
+}
 
-    static shootBullet(x, y, angle)
+Api.newBullet = {
+
+    send: function(x, y, angle)
     {
         const binary = new Binary()
 
-        binary.ubyte(API_OPERATION.shootBullet)
+        binary.ubyte(API_OPERATION.newBullet)
 
         binary.float(x)
         binary.float(y)
-
         binary.byte(angle)
 
         network.sendBinary(binary.build())
-    }
+    },
 
-    static shootBulletResponse(data)
+    receive: function(data)
     {
         const binary = new Binary(data)
         binary.ubyte()

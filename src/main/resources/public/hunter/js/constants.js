@@ -24,8 +24,8 @@ const CLASS = {
 }
 
 const API_OPERATION = {
-    sendPosition: 1,
-    shootBullet: 2
+    newPosition: 1,
+    newBullet: 2
 }
 
 const BINARY_TYPE = {

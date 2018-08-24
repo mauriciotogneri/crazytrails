@@ -88,13 +88,13 @@ class Game
     {
         if (this.playerRemote)
         {
-            if (operation == API_OPERATION.sendPosition)
+            if (operation == API_OPERATION.newPosition)
             {
                 this.playerRemote.processNewPosition(binary)
             }
-            else if (operation == API_OPERATION.shootBullet)
+            else if (operation == API_OPERATION.newBullet)
             {
-                const data = Api.shootBulletResponse(binary)
+                const data = Api.newBullet.receive(binary)
 
                 new Bullet(data.x, data.y, data.angle)
             }
