@@ -4,19 +4,21 @@
     <script>
 
             const ws = new WebSocket(remoteAddress())
-            ws.binaryType = 'arraybuffer'
+            //ws.binaryType = 'arraybuffer'
 
             var totalTime = 0
             var totalMessages = 0
 
             ws.onmessage = function(event)
             {
-                const array = new Float64Array(event.data)
-                const time = new Date().getTime() - array[0]
+                //const array = new Float64Array(event.data)
+                //const time = new Date().getTime() - array[0]
+                const json = JSON.parse(event.data)
+                const time = new Date().getTime() - json.time
 
                 totalTime += time
                 totalMessages++
-
+                
                 const li = document.createElement('li')
                 li.innerHTML = time
                 document.querySelector('#pings').appendChild(li)
@@ -31,10 +33,13 @@
             {
                 setInterval(function()
                 {
-                    const array = new Float64Array(1)
-                    array[0] = new Date().getTime() 
-                    
-                    ws.send(array)
+                    //const array = new Float64Array(1)
+                    //array[0] = new Date().getTime()
+                    //ws.send(array)
+                    const json = {
+                        time: new Date().getTime()
+                    }
+                    ws.send(JSON.stringify(json))
                 }, 1000)
             }
 

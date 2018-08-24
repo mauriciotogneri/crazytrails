@@ -74,6 +74,14 @@ class SoldierLocal extends Soldier
         }
     }
 
+    onCollision(object)
+    {
+        if (object instanceof Bullet)
+        {
+            console.log("ouch!")
+        }
+    }
+
     onSoldierMove(xDistance, yDistance)
     {
         //paper.view.scrollBy(new Point(xDistance, yDistance))

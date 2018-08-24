@@ -66,7 +66,7 @@ class Bullet
         }
     }
 
-    onCollision(otherBody)
+    onCollision()
     {
         Matter.World.remove(physics.engine.world, this.body)
     }

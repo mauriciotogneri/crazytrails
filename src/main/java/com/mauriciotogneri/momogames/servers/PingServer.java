@@ -19,4 +19,17 @@ public class PingServer extends WebSocketAdapter
             onWebSocketError(e);
         }
     }
+
+    @Override
+    public void onWebSocketText(String message)
+    {
+        try
+        {
+            getRemote().sendString(message);
+        }
+        catch (IOException e)
+        {
+            onWebSocketError(e);
+        }
+    }
 }
