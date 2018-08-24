@@ -70,6 +70,7 @@ class SoldierLocal extends Soldier
         {
             var position = this.body.position
             new Bullet(position.x, position.y, parseInt(this.angle))
+            Api.shootBullet(position.x, position.y, parseInt(this.angle))
             this.startFiringTimeout()
         }
     }
@@ -89,18 +90,14 @@ class SoldierLocal extends Soldier
 
     sendPositionUpdate()
     {
-        const binary = new Binary()
-
-        binary.float(this.body.position.x)
-        binary.float(this.body.position.y)
-
-        binary.float(this.angle)
-
-        binary.bool(this.inputKeyboard.left)
-        binary.bool(this.inputKeyboard.right)
-        binary.bool(this.inputKeyboard.up)
-        binary.bool(this.inputKeyboard.down)
-
-        network.sendBinary(binary.build())
+        Api.sendPosition(
+            this.body.position.x,
+            this.body.position.y,
+            this.angle,
+            this.inputKeyboard.left,
+            this.inputKeyboard.right,
+            this.inputKeyboard.up,
+            this.inputKeyboard.down
+        )
     }
 }

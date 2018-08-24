@@ -5,22 +5,19 @@ class SoldierRemote extends Soldier
         super(x, y, color)
     }
 
-    processMessage(data)
+    processNewPosition(binary)
     {
-        const binary = new Binary(data)
-        
-        var x = binary.float()
-        var y = binary.float()
+        const data = Api.sendPositionResponse(binary)
 
-        Matter.Body.setPosition(this.body, Matter.Vector.create(x, y))
+        Matter.Body.setPosition(this.body, Matter.Vector.create(data.x, data.y))
 
-        this.angle = binary.float()
+        this.angle = data.angle
 
         Matter.Body.setAngle(this.body, this.angle)
 
-        this.inputKeyboard.left  = binary.bool()
-        this.inputKeyboard.right = binary.bool()
-        this.inputKeyboard.up    = binary.bool()
-        this.inputKeyboard.down  = binary.bool()
+        this.inputKeyboard.left  = data.left
+        this.inputKeyboard.right = data.right
+        this.inputKeyboard.up    = data.up
+        this.inputKeyboard.down  = data.down
     }
 }

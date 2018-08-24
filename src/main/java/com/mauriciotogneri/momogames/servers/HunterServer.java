@@ -56,7 +56,7 @@ public class HunterServer extends WebSocketAdapter
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int length)
     {
-        System.out.println(ByteBuffer.wrap(payload, 0, 4).getFloat());
+        /*System.out.println(ByteBuffer.wrap(payload, 0, 4).getFloat());
         System.out.println(ByteBuffer.wrap(payload, 4, 4).getFloat());
 
         System.out.println(ByteBuffer.wrap(payload, 8, 4).getFloat());
@@ -66,7 +66,7 @@ public class HunterServer extends WebSocketAdapter
         System.out.println(ByteBuffer.wrap(payload, 14, 1).get());
         System.out.println(ByteBuffer.wrap(payload, 15, 1).get());
 
-        System.out.println("===================================");
+        System.out.println("===================================");*/
 
         RemoteEndpoint own = getRemote();
 

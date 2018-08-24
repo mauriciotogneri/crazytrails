@@ -17,7 +17,7 @@ class Network
             }
             else
             {
-                game.processBinaryMessage(event.data)
+                game.processBinaryMessage(Api.operation(event.data), event.data)
             }
         }
 

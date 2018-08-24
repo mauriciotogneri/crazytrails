@@ -39,7 +39,7 @@ class Game
 
     setupPlayers()
     {
-        const playerType = 1 //prompt()
+        const playerType = prompt()
 
         if (playerType == "1")
         {
@@ -84,11 +84,20 @@ class Game
         console.log(data)
     }
 
-    processBinaryMessage(data)
+    processBinaryMessage(operation, binary)
     {
         if (this.playerRemote)
         {
-            this.playerRemote.processMessage(data)
+            if (operation == API_OPERATION.sendPosition)
+            {
+                this.playerRemote.processNewPosition(binary)
+            }
+            else if (operation == API_OPERATION.shootBullet)
+            {
+                const data = Api.shootBulletResponse(binary)
+
+                new Bullet(data.x, data.y, data.angle)
+            }
         }
     }
 

@@ -23,6 +23,11 @@ const CLASS = {
     bullet: "bullet"
 }
 
+const API_OPERATION = {
+    sendPosition: 1,
+    shootBullet: 2
+}
+
 const BINARY_TYPE = {
     bool: {
         code: 1,
