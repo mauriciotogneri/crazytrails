@@ -63,6 +63,14 @@ class Game
         }
     }
 
+    processMouseClick(pressed)
+    {
+        if (this.playerLocal)
+        {
+            this.playerLocal.processMouseClick(pressed)
+        }
+    }
+
     processKeyboardInput(input)
     {
         if (this.playerLocal)

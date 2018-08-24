@@ -20,7 +20,7 @@ class Soldier
         this.character = new Group({ transformContent: false, children: [circle, pointer] })
         this.character.position = new Point(x, y)*/
 
-        this.body = Matter.Bodies.rectangle(x, y, SQUARE_SIZE, SQUARE_SIZE, {
+        this.body = Matter.Bodies.rectangle(x, y, SOLDIER_SIZE, SOLDIER_SIZE, {
             density: 1,
             friction: 1,
             frictionAir: 0,

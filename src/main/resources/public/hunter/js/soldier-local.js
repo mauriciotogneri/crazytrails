@@ -3,6 +3,8 @@ class SoldierLocal extends Soldier
     constructor(x, y, color)
     {
         super(x, y, color)
+
+        this.mousePressed = false
     }
 
     processKeyboardInput(input)
@@ -43,6 +45,32 @@ class SoldierLocal extends Soldier
         else if ((angle >= 315) || (angle <= 45)) // left
         {
             return 0
+        }
+    }
+
+    processMouseClick(pressed)
+    {
+        this.mousePressed = pressed
+        this.onFireTimeout()
+    }
+
+    startFiringTimeout()
+    {
+        var that = this
+
+        setTimeout(function()
+        {
+            that.onFireTimeout()
+        }, 100);
+    }
+
+    onFireTimeout()
+    {
+        if (this.mousePressed)
+        {
+            var position = this.body.position
+            new Bullet(position.x, position.y, parseInt(this.angle))
+            this.startFiringTimeout()
         }
     }
 

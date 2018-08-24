@@ -13,6 +13,16 @@ class Controls
             game.processMouseInput(new InputMouse(event.clientX, event.clientY))
         }
 
+        $('#canvas').onmousedown = function()
+        {
+            game.processMouseClick(true)
+        }
+        
+        $('#canvas').onmouseup = function()
+        {
+            game.processMouseClick(false)
+        }
+
         document.onkeydown = function(event)
         {
             if (!event.repeat)
