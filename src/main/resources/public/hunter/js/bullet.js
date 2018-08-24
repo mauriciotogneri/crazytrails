@@ -65,4 +65,9 @@ class Bullet
             return Matter.Vector.create(-BULLET_SPEED, 0)
         }
     }
+
+    onCollision(otherBody)
+    {
+        Matter.World.remove(physics.engine.world, this.body)
+    }
 }
