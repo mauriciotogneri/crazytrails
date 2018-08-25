@@ -1,25 +1,7 @@
 class Game
 {
-    init()
+    constructor()
     {
-        const canvas  = $("#canvas")
-        canvas.width  = document.body.clientWidth
-        canvas.height = document.body.clientHeight
-        paper.setup(canvas)
-
-        const background = new Path.Rectangle({
-            center: [900, 450],
-            size: [1800, 900],
-            fillColor: '#111'
-        })
-        background.sendToBack()
-
-        paper.view.onFrame = function(event)
-        {
-            game.update(event.delta)
-            game.render(physics.engine.world.bodies)
-        }
-
         new Wall(0, 0, 30, 900)
         new Wall(0, 870, 1800, 30)
         new Wall(0, 0, 1800, 30)
@@ -29,7 +11,9 @@ class Game
         new Wall(1590, 630, 30, 180)
 
         this.setupPlayers()
+
         physics.start()
+        display.start()
     }
 
     setupPlayers()
@@ -98,10 +82,10 @@ class Game
 
     update(delta)
     {
-        Matter.Engine.update(physics.engine, delta);
-
         this.playerLocal.update(delta)
         this.playerRemote.update(delta)
+
+        Matter.Engine.update(physics.engine, delta)
     }
 
     render(bodies)
