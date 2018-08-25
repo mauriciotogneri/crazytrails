@@ -56,12 +56,11 @@ class Physics
         })
     }
 
-    addBody(body, object, clazz)
+    addBody(body, object)
     {
         if (object)
         {
             body.object = object
-            body.class  = clazz
         }
 
         Matter.World.add(this.engine.world, body)

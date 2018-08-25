@@ -9,20 +9,15 @@ class Soldier
             density: 1,
             friction: 1,
             frictionAir: 0,
-            restitution: 0,
-            render: {
-                fillStyle: '#00FF00',
-                strokeStyle: '#0000FF',
-                lineWidth: 3
-            }
+            restitution: 0
         })
 
-        physics.addBody(this.body, this, CLASS.soldier)
+        physics.addBody(this.body, this)
 
         const square = new Path.Rectangle({
             center: [0, 0],
             size: [SOLDIER_SIZE, SOLDIER_SIZE],
-            fillColor: '#00f'
+            fillColor: color
         })
 
         const pointer = new Path.Circle({

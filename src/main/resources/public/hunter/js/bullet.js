@@ -11,7 +11,7 @@ class Bullet
 
         Matter.Body.setVelocity(this.body, this.velocity(angle))
 
-        physics.addBody(this.body, this, CLASS.bullet)
+        physics.addBody(this.body, this)
 
         this.graphics = new Path.Circle({
             center: [x, y],
