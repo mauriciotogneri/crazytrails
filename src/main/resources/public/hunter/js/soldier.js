@@ -5,21 +5,6 @@ class Soldier
         this.angle = 0
         this.inputKeyboard = new InputKeyboard(false, false, false, false)
 
-        /*const circle = new Path.Circle({
-            center: [0, 0],
-            radius: CIRCLE_RADIUS,
-            fillColor: color
-        })
-
-        const pointer = new Path.Circle({
-            center: [10, 0],
-            radius: CIRCLE_RADIUS/5,
-            fillColor: '#FFFFFF'
-        })
-        
-        this.character = new Group({ transformContent: false, children: [circle, pointer] })
-        this.character.position = new Point(x, y)*/
-
         this.body = Matter.Bodies.rectangle(x, y, SOLDIER_SIZE, SOLDIER_SIZE, {
             density: 1,
             friction: 1,
@@ -33,6 +18,24 @@ class Soldier
         })
 
         physics.addBody(this.body, this, CLASS.soldier)
+
+        const square = new Path.Rectangle({
+            center: [0, 0],
+            size: [SOLDIER_SIZE, SOLDIER_SIZE],
+            fillColor: '#00f'
+        })
+
+        const pointer = new Path.Circle({
+            center: [(SOLDIER_SIZE/2)-5, 0],
+            radius: 2,
+            fillColor: '#FFFFFF'
+        })
+        
+        this.graphics = new Group({
+            transformContent: false,
+            children: [square, pointer],
+            position: [x, y]
+        })
     }
 
     update(delta)
@@ -59,8 +62,6 @@ class Soldier
             yDistance = distance
         }
 
-        //this.inputMouse.move(xDistance, yDistance)
-
         if ((xDistance != 0) || (yDistance != 0))
         {
             Matter.Body.setPosition(this.body, Matter.Vector.create(this.body.position.x + xDistance, this.body.position.y + yDistance))
@@ -79,5 +80,12 @@ class Soldier
 
     onSoldierMove(xDistance, yDistance)
     {
+    }
+
+    render()
+    {
+        this.graphics.position.x = this.body.position.x
+        this.graphics.position.y = this.body.position.y
+        this.graphics.rotation = (this.body.angle * 180 / Math.PI) + 180
     }
 }

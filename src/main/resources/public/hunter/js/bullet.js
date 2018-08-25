@@ -13,6 +13,12 @@ class Bullet
 
         physics.addBody(this.body, this, CLASS.bullet)
 
+        this.graphics = new Path.Circle({
+            center: [x, y],
+            radius: 2,
+            fillColor: '#0f0'
+        })
+
         sound.pistol()
     }
 
@@ -71,5 +77,12 @@ class Bullet
     onCollision()
     {
         Matter.World.remove(physics.engine.world, this.body)
+        this.graphics.remove()
+    }
+
+    render()
+    {
+        this.graphics.position.x = this.body.position.x
+        this.graphics.position.y = this.body.position.y
     }
 }

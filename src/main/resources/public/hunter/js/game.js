@@ -2,23 +2,23 @@ class Game
 {
     init()
     {
-        //const canvas  = $("#canvas")
-        //canvas.width  = 10
-        //canvas.height = 10
-        //paper.setup(canvas)
+        const canvas  = $("#canvas")
+        canvas.width  = document.body.clientWidth
+        canvas.height = document.body.clientHeight
+        paper.setup(canvas)
 
-        /*const background = new Path.Rectangle({
-            center: [0, 0],
-            size: [MAP_SIZE * 3, MAP_SIZE * 3],
+        const background = new Path.Rectangle({
+            center: [900, 450],
+            size: [1800, 900],
             fillColor: '#111'
         })
-        background.sendToBack()*/
+        background.sendToBack()
 
-        /*const tree = new Path.Circle({
-            center: [0, 0],
-            radius: CIRCLE_RADIUS,
-            fillColor: '#00FF00'
-        })*/
+        paper.view.onFrame = function(event)
+        {
+            game.update(event.delta)
+            game.render(physics.engine.world.bodies)
+        }
 
         new Wall(0, 0, 30, 900)
         new Wall(0, 870, 1800, 30)
@@ -34,7 +34,7 @@ class Game
 
     setupPlayers()
     {
-        const playerType = prompt()
+        const playerType = 1//prompt()
 
         if (playerType == "1")
         {
@@ -98,7 +98,20 @@ class Game
 
     update(delta)
     {
+        Matter.Engine.update(physics.engine, delta);
+
         this.playerLocal.update(delta)
         this.playerRemote.update(delta)
+    }
+
+    render(bodies)
+    {
+        bodies.forEach(body =>
+        {
+            if (body.object && body.object.render)
+            {
+                body.object.render()
+            }
+        })
     }
 }

@@ -5,7 +5,7 @@ class Physics
         this.engine = Matter.Engine.create()
         this.engine.world.gravity.y = 0
 
-        this.render = Matter.Render.create({
+        /*this.render = Matter.Render.create({
             canvas: $("#canvas"),
             engine: this.engine,
             options: {
@@ -20,12 +20,12 @@ class Physics
             }
         })
 
-        Matter.Render.run(this.render)
+        Matter.Render.run(this.render)*/
     }
 
     start()
     {
-        const runner = Matter.Runner.create({
+        /*const runner = Matter.Runner.create({
             delta: 1000 / FPS,
             isFixed: false,
             enabled: true
@@ -36,13 +36,13 @@ class Physics
         Matter.Events.on(runner, "afterUpdate", function(event)
         {
             game.update(event.source.delta)
-        })
+        })*/
         
         Matter.Events.on(this.engine, "collisionStart", function(event)
         {
-            var pairs   = event.pairs[0]
-            var objectA = pairs.bodyA.object
-            var objectB = pairs.bodyB.object
+            const pairs   = event.pairs[0]
+            const objectA = pairs.bodyA.object
+            const objectB = pairs.bodyB.object
 
             if (objectA && objectA.onCollision)
             {

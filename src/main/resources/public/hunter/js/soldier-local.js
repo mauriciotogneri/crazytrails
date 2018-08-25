@@ -16,7 +16,7 @@ class SoldierLocal extends Soldier
 
     processMouseInput(input)
     {
-        var newAngle = this.effectiveAngle(input)
+        const newAngle = this.effectiveAngle(input)
 
         if (newAngle != this.angle)
         {
@@ -56,7 +56,7 @@ class SoldierLocal extends Soldier
 
     startFiringTimeout()
     {
-        var that = this
+        const that = this
 
         setTimeout(function()
         {
@@ -68,7 +68,7 @@ class SoldierLocal extends Soldier
     {
         if (this.mousePressed)
         {
-            var position = this.body.position
+            const position = this.body.position
             new Bullet(position.x, position.y, parseInt(this.angle))
             Api.newBullet.send(position.x, position.y, parseInt(this.angle))
             this.startFiringTimeout()
