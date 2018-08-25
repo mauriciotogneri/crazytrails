@@ -5,6 +5,7 @@ class SoldierLocal extends Soldier
         super(x, y, color)
 
         this.mousePressed = false
+        this.onSoldierMove()
     }
 
     processKeyboardInput(input)

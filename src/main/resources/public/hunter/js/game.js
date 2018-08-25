@@ -30,8 +30,6 @@ class Game
             this.playerLocal  = new SoldierLocal(200, 400, COLOR.red)
             this.playerRemote = new SoldierRemote(600, 400, COLOR.blue)
         }
-
-        paper.view.setCenter((playerType == "1") ? [600, 400] : [200, 400])
     }
 
     processMouseInput(input)
