@@ -16,7 +16,7 @@ class Bullet
         this.graphics = new Path.Circle({
             center: [x, y],
             radius: 2,
-            fillColor: '#0f0'
+            fillColor: '#ff0'
         })
 
         sound.pistol()
