@@ -82,7 +82,7 @@ class SoldierLocal extends Soldier
         }
     }
 
-    onSoldierMove(xDistance, yDistance)
+    onSoldierMove()
     {
         paper.view.setCenter([this.body.position.x, this.body.position.y])
     }

@@ -71,11 +71,11 @@ class Soldier
 
         if ((xDistance != 0) || (yDistance != 0))
         {
-            this.onSoldierMove(xDistance, yDistance)
+            this.onSoldierMove()
         }
     }
 
-    onSoldierMove(xDistance, yDistance)
+    onSoldierMove()
     {
     }
 
