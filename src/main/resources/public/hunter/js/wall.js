@@ -9,7 +9,7 @@ class Wall
         this.graphics = new Path.Rectangle({
             center: [x + (w/2), y + (h/2)],
             size: [w, h],
-            fillColor: '#666'
+            fillColor: '#555'
         })
     }
 }

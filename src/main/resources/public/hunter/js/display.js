@@ -12,7 +12,7 @@ class Display
         const background = new Path.Rectangle({
             center: [900, 450],
             size: [1800, 900],
-            fillColor: '#111'
+            fillColor: '#fafafa'
         })
         background.sendToBack()
     }

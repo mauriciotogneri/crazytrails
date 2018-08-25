@@ -23,7 +23,7 @@ class Soldier
         const pointer = new Path.Circle({
             center: [(SOLDIER_SIZE/2)-5, 0],
             radius: 2,
-            fillColor: '#FFFFFF'
+            fillColor: '#000'
         })
         
         this.graphics = new Group({
