@@ -20,7 +20,8 @@ const DISTANCE_RATE = (60/FPS) * 0.15
 
 const CLASS = {
     soldier: "soldier",
-    bullet: "bullet"
+    bullet: "bullet",
+    wall: "wall"
 }
 
 const API_OPERATION = {

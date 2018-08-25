@@ -20,21 +20,16 @@ class Game
             fillColor: '#00FF00'
         })*/
 
-        this.addWall(0, 0, 30, 900)
-        this.addWall(0, 870, 1800, 30)
-        this.addWall(0, 0, 1800, 30)
-        this.addWall(1770, 0, 30, 900)
-        this.addWall(1680, 720, 30, 180)
-        this.addWall(1590, 630, 210, 30)
-        this.addWall(1590, 630, 30, 180)
+        new Wall(0, 0, 30, 900)
+        new Wall(0, 870, 1800, 30)
+        new Wall(0, 0, 1800, 30)
+        new Wall(1770, 0, 30, 900)
+        new Wall(1680, 720, 30, 180)
+        new Wall(1590, 630, 210, 30)
+        new Wall(1590, 630, 30, 180)
 
         this.setupPlayers()
         physics.start()
-    }
-
-    addWall(x, y, w, h)
-    {
-        physics.addBody(Matter.Bodies.rectangle(x + (w/2), y + (h/2), w, h, {isStatic: true}))
     }
 
     setupPlayers()
