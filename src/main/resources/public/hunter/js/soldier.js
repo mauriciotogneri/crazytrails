@@ -62,6 +62,8 @@ class Soldier
             Matter.Body.setPosition(this.body, Matter.Vector.create(this.body.position.x + xDistance, this.body.position.y + yDistance))
         }
 
+        Matter.Body.setVelocity(this.body, Matter.Vector.create(0, 0))
+
         if (this.angle != this.body.angle)
         {
             Matter.Body.setAngle(this.body, this.angle)

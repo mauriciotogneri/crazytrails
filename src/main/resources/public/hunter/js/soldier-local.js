@@ -27,8 +27,7 @@ class SoldierLocal extends Soldier
 
     effectiveAngle(input)
     {
-        var angle = input.angleTo(new Point(this.body.position.x, this.body.position.y))
-        angle = (angle + 360) % 360
+        const angle = (input.angleTo(new Point(this.body.position.x, this.body.position.y)) + 360) % 360
         
         if ((angle >= 45) && (angle <= 135)) // up
         {
