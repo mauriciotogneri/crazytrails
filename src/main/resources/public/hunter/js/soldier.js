@@ -31,6 +31,17 @@ class Soldier
             children: [square, pointer],
             position: [x, y]
         })
+
+        /*const layer = new Layer()
+        layer.activate()
+
+        this.light = new Path.Rectangle({
+            center: [x, y],
+            size: [CHARACTER_SIZE, CHARACTER_SIZE],
+            fillColor: 'white'
+        })
+
+        this.light.fillColor.alpha = 0.3*/
     }
 
     update(delta)
@@ -84,5 +95,8 @@ class Soldier
         this.graphics.position.x = this.body.position.x
         this.graphics.position.y = this.body.position.y
         this.graphics.rotation = (this.body.angle * 180 / Math.PI) + 180
+
+        this.light.position.x = this.body.position.x
+        this.light.position.y = this.body.position.y
     }
 }
