@@ -1,4 +1,4 @@
-class Soldier
+class Predator
 {
     constructor(x, y, color)
     {

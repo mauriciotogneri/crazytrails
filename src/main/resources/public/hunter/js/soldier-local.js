@@ -5,7 +5,7 @@ class SoldierLocal extends Soldier
         super(x, y, color)
 
         this.mousePressed = false
-        this.onSoldierMove()
+        this.onMove()
     }
 
     processKeyboardInput(input)
@@ -61,7 +61,7 @@ class SoldierLocal extends Soldier
         }
     }
 
-    onSoldierMove()
+    onMove()
     {
         paper.view.setCenter([this.body.position.x, this.body.position.y])
     }

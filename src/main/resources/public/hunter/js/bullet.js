@@ -26,11 +26,11 @@ class Bullet
     {
         if (angle == 3)
         {
-            return value + (SOLDIER_SIZE / 2)
+            return value + (CHARACTER_SIZE / 2)
         }
         else if (angle == 0)
         {
-            return value - (SOLDIER_SIZE / 2)
+            return value - (CHARACTER_SIZE / 2)
         }
         else
         {
@@ -42,11 +42,11 @@ class Bullet
     {
         if (angle == 1)
         {
-            return value - (SOLDIER_SIZE / 2)
+            return value - (CHARACTER_SIZE / 2)
         }
         else if (angle == -1)
         {
-            return value + (SOLDIER_SIZE / 2)
+            return value + (CHARACTER_SIZE / 2)
         }
         else
         {
