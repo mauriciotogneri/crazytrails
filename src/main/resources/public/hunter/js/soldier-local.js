@@ -16,7 +16,7 @@ class SoldierLocal extends Soldier
 
     processMouseInput(input)
     {
-        const newAngle = this.effectiveAngle(input)
+        const newAngle = input.orientation()
 
         if (newAngle != this.angle)
         {
@@ -24,29 +24,7 @@ class SoldierLocal extends Soldier
             this.sendPositionUpdate()
         }
     }
-
-    effectiveAngle(input)
-    {
-        const angle = (input.angleTo(new Point(this.body.position.x, this.body.position.y)) + 360) % 360
-        
-        if ((angle >= 45) && (angle <= 135)) // up
-        {
-            return Math.PI / 2
-        }
-        else if ((angle >= 135) && (angle <= 225)) // right
-        {
-            return Math.PI
-        }
-        else if ((angle >= 225) && (angle <= 315)) // down
-        {
-            return -Math.PI / 2
-        }
-        else if ((angle >= 315) || (angle <= 45)) // left
-        {
-            return 0
-        }
-    }
-
+    
     processMouseClick(pressed)
     {
         this.mousePressed = pressed
