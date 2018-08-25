@@ -84,7 +84,7 @@ class SoldierLocal extends Soldier
 
     onSoldierMove(xDistance, yDistance)
     {
-        paper.view.scrollBy(new Point(xDistance, yDistance))
+        paper.view.setCenter([this.body.position.x, this.body.position.y])
     }
 
     sendPositionUpdate()
