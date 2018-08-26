@@ -1,18 +1,28 @@
 function init()
 {
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(100, window.innerWidth/window.innerHeight, 1, 1000)
+    const camera = new THREE.PerspectiveCamera(35, window.innerWidth/window.innerHeight, 1, 3000)
+    camera.position.z = 1000
 
     const renderer = new THREE.WebGLRenderer({canvas: document.getElementById("canvas"), antialias: true})
     renderer.setClearColor(0x222222)
     renderer.setSize(window.innerWidth, window.innerHeight)
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1)
-    const material = new THREE.MeshBasicMaterial({ color: 0xfffffff, wireframe: true })
+    const geometry = new THREE.BoxGeometry(100, 100, 100)
+    const material = new THREE.MeshLambertMaterial({
+        color: 0xf3fff2,
+        map: new THREE.TextureLoader().load('resources/brick.png'),
+        wireframe: false
+    })
     const cube = new THREE.Mesh(geometry, material)
-    scene.add(cube)
+    cube.position.set(0, 0, -1000)
 
-    camera.position.z = 5
+    const light1 = new THREE.AmbientLight(0xffffff, 0.5)
+    const light2 = new THREE.PointLight(0xffffff, 0.5)
+
+    const scene = new THREE.Scene()
+    scene.add(light1)
+    scene.add(light2)
+    scene.add(cube)
 
     const animate = function ()
     {
