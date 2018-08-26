@@ -25,4 +25,36 @@ class Display
             game.render(physics.engine.world.bodies)
         }
     }
+
+    centerAt(x, y)
+    {
+        paper.view.setCenter([x, y])
+    }
+
+    circle(x, y, radius, color)
+    {
+        return new Path.Circle({
+            center: [x, y],
+            radius: radius,
+            fillColor: color
+        })
+    }
+
+    rectangle(x, y, w, h, color)
+    {
+        return new Path.Rectangle({
+            center: [x, y],
+            size: [w, h],
+            fillColor: color
+        })
+    }
+
+    group(x, y, children)
+    {
+        return new Group({
+            transformContent: false,
+            children: children,
+            position: [x, y]
+        })
+    }
 }

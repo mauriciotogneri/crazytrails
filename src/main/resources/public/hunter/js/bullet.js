@@ -13,11 +13,7 @@ class Bullet
 
         physics.addBody(this.body, this)
 
-        this.graphics = new Path.Circle({
-            center: [x, y],
-            radius: 2,
-            fillColor: '#ffa500'
-        })
+        this.graphics = display.circle(x, y, 2, '#ffa500')
 
         sound.pistol()
     }

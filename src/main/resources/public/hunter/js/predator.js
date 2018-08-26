@@ -14,23 +14,9 @@ class Predator
 
         physics.addBody(this.body, this)
 
-        const square = new Path.Rectangle({
-            center: [0, 0],
-            size: [CHARACTER_SIZE, CHARACTER_SIZE],
-            fillColor: color
-        })
-
-        const pointer = new Path.Circle({
-            center: [(CHARACTER_SIZE/2)-5, 0],
-            radius: 2,
-            fillColor: '#000'
-        })
-        
-        this.graphics = new Group({
-            transformContent: false,
-            children: [square, pointer],
-            position: [x, y]
-        })
+        const square = display.rectangle(0, 0, CHARACTER_SIZE, CHARACTER_SIZE, color)
+        const pointer = display.circle((CHARACTER_SIZE/2)-5, 0, 2, '#000')
+        this.graphics = display.group(x, y, [square, pointer])
     }
 
     update(delta)

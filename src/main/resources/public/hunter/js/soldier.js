@@ -14,34 +14,9 @@ class Soldier
 
         physics.addBody(this.body, this)
 
-        const square = new Path.Rectangle({
-            center: [0, 0],
-            size: [CHARACTER_SIZE, CHARACTER_SIZE],
-            fillColor: color
-        })
-
-        const pointer = new Path.Circle({
-            center: [(CHARACTER_SIZE/2)-5, 0],
-            radius: 2,
-            fillColor: '#000'
-        })
-        
-        this.graphics = new Group({
-            transformContent: false,
-            children: [square, pointer],
-            position: [x, y]
-        })
-
-        /*const layer = new Layer()
-        layer.activate()
-
-        this.light = new Path.Rectangle({
-            center: [x, y],
-            size: [CHARACTER_SIZE, CHARACTER_SIZE],
-            fillColor: 'white'
-        })
-
-        this.light.fillColor.alpha = 0.3*/
+        const square = display.rectangle(0, 0, CHARACTER_SIZE, CHARACTER_SIZE, color)
+        const pointer = display.circle((CHARACTER_SIZE/2)-5, 0, 2, '#000')
+        this.graphics = display.group(x, y, [square, pointer])
     }
 
     update(delta)
@@ -95,8 +70,5 @@ class Soldier
         this.graphics.position.x = this.body.position.x
         this.graphics.position.y = this.body.position.y
         this.graphics.rotation = (this.body.angle * 180 / Math.PI) + 180
-
-        this.light.position.x = this.body.position.x
-        this.light.position.y = this.body.position.y
     }
 }

@@ -63,7 +63,7 @@ class SoldierLocal extends Soldier
 
     onMove()
     {
-        paper.view.setCenter([this.body.position.x, this.body.position.y])
+        display.centerAt(this.body.position.x, this.body.position.y)
     }
 
     sendPositionUpdate()

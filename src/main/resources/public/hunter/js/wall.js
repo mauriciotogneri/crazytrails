@@ -6,10 +6,6 @@ class Wall
 
         physics.addBody(this.body, this)
 
-        this.graphics = new Path.Rectangle({
-            center: [x + (w/2), y + (h/2)],
-            size: [w, h],
-            fillColor: '#555'
-        })
+        this.graphics = display.rectangle(x + (w/2), y + (h/2), w, h, '#555')
     }
 }
