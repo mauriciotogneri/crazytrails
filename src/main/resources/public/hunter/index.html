@@ -8,8 +8,8 @@
 
         <link type="text/css" rel="stylesheet" href="css/style.css" />
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/matter-js@0.14.2/build/matter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/95/three.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.14/howler.min.js"></script>
 
         <script src="js/constants.js"></script>
@@ -54,6 +54,10 @@
                 game     = new Game()
             }
 
+        </script>
+
+        <script>
+            (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()
         </script>
 
     </head>

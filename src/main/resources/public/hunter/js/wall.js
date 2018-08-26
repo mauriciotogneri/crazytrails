@@ -6,6 +6,6 @@ class Wall
 
         physics.addBody(this.body, this)
 
-        this.graphics = display.rectangle(x + (w/2), y + (h/2), w, h, '#555')
+        //this.graphics = display.rectangle(x + (w/2), y + (h/2), w, h, '#555')
     }
 }

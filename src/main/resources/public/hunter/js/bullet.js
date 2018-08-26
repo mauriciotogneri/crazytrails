@@ -13,7 +13,7 @@ class Bullet
 
         physics.addBody(this.body, this)
 
-        this.graphics = display.circle(x, y, 2, '#ffa500')
+        //this.graphics = display.circle(x, y, 2, '#ffa500')
 
         sound.pistol()
     }
@@ -73,12 +73,12 @@ class Bullet
     onCollision()
     {
         Matter.World.remove(physics.engine.world, this.body)
-        this.graphics.remove()
+        //this.graphics.remove()
     }
 
     render()
     {
-        this.graphics.position.x = this.body.position.x
-        this.graphics.position.y = this.body.position.y
+        //this.graphics.position.x = this.body.position.x
+        //this.graphics.position.y = this.body.position.y
     }
 }

@@ -25,7 +25,7 @@ class Physics
 
     start()
     {
-        /*const runner = Matter.Runner.create({
+        const runner = Matter.Runner.create({
             delta: 1000 / FPS,
             isFixed: false,
             enabled: true
@@ -36,7 +36,7 @@ class Physics
         Matter.Events.on(runner, "afterUpdate", function(event)
         {
             game.update(event.source.delta)
-        })*/
+        })
         
         Matter.Events.on(this.engine, "collisionStart", function(event)
         {

@@ -13,7 +13,6 @@ class Game
         this.setupPlayers()
 
         physics.start()
-        display.start()
     }
 
     setupPlayers()
@@ -83,17 +82,6 @@ class Game
         this.playerLocal.update(delta)
         this.playerRemote.update(delta)
 
-        Matter.Engine.update(physics.engine, delta)
-    }
-
-    render(bodies)
-    {
-        bodies.forEach(body =>
-        {
-            if (body.object && body.object.render)
-            {
-                body.object.render()
-            }
-        })
+        display.update(physics.engine.world.bodies)
     }
 }
