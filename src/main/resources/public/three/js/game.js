@@ -1,3 +1,5 @@
+//https://threejs.org/examples/?q=controls#misc_controls_pointerlock
+
 function init()
 {
     const camera = new THREE.PerspectiveCamera(35, window.innerWidth/window.innerHeight, 1, 3000)
