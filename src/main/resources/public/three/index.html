@@ -6,6 +6,9 @@
         <link type="text/css" rel="stylesheet" href="css/style.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/95/three.min.js"></script>
         <script src="js/game.js"></script>
+        <script>
+            (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()
+        </script>
     </head>
     <body onload="init()">
         <canvas id="canvas"></canvas>

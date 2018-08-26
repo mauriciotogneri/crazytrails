@@ -8,6 +8,8 @@ function init()
     renderer.setSize(window.innerWidth, window.innerHeight)
 
     const geometry = new THREE.BoxGeometry(100, 100, 100)
+
+    // use MeshFaceMaterial and pass an array with 6 MeshBasicMaterial to paint each face differently
     const material = new THREE.MeshLambertMaterial({
         color: 0xf3fff2,
         map: new THREE.TextureLoader().load('resources/brick.png'),
