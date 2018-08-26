@@ -23,6 +23,10 @@ const API_OPERATION = {
     newBullet: 2
 }
 
+const TEXTURE = {
+    brick: 'resources/brick.png'
+}
+
 const BINARY_TYPE = {
     bool: {
         code: 1,

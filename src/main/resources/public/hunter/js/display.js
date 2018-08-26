@@ -21,7 +21,7 @@ class Display
         this.scene.add(axesHelper)
     }
 
-    add(mesh)
+    addMesh(mesh)
     {
         this.scene.add(mesh)
     }
@@ -43,6 +43,17 @@ class Display
     {
         this.camera.position.x = x
         this.camera.position.y = y
+    }
+
+    rectangle(x, y, a, b, c, texture)
+    {
+        const geometry = new THREE.BoxGeometry(CHARACTER_SIZE, CHARACTER_SIZE, CHARACTER_SIZE)
+        // use MeshFaceMaterial and pass an array with 6 MeshBasicMaterial to paint each face differently
+        const material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load(texture)})
+        const mesh = new THREE.Mesh(geometry, material)
+        mesh.position.set(x, y, 0)
+
+        return mesh
     }
 
     /*circle(x, y, radius, color)

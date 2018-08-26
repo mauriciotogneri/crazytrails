@@ -11,24 +11,10 @@ class Soldier
             frictionAir: 0,
             restitution: 0
         })
-
         physics.addBody(this.body, this)
 
-        //const square = display.rectangle(0, 0, CHARACTER_SIZE, CHARACTER_SIZE, color)
-        //const pointer = display.circle((CHARACTER_SIZE/2)-5, 0, 2, '#000')
-        //this.graphics = display.group(x, y, [square, pointer])
-
-        const geometry = new THREE.BoxGeometry(CHARACTER_SIZE, CHARACTER_SIZE, CHARACTER_SIZE)
-        // use MeshFaceMaterial and pass an array with 6 MeshBasicMaterial to paint each face differently
-        const material = new THREE.MeshLambertMaterial({
-            color: 0xf3fff2,
-            map: new THREE.TextureLoader().load('resources/brick.png'),
-            wireframe: false
-        })
-        this.mesh = new THREE.Mesh(geometry, material)
-        this.mesh.position.set(0, 0, 0)
-
-        display.add(this.mesh)
+        this.mesh = display.rectangle(x, y, CHARACTER_SIZE, CHARACTER_SIZE, CHARACTER_SIZE, TEXTURE.brick)
+        display.addMesh(this.mesh)
     }
 
     update(delta)
@@ -80,8 +66,6 @@ class Soldier
     render()
     {
         this.mesh.position.set(this.body.position.x, this.body.position.y, 0)
-        //this.graphics.position.x = this.body.position.x
-        //this.graphics.position.y = this.body.position.y
         //this.graphics.rotation = (this.body.angle * 180 / Math.PI) + 180
     }
 }
