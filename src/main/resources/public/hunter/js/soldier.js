@@ -13,8 +13,8 @@ class Soldier
         })
         physics.addBody(this.body, this)
 
-        this.mesh = display.rectangle(x, y, CHARACTER_SIZE, CHARACTER_SIZE, CHARACTER_SIZE, TEXTURE.brick)
-        display.addMesh(this.mesh)
+        //this.mesh = display.rectangle(x, y, -50, CHARACTER_SIZE, CHARACTER_SIZE, CHARACTER_SIZE, TEXTURE.brick)
+        //display.addMesh(this.mesh)
 
         //this.light = new THREE.PointLight(0xffffff, 1)
         //display.addMesh(this.light)
@@ -79,7 +79,7 @@ class Soldier
 
     render()
     {
-        this.mesh.position.set(this.body.position.x, this.body.position.y, 0)
+        //this.mesh.position.set(this.body.position.x, this.body.position.y, 0)
         //this.graphics.rotation = (this.body.angle * 180 / Math.PI) + 180
 
         //this.light.position.set(this.body.position.x, this.body.position.y - 25, -100)
