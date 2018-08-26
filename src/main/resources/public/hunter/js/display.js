@@ -10,8 +10,13 @@ class Display
         this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: true})
         this.renderer.setClearColor(0x222222)
         this.renderer.setSize(window.innerWidth, window.innerHeight)
+        this.renderer.shadowMapEnabled = true
+        this.renderer.shadowMapType = THREE.BasicShadowMap
 
         this.scene = new THREE.Scene()
+
+        const light = new THREE.AmbientLight(0xffffff, 1)
+        this.scene.add(light)
 
         const axesHelper = new THREE.AxesHelper(1000)
         this.scene.add(axesHelper)
@@ -26,6 +31,9 @@ class Display
 
     addMesh(mesh)
     {
+        mesh.castShadow = true
+        mesh.receiveShadow = false
+
         this.scene.add(mesh)
     }
 
@@ -58,31 +66,4 @@ class Display
 
         return mesh
     }
-
-    /*circle(x, y, radius, color)
-    {
-        return new Path.Circle({
-            center: [x, y],
-            radius: radius,
-            fillColor: color
-        })
-    }
-
-    rectangle(x, y, w, h, color)
-    {
-        return new Path.Rectangle({
-            center: [x, y],
-            size: [w, h],
-            fillColor: color
-        })
-    }
-
-    group(x, y, children)
-    {
-        return new Group({
-            transformContent: false,
-            children: children,
-            position: [x, y]
-        })
-    }*/
 }
