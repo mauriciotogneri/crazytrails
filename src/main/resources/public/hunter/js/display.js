@@ -28,8 +28,6 @@ class Display
 
     update(bodies)
     {
-        this.renderer.render(this.scene, this.camera)
-
         bodies.forEach(body =>
         {
             if (body.object && body.object.render)
@@ -37,6 +35,8 @@ class Display
                 body.object.render()
             }
         })
+
+        this.renderer.render(this.scene, this.camera)
     }
 
     centerAt(x, y)
