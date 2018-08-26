@@ -24,7 +24,8 @@ const API_OPERATION = {
 }
 
 const TEXTURE = {
-    brick: 'resources/brick.png'
+    brick: 'resources/brick.png',
+    concrete: 'resources/concrete.png',
 }
 
 const BINARY_TYPE = {

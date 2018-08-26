@@ -15,6 +15,12 @@ class Soldier
 
         this.mesh = display.rectangle(x, y, CHARACTER_SIZE, CHARACTER_SIZE, CHARACTER_SIZE, TEXTURE.brick)
         display.addMesh(this.mesh)
+
+        this.light = new THREE.PointLight(0xffffff, 1)
+        display.addMesh(this.light)
+
+        const pointLightHelper = new THREE.PointLightHelper(this.light, 1)
+        display.addMesh(pointLightHelper)
     }
 
     update(delta)
@@ -67,5 +73,7 @@ class Soldier
     {
         this.mesh.position.set(this.body.position.x, this.body.position.y, 0)
         //this.graphics.rotation = (this.body.angle * 180 / Math.PI) + 180
+
+        this.light.position.set(this.body.position.x, this.body.position.y - 50, -50)
     }
 }

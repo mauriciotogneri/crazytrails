@@ -16,11 +16,11 @@ class Game
         if (playerType == "1")
         {
             this.playerLocal  = new SoldierLocal(100, 600, COLOR.blue)
-            this.playerRemote = new SoldierRemote(250, 600, COLOR.red)
+            this.playerRemote = new SoldierRemote(1000, 600, COLOR.red)
         }
         else
         {
-            this.playerLocal  = new SoldierLocal(250, 600, COLOR.red)
+            this.playerLocal  = new SoldierLocal(1000, 600, COLOR.red)
             this.playerRemote = new SoldierRemote(100, 600, COLOR.blue)
         }
     }

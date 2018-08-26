@@ -11,14 +11,17 @@ class Display
         this.renderer.setClearColor(0x222222)
         this.renderer.setSize(window.innerWidth, window.innerHeight)
 
-        const light = new THREE.PointLight(0xffffff, 0.5)
-        light.position.set(0, 0, -500)
-
         this.scene = new THREE.Scene()
-        this.scene.add(light)
 
-        var axesHelper = new THREE.AxesHelper(1000)
+        const axesHelper = new THREE.AxesHelper(1000)
         this.scene.add(axesHelper)
+
+        const geo = new THREE.PlaneBufferGeometry(1000, 1000, 8, 8)
+        const mat = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load(TEXTURE.concrete), side: THREE.DoubleSide })
+        const plane = new THREE.Mesh(geo, mat)
+        plane.position.set(500, 500, 0)
+
+        this.scene.add(plane);
     }
 
     addMesh(mesh)
