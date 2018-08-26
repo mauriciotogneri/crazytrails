@@ -2,7 +2,7 @@ class Display
 {
     constructor()
     {
-        this.camera = new THREE.PerspectiveCamera(35, window.innerWidth/window.innerHeight, 1, 3000)
+        this.camera = new THREE.PerspectiveCamera(20, window.innerWidth/window.innerHeight, 1, 3000)
         this.camera.position.set(0, 0, -2000)
         this.camera.up.set(0,-1,0)
         this.camera.lookAt(new THREE.Vector3(0,0,0))
@@ -47,7 +47,7 @@ class Display
 
     rectangle(x, y, a, b, c, texture)
     {
-        const geometry = new THREE.BoxGeometry(CHARACTER_SIZE, CHARACTER_SIZE, CHARACTER_SIZE)
+        const geometry = new THREE.BoxGeometry(a, b, c)
         // use MeshFaceMaterial and pass an array with 6 MeshBasicMaterial to paint each face differently
         const material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load(texture)})
         const mesh = new THREE.Mesh(geometry, material)

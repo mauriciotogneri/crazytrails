@@ -2,13 +2,14 @@ class Game
 {
     constructor()
     {
-        new Wall(0, 0, 30, 900)
-        new Wall(0, 870, 1800, 30)
-        new Wall(0, 0, 1800, 30)
-        new Wall(1770, 0, 30, 900)
+        new Wall(0, 0, 50, 50)
+        /*new Wall(0, 0, 50, 900)
+        new Wall(0, 850, 1800, 50)
+        new Wall(0, 0, 1800, 50)*/
+        /*new Wall(1770, 0, 30, 900)
         new Wall(1680, 720, 30, 180)
         new Wall(1590, 630, 210, 30)
-        new Wall(1590, 630, 30, 180)
+        new Wall(1590, 630, 30, 180)*/
 
         this.setupPlayers()
 
