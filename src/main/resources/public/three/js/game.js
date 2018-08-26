@@ -3,7 +3,7 @@
 function init()
 {
     const camera = new THREE.PerspectiveCamera(35, window.innerWidth/window.innerHeight, 1, 3000)
-    camera.position.z = 1000
+    camera.position.set(0, 0, 2000)
 
     const renderer = new THREE.WebGLRenderer({canvas: document.getElementById("canvas"), antialias: true})
     renderer.setClearColor(0x222222)
@@ -18,22 +18,23 @@ function init()
         wireframe: false
     })
     const cube = new THREE.Mesh(geometry, material)
-    cube.position.set(0, 0, -1000)
+    cube.position.set(0, 0, 0)
 
     const light = new THREE.PointLight(0xffffff, 0.5)
-    //const light = new THREE.SpotLight(0xffffff, 1, 3000)
-    //light.target = cube
+    light.position.set(0, 0, 500)
 
     const scene = new THREE.Scene()
     scene.add(light)
     scene.add(cube)
 
+    var axesHelper = new THREE.AxesHelper(1000)
+    scene.add(axesHelper)
+
     const animate = function ()
     {
         requestAnimationFrame(animate)
 
-        cube.rotation.x += 0.01
-        cube.rotation.y += 0.01
+        cube.position.y += 0.5
 
         renderer.render(scene, camera)
     }
