@@ -16,12 +16,12 @@ function init()
     const cube = new THREE.Mesh(geometry, material)
     cube.position.set(0, 0, -1000)
 
-    const light1 = new THREE.AmbientLight(0xffffff, 0.5)
-    const light2 = new THREE.PointLight(0xffffff, 0.5)
+    const light = new THREE.PointLight(0xffffff, 0.5)
+    //const light = new THREE.SpotLight(0xffffff, 1, 3000)
+    //light.target = cube
 
     const scene = new THREE.Scene()
-    scene.add(light1)
-    scene.add(light2)
+    scene.add(light)
     scene.add(cube)
 
     const animate = function ()
