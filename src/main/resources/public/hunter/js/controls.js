@@ -17,6 +17,14 @@ class Controls
         {
             game.processMouseClick(true)
         }
+
+        var lastClientX = window.innerWidth / 2
+
+        $('#canvas').onmousemove = function(event)
+        {
+            display.rotate(lastClientX - event.clientX)
+            lastClientX = event.clientX
+        }
         
         $('#canvas').onmouseup = function()
         {

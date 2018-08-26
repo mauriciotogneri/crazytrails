@@ -10,13 +10,11 @@ class Display
         this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: true})
         this.renderer.setClearColor(0x222222)
         this.renderer.setSize(window.innerWidth, window.innerHeight)
-        this.renderer.shadowMapEnabled = true
-        this.renderer.shadowMapType = THREE.BasicShadowMap
 
         this.scene = new THREE.Scene()
 
-        const light = new THREE.AmbientLight(0xffffff, 1)
-        this.scene.add(light)
+        //const light = new THREE.AmbientLight(0xffffff, 1)
+        //this.scene.add(light)
 
         const axesHelper = new THREE.AxesHelper(1000)
         this.scene.add(axesHelper)
@@ -31,9 +29,6 @@ class Display
 
     addMesh(mesh)
     {
-        mesh.castShadow = true
-        mesh.receiveShadow = false
-
         this.scene.add(mesh)
     }
 
@@ -52,11 +47,13 @@ class Display
 
     centerAt(x, y)
     {
-        //this.camera.position.x = x
-        //this.camera.position.y = y
-
         this.camera.position.set(x, y, -25)
         this.camera.lookAt(new THREE.Vector3(x, y - 50, -25))
+    }
+
+    rotate(value)
+    {
+        this.camera.rotation.y += value/100
     }
 
     rectangle(x, y, z, a, b, c, texture)
