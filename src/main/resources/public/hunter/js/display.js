@@ -5,13 +5,13 @@ class Display
         this.camera = new THREE.PerspectiveCamera(20, window.innerWidth/window.innerHeight, 1, 3000)
         this.camera.position.set(0, 0, -2000)
         this.camera.up.set(0,-1,0)
-        this.camera.lookAt(new THREE.Vector3(0,0,0))
+        this.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
         // first person view
-        this.camera.up.set(0, 1, 0)
+        //this.camera.up.set(0, 1, 0)
 
         this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: true})
-        this.renderer.setClearColor(0x222222)
+        this.renderer.setClearColor(0x111111)
         this.renderer.setSize(window.innerWidth, window.innerHeight)
 
         this.scene = new THREE.Scene()
@@ -53,25 +53,38 @@ class Display
 
     centerAt(x, y)
     {
-        // uncomment to use orbit
-        this.camera.position.set(x, y, -50)
+        // comment to use orbit
+        this.camera.position.set(x, y, -2000)
 
         // first person view
-        this.camera.lookAt(new THREE.Vector3(x, y - 50, -50))
+        //this.camera.position.set(x, y, -50)
+        //this.camera.lookAt(new THREE.Vector3(x, y - 50, -50))
     }
 
     cube(x, y, z, a, b, c, textureName)
     {
         const geometry = new THREE.BoxGeometry(a, b, c)
-        // use MeshFaceMaterial and pass an array with 6 MeshBasicMaterial to paint each face differently
 
-        const texture = new THREE.ImageUtils.loadTexture(textureName)
-        texture.wrapS = THREE.RepeatWrapping
-        texture.wrapT = THREE.RepeatWrapping
-	    texture.repeat.set(1, 10, 0)
+        const texture1 = new THREE.ImageUtils.loadTexture(textureName)
+        texture1.wrapS = THREE.RepeatWrapping
+        texture1.wrapT = THREE.RepeatWrapping
+        texture1.repeat.set(1, 10)
 
-        const material = new THREE.MeshLambertMaterial({map: texture})
-        const mesh = new THREE.Mesh(geometry, material)
+        const texture2 = new THREE.ImageUtils.loadTexture(textureName)
+        texture2.wrapS = THREE.RepeatWrapping
+        texture2.wrapT = THREE.RepeatWrapping
+        texture2.repeat.set(1, 1)
+        
+        const faces = [
+            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // right
+            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // left
+            new THREE.MeshBasicMaterial({map: texture2, side: THREE.DoubleSide}), // front
+            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // back
+            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // down
+            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide})  // top
+        ]
+
+        const mesh = new THREE.Mesh(geometry, faces)
         mesh.position.set(x, y, z)
 
         return mesh
