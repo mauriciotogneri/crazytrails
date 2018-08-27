@@ -48,17 +48,8 @@ class Predator
         {
             Matter.Body.setAngle(this.body, this.angle)
         }
-
-        if ((xDistance != 0) || (yDistance != 0))
-        {
-            this.onMove()
-        }
     }
-
-    onMove()
-    {
-    }
-
+    
     render()
     {
         this.graphics.position.x = this.body.position.x

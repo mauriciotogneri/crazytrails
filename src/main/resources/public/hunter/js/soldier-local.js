@@ -5,7 +5,6 @@ class SoldierLocal extends Soldier
         super(x, y, color)
 
         this.mousePressed = false
-        this.onMove()
     }
 
     processKeyboardInput(input)
@@ -61,8 +60,9 @@ class SoldierLocal extends Soldier
         }
     }
 
-    onMove()
+    render()
     {
+        super.render()
         display.centerAt(this.body.position.x, this.body.position.y)
     }
 

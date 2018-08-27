@@ -36,26 +36,12 @@ class Soldier
             yDistance = distance
         }
 
-        if ((xDistance != 0) || (yDistance != 0))
-        {
-            Matter.Body.setPosition(this.body, Matter.Vector.create(this.body.position.x + xDistance, this.body.position.y + yDistance))
-        }
-
-        Matter.Body.setVelocity(this.body, Matter.Vector.create(0, 0))
+        Matter.Body.setVelocity(this.body, Matter.Vector.create(xDistance, yDistance))
 
         if (this.angle != this.body.angle)
         {
             Matter.Body.setAngle(this.body, this.angle)
         }
-
-        if ((xDistance != 0) || (yDistance != 0))
-        {
-            this.onMove()
-        }
-    }
-
-    onMove()
-    {
     }
 
     render()
