@@ -52,7 +52,7 @@ Api.newBullet = {
 
         binary.float(x)
         binary.float(y)
-        binary.byte(angle)
+        binary.float(angle)
 
         network.sendBinary(binary.build())
     },
@@ -65,7 +65,7 @@ Api.newBullet = {
         return {
             x:     binary.float(),
             y:     binary.float(),
-            angle: binary.byte()
+            angle: binary.float()
         }
     }
 }

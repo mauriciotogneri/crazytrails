@@ -25,6 +25,13 @@ class Display
         this.scene.add(mesh)
     }
 
+    removeMesh(mesh)
+    {
+        this.scene.remove(mesh)
+        mesh.geometry.dispose()
+        mesh.material.dispose()
+    }
+
     update(bodies)
     {
         bodies.forEach(body =>

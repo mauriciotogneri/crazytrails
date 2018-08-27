@@ -12,7 +12,7 @@ const MAP_SIZE = 800
 const CHARACTER_SIZE = 25
 const BULLET_SIZE    = 1
 
-const BULLET_SPEED = 10
+const BULLET_SPEED = 50
 
 const FPS = 60
 

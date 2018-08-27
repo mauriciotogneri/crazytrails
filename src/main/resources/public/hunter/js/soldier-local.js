@@ -46,8 +46,8 @@ class SoldierLocal extends Soldier
         if (this.mousePressed)
         {
             const position = this.body.position
-            new Bullet(position.x, position.y, parseInt(this.angle))
-            Api.newBullet.send(position.x, position.y, parseInt(this.angle))
+            new Bullet(position.x, position.y, this.angle)
+            Api.newBullet.send(position.x, position.y, this.angle)
             this.startFiringTimeout()
         }
     }

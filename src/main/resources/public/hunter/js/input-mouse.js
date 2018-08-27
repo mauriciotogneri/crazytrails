@@ -18,6 +18,6 @@ class InputMouse
     {
         const angle = parseInt(Math.atan2(this.center.y - this.y, this.center.x - this.x) * 180 / Math.PI)
 
-        return (angle- (angle % 10)) * Math.PI / 180
+        return (angle- (angle % 2)) * Math.PI / 180
     }
 }
