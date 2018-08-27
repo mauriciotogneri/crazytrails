@@ -9,7 +9,7 @@ const DIRECTION_DOWN  = 4
 
 const MAP_SIZE = 800
 
-const CHARACTER_SIZE = 50
+const CHARACTER_SIZE = 25
 const BULLET_SIZE    = 2
 
 const BULLET_SPEED = 10
@@ -26,6 +26,7 @@ const API_OPERATION = {
 const TEXTURE = {
     brick: 'resources/brick.png',
     concrete: 'resources/concrete.png',
+    ball: 'resources/ball.png'
 }
 
 const BINARY_TYPE = {

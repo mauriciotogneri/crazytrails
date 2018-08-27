@@ -51,10 +51,20 @@ class Display
         this.camera.position.y = y
     }
 
-    rectangle(x, y, z, a, b, c, texture)
+    cube(x, y, z, a, b, c, texture)
     {
         const geometry = new THREE.BoxGeometry(a, b, c)
         // use MeshFaceMaterial and pass an array with 6 MeshBasicMaterial to paint each face differently
+        const material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load(texture)})
+        const mesh = new THREE.Mesh(geometry, material)
+        mesh.position.set(x, y, z)
+
+        return mesh
+    }
+
+    sphere(x, y, z, r, texture)
+    {
+        const geometry = new THREE.SphereGeometry(r, 32, 16)
         const material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load(texture)})
         const mesh = new THREE.Mesh(geometry, material)
         mesh.position.set(x, y, z)

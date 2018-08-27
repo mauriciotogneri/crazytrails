@@ -14,7 +14,7 @@ class Predator
 
         physics.addBody(this.body, this)
 
-        const square = display.rectangle(0, 0, CHARACTER_SIZE, CHARACTER_SIZE, color)
+        const square = display.cube(0, 0, CHARACTER_SIZE, CHARACTER_SIZE, color)
         const pointer = display.circle((CHARACTER_SIZE/2)-5, 0, 2, '#000')
         this.graphics = display.group(x, y, [square, pointer])
     }
