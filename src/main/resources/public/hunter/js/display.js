@@ -10,8 +10,6 @@ class Display
         this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: true})
         this.renderer.setClearColor(0x222222)
         this.renderer.setSize(window.innerWidth, window.innerHeight)
-        this.renderer.shadowMapEnabled = true
-        this.renderer.shadowMapType = THREE.BasicShadowMap
 
         this.scene = new THREE.Scene()
 
@@ -31,9 +29,6 @@ class Display
 
     addMesh(mesh)
     {
-        mesh.castShadow = true
-        mesh.receiveShadow = false
-
         this.scene.add(mesh)
     }
 
@@ -56,13 +51,13 @@ class Display
         this.camera.position.y = y
     }
 
-    rectangle(x, y, a, b, c, texture)
+    rectangle(x, y, z, a, b, c, texture)
     {
         const geometry = new THREE.BoxGeometry(a, b, c)
         // use MeshFaceMaterial and pass an array with 6 MeshBasicMaterial to paint each face differently
         const material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load(texture)})
         const mesh = new THREE.Mesh(geometry, material)
-        mesh.position.set(x, y, 0)
+        mesh.position.set(x, y, z)
 
         return mesh
     }
