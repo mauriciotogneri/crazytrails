@@ -46,7 +46,7 @@ class Soldier
 
     render()
     {
-        this.mesh.position.set(this.body.position.x, this.body.position.y, 0)
+        this.mesh.position.set(this.body.position.x, this.body.position.y, -25)
         this.mesh.rotation.z = this.body.angle
     }
 }

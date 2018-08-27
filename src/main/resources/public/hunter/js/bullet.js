@@ -3,11 +3,12 @@ class Bullet
     constructor(x, y, angle)
     {
         this.body = physics.circle(x, y, BULLET_SIZE)
-        Matter.Body.setVelocity(this.body, this.velocity(angle))
-
         physics.addBody(this.body, this)
 
-        //this.graphics = display.circle(x, y, 2, '#ffa500')
+        //Matter.Body.setVelocity(this.body, this.velocity(angle))
+
+        this.mesh = display.sphere(x, y, -25, BULLET_SIZE, TEXTURE.ball)
+        display.addMesh(this.mesh)
 
         sound.pistol()
     }
@@ -19,13 +20,12 @@ class Bullet
 
     onCollision()
     {
-        Matter.World.remove(physics.engine.world, this.body)
+        //Matter.World.remove(physics.engine.world, this.body)
         //this.graphics.remove()
     }
 
     render()
     {
-        //this.graphics.position.x = this.body.position.x
-        //this.graphics.position.y = this.body.position.y
+        //this.mesh.position.set(this.body.position.x, this.body.position.y, -25)
     }
 }
