@@ -24,21 +24,21 @@ class Level
 
     createWalls()
     {
-        new Wall(0, 0, 50, 500, 50)
+        new Wall(0, 0, 25, 500, 50)
 
-        for (var i = 0; i < 7; i++)
+        for (var i = 0; i < 14; i++)
         {
-            new Wall(150, (i * 50) + 150, 50, 50, 50)
+            new Wall(150, (i * 25) + 150, 25, 25, 50)
         }
 
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 20; i++)
         {
-            new Wall(300, i * 50, 50, 50, 50)
+            new Wall(300, i * 25, 25, 25, 50)
         }
 
-        for (var i = 1; i < 6; i++)
+        for (var i = 1; i < 12; i++)
         {
-            new Wall(i * 50, 0, 50, 50, 50)
+            new Wall(i * 25, 0, 25, 25, 50)
         }
     }
 }

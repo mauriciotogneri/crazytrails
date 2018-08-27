@@ -46,7 +46,7 @@ class Display
         })
 
         // orbit controls
-        //his.controls.update()
+        //this.controls.update()
 
         this.renderer.render(this.scene, this.camera)
     }
