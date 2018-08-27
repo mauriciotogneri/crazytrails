@@ -7,7 +7,7 @@ class Bullet
 
         //Matter.Body.setVelocity(this.body, this.velocity(angle))
 
-        this.mesh = display.sphere(x, y, -25, BULLET_SIZE, TEXTURE.ball)
+        this.mesh = display.sphere(x, y, 0, BULLET_SIZE, TEXTURE.ball)
         display.addMesh(this.mesh)
 
         sound.pistol()
@@ -26,6 +26,6 @@ class Bullet
 
     render()
     {
-        //this.mesh.position.set(this.body.position.x, this.body.position.y, -25)
+        //this.mesh.position.set(this.body.position.x, this.body.position.y, 0)
     }
 }

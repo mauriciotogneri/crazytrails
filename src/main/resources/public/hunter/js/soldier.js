@@ -8,7 +8,7 @@ class Soldier
         this.body = physics.circle(x, y, CHARACTER_SIZE)
         physics.addBody(this.body, this)
 
-        this.mesh = display.sphere(x, y, -25, CHARACTER_SIZE, texture)
+        this.mesh = display.sphere(x, y, 0, CHARACTER_SIZE, texture)
         display.addMesh(this.mesh)
     }
 
@@ -46,7 +46,7 @@ class Soldier
 
     render()
     {
-        this.mesh.position.set(this.body.position.x, this.body.position.y, -25)
+        this.mesh.position.set(this.body.position.x, this.body.position.y, 0)
         this.mesh.rotation.z = this.body.angle
     }
 }

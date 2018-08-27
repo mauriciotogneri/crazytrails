@@ -7,6 +7,9 @@ class Display
         this.camera.up.set(0,-1,0)
         this.camera.lookAt(new THREE.Vector3(0,0,0))
 
+        // first person view
+        //this.camera.up.set(0, 1, 0)
+
         this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: true})
         this.renderer.setClearColor(0x222222)
         this.renderer.setSize(window.innerWidth, window.innerHeight)
@@ -19,10 +22,10 @@ class Display
         const axesHelper = new THREE.AxesHelper(1000)
         this.scene.add(axesHelper)
 
-        const geo = new THREE.PlaneBufferGeometry(1000, 1000, 8, 8)
-        const mat = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load(TEXTURE.concrete), side: THREE.DoubleSide })
-        const plane = new THREE.Mesh(geo, mat)
-        plane.position.set(500, 500, 0)
+        const geometry = new THREE.PlaneBufferGeometry(1000, 1000, 8, 8)
+        const material = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load(TEXTURE.concrete), side: THREE.BackSide })
+        const plane = new THREE.Mesh(geometry, material)
+        plane.position.set(500, 500, 25)
 
         this.scene.add(plane);
     }
@@ -49,6 +52,10 @@ class Display
     {
         this.camera.position.x = x
         this.camera.position.y = y
+
+        // first person view
+        this.camera.position.set(x, y, 0)
+        this.camera.lookAt(new THREE.Vector3(x, y - 50, 0))
     }
 
     cube(x, y, z, a, b, c, texture)

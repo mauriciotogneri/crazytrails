@@ -10,7 +10,7 @@ const DIRECTION_DOWN  = 4
 const MAP_SIZE = 800
 
 const CHARACTER_SIZE = 25
-const BULLET_SIZE    = 2
+const BULLET_SIZE    = 1
 
 const BULLET_SPEED = 10
 
