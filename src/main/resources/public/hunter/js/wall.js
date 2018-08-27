@@ -1,11 +1,11 @@
 class Wall
 {
-    constructor(x, y, w, h)
+    constructor(x, y, a, b, c)
     {
-        this.body = physics.rectangle(x + (w/2), y + (h/2), w, h)
+        this.body = physics.rectangle(x + (a/2), y + (b/2), a, b)
         physics.addBody(this.body, this)
 
-        this.mesh = display.cube(x + (w/2), y + (h/2), 0, w, h, 50, TEXTURE.brick)
+        this.mesh = display.cube(x + (a/2), y + (b/2), 0, a, b, c, TEXTURE.brick)
         display.addMesh(this.mesh)
     }
 }
