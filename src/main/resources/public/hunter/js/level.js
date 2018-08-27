@@ -9,7 +9,13 @@ class Level
     createFloor()
     {
         const geometry = new THREE.PlaneBufferGeometry(1000, 1000, 8, 8)
-        const material = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load(TEXTURE.concrete), side: THREE.BackSide })
+
+        const texture = new THREE.ImageUtils.loadTexture(TEXTURE.concrete)
+        texture.wrapS = THREE.RepeatWrapping
+        texture.wrapT = THREE.RepeatWrapping
+        texture.repeat.set(5, 5)
+        
+        const material = new THREE.MeshLambertMaterial({ map: texture, side: THREE.BackSide })
         const plane = new THREE.Mesh(geometry, material)
         plane.position.set(500, 500, 25)
 
@@ -18,11 +24,6 @@ class Level
 
     createWalls()
     {
-        for (var i = 0; i < 10; i++)
-        {
-            //new Wall(0, i * 50, 50, 50)
-        }
-
         new Wall(0, 0, 50, 500, 50)
 
         for (var i = 0; i < 7; i++)
