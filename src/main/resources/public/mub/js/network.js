@@ -31,11 +31,11 @@ class Network
     {
         if (window.location.hostname == "localhost")
         {
-            return "ws://" + window.location.hostname + ":5000/ws/hunter"
+            return "ws://" + window.location.hostname + ":5000/ws/mub"
         }
         else
         {
-            return "wss://" + window.location.hostname + "/ws/hunter"
+            return "wss://" + window.location.hostname + "/ws/mub"
         }
     }
 

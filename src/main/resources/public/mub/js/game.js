@@ -11,7 +11,7 @@ class Game
 
     setupPlayers()
     {
-        const playerType = 1//prompt()
+        const playerType = prompt()
 
         if (playerType == "1")
         {
