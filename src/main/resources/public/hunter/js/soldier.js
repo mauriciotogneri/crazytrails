@@ -5,12 +5,7 @@ class Soldier
         this.angle = 0
         this.inputKeyboard = new InputKeyboard(false, false, false, false)
 
-        this.body = Matter.Bodies.circle(x, y, CHARACTER_SIZE, {
-            density: 1,
-            friction: 1,
-            frictionAir: 0,
-            restitution: 0
-        })
+        this.body = physics.circle(x, y, CHARACTER_SIZE)
         physics.addBody(this.body, this)
 
         this.mesh = display.sphere(x, y, -25, CHARACTER_SIZE, texture)

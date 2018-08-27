@@ -5,13 +5,7 @@ class Predator
         this.angle = 0
         this.inputKeyboard = new InputKeyboard(false, false, false, false)
 
-        this.body = Matter.Bodies.rectangle(x, y, CHARACTER_SIZE, CHARACTER_SIZE, {
-            density: 1,
-            friction: 1,
-            frictionAir: 0,
-            restitution: 0
-        })
-
+        this.body = pysics.circle(x, y, CHARACTER_SIZE)
         physics.addBody(this.body, this)
 
         const square = display.cube(0, 0, CHARACTER_SIZE, CHARACTER_SIZE, color)

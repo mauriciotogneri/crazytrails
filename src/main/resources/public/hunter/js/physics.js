@@ -65,4 +65,21 @@ class Physics
 
         Matter.World.add(this.engine.world, body)
     }
+
+    rectangle(x, y, w, h)
+    {
+        return Matter.Bodies.rectangle(x, y, w, h, {
+            isStatic: true
+        })
+    }
+
+    circle(x, y, r)
+    {
+        return Matter.Bodies.circle(x, y, r, {
+            density: 1,
+            friction: 1,
+            frictionAir: 0,
+            restitution: 0
+        })
+    }
 }
