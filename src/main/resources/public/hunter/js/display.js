@@ -54,8 +54,8 @@ class Display
         this.camera.position.y = y
 
         // first person view
-        this.camera.position.set(x, y, 0)
-        this.camera.lookAt(new THREE.Vector3(x, y - 50, 0))
+        //this.camera.position.set(x, y, 0)
+        //this.camera.lookAt(new THREE.Vector3(x, y - 50, 0))
     }
 
     cube(x, y, z, a, b, c, texture)
