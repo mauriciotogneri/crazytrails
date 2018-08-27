@@ -18,16 +18,6 @@ class Display
 
         const light = new THREE.AmbientLight(0xffffff, 1)
         this.scene.add(light)
-
-        const axesHelper = new THREE.AxesHelper(1000)
-        this.scene.add(axesHelper)
-
-        const geometry = new THREE.PlaneBufferGeometry(1000, 1000, 8, 8)
-        const material = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load(TEXTURE.concrete), side: THREE.BackSide })
-        const plane = new THREE.Mesh(geometry, material)
-        plane.position.set(500, 500, 25)
-
-        this.scene.add(plane);
     }
 
     addMesh(mesh)
