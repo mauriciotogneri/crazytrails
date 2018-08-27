@@ -5,7 +5,7 @@ class InputMouse
         this.x = x
         this.y = y
         const canvas = $("#canvas")
-        //this.center = new Point(canvas.width/2, canvas.height/2)
+        this.center = new THREE.Vector3(canvas.width / 2, canvas.height / 2, 0)
     }
 
     move(xDistance, yDistance)
@@ -16,24 +16,8 @@ class InputMouse
 
     orientation()
     {
-        //const angle = (this.center.subtract(new Point(this.x, this.y)).angle + 360) % 360
-        const angle = 0
-        
-        if ((angle >= 45) && (angle <= 135)) // up
-        {
-            return Math.PI / 2
-        }
-        else if ((angle >= 135) && (angle <= 225)) // right
-        {
-            return Math.PI
-        }
-        else if ((angle >= 225) && (angle <= 315)) // down
-        {
-            return -Math.PI / 2
-        }
-        else if ((angle >= 315) || (angle <= 45)) // left
-        {
-            return 0
-        }
+        const angle = parseInt(Math.atan2(this.center.y - this.y, this.center.x - this.x) * 180 / Math.PI)
+
+        return (angle- (angle % 10)) * Math.PI / 180
     }
 }

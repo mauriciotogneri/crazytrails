@@ -1,6 +1,6 @@
 class Soldier
 {
-    constructor(x, y, color)
+    constructor(x, y, texture)
     {
         this.angle = 0
         this.inputKeyboard = new InputKeyboard(false, false, false, false)
@@ -13,7 +13,7 @@ class Soldier
         })
         physics.addBody(this.body, this)
 
-        this.mesh = display.sphere(x, y, -25, CHARACTER_SIZE, TEXTURE.ball)
+        this.mesh = display.sphere(x, y, -25, CHARACTER_SIZE, texture)
         display.addMesh(this.mesh)
     }
 
@@ -66,6 +66,6 @@ class Soldier
     render()
     {
         this.mesh.position.set(this.body.position.x, this.body.position.y, 0)
-        //this.mesh.rotation = (this.body.angle * 180 / Math.PI) + 180
+        this.mesh.rotation.z = this.body.angle
     }
 }
