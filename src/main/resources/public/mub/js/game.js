@@ -12,17 +12,17 @@ class Game
 
     setupPlayers()
     {
-        const playerType = 1//prompt()
+        const playerType = prompt()
 
         if (playerType == "1")
         {
-            this.playerLocal  = new SoldierLocal(100, 600, TEXTURE.ball)
-            this.playerRemote = new SoldierRemote(1000, 600, TEXTURE.ball)
+            this.playerLocal  = new SoldierLocal(100, 500, TEXTURE.ball)
+            this.playerRemote = new SoldierRemote(1900, 500, TEXTURE.ball)
         }
         else
         {
-            this.playerLocal  = new SoldierLocal(1000, 600, TEXTURE.ball)
-            this.playerRemote = new SoldierRemote(100, 600, TEXTURE.ball)
+            this.playerLocal  = new SoldierLocal(1900, 500, TEXTURE.ball)
+            this.playerRemote = new SoldierRemote(100, 500, TEXTURE.ball)
         }
     }
 
