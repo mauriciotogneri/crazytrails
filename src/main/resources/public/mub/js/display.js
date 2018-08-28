@@ -2,8 +2,8 @@ class Display
 {
     constructor()
     {
-        this.camera = new THREE.PerspectiveCamera(20, window.innerWidth/window.innerHeight, 1, 3000)
-        this.camera.position.set(0, 0, -2000)
+        this.camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 1, 1025)
+        this.camera.position.set(0, 0, -1000)
         this.camera.up.set(0,-1,0)
         this.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
@@ -54,7 +54,7 @@ class Display
     centerAt(x, y)
     {
         // comment to use orbit
-        this.camera.position.set(x, y, -2000)
+        this.camera.position.set(x, y, -1000)
 
         // first person view
         //this.camera.position.set(x, y, -50)
