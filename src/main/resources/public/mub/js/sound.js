@@ -3,7 +3,7 @@ class Sound
     constructor()
     {
         this.pistolSound = new Howl({
-            src: ['sound/pistol.mp3'],
+            src: ['sounds/pistol.mp3'],
             volume: 0.1
         })
     }
