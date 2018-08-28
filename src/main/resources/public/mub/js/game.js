@@ -7,11 +7,12 @@ class Game
         this.setupPlayers()
 
         physics.start()
+        requestAnimationFrame(this.render)
     }
 
     setupPlayers()
     {
-        const playerType = prompt()
+        const playerType = 1//prompt()
 
         if (playerType == "1")
         {
@@ -71,11 +72,15 @@ class Game
         }
     }
 
+    render()
+    {
+        display.update(physics.engine.world.bodies)
+        requestAnimationFrame(game.render)
+    }
+
     update(delta)
     {
         this.playerLocal.update(delta)
         this.playerRemote.update(delta)
-
-        display.update(physics.engine.world.bodies)
     }
 }

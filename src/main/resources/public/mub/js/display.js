@@ -65,12 +65,12 @@ class Display
     {
         const geometry = new THREE.BoxGeometry(a, b, c)
 
-        const texture1 = new THREE.ImageUtils.loadTexture(textureName)
+        const texture1 = new THREE.TextureLoader().load(textureName)
         texture1.wrapS = THREE.RepeatWrapping
         texture1.wrapT = THREE.RepeatWrapping
         texture1.repeat.set(1, 10)
 
-        const texture2 = new THREE.ImageUtils.loadTexture(textureName)
+        const texture2 = new THREE.TextureLoader().load(textureName)
         texture2.wrapS = THREE.RepeatWrapping
         texture2.wrapT = THREE.RepeatWrapping
         texture2.repeat.set(1, 1)

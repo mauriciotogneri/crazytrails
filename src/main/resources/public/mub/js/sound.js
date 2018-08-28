@@ -4,7 +4,7 @@ class Sound
     {
         this.pistolSound = new Howl({
             src: ['sound/pistol.mp3'],
-            volume: 0.5
+            volume: 0.1
         })
     }
 
