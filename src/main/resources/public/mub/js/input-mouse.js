@@ -6,6 +6,7 @@ class InputMouse
         this.y = y
         const canvas = $("#canvas")
         this.center = new THREE.Vector3(canvas.width / 2, canvas.height / 2, 0)
+        document.body.style.cursor = "crosshair"
     }
 
     move(xDistance, yDistance)
