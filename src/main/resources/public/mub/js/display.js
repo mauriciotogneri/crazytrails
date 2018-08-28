@@ -10,7 +10,7 @@ class Display
         // first person view
         //this.camera.up.set(0, 1, 0)
 
-        this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: true})
+        this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: false})
         this.renderer.setClearColor(0x111111)
         this.renderer.setSize(window.innerWidth, window.innerHeight)
 
@@ -18,6 +18,14 @@ class Display
 
         const light = new THREE.AmbientLight(0xffffff, 1)
         this.scene.add(light)
+
+        const that = this
+        window.onresize = function()
+        {
+            that.renderer.setSize(window.innerWidth, window.innerHeight)
+            that.camera.aspect = window.innerWidth / window.innerHeight
+            that.camera.updateProjectionMatrix()
+        }
 
         // orbit controls
         //this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
@@ -92,7 +100,7 @@ class Display
 
     sphere(x, y, z, r, texture)
     {
-        const geometry = new THREE.SphereGeometry(r, 10, 10)
+        const geometry = new THREE.SphereGeometry(r, 16, 16)
         const material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load(texture)})
         const mesh = new THREE.Mesh(geometry, material)
         mesh.position.set(x, y, z)
