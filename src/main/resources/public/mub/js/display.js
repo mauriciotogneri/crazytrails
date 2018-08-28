@@ -27,6 +27,9 @@ class Display
             that.camera.updateProjectionMatrix()
         }
 
+        //const axesHelper = new THREE.AxesHelper(2000)
+        //this.scene.add(axesHelper)
+
         // orbit controls
         //this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
     }
@@ -74,19 +77,14 @@ class Display
         const geometry = new THREE.BoxGeometry(a, b, c)
 
         const texture1 = new THREE.TextureLoader().load(textureName)
-        texture1.wrapS = THREE.RepeatWrapping
-        texture1.wrapT = THREE.RepeatWrapping
-        texture1.repeat.set(1, 10)
+        //texture1.wrapS = THREE.RepeatWrapping
+        //texture1.wrapT = THREE.RepeatWrapping
+        //texture1.repeat.set(1, 1)
 
-        const texture2 = new THREE.TextureLoader().load(textureName)
-        texture2.wrapS = THREE.RepeatWrapping
-        texture2.wrapT = THREE.RepeatWrapping
-        texture2.repeat.set(1, 1)
-        
         const faces = [
             new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // right
             new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // left
-            new THREE.MeshBasicMaterial({map: texture2, side: THREE.DoubleSide}), // front
+            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // front
             new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // back
             new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // down
             new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide})  // top
