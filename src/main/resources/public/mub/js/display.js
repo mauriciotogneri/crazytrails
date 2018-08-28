@@ -92,7 +92,7 @@ class Display
 
     sphere(x, y, z, r, texture)
     {
-        const geometry = new THREE.SphereGeometry(r, 32, 16)
+        const geometry = new THREE.SphereGeometry(r, 10, 10)
         const material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load(texture)})
         const mesh = new THREE.Mesh(geometry, material)
         mesh.position.set(x, y, z)
