@@ -76,18 +76,36 @@ class Display
     {
         const geometry = new THREE.BoxGeometry(a, b, c)
 
-        const texture1 = new THREE.TextureLoader().load(textureName)
-        //texture1.wrapS = THREE.RepeatWrapping
-        //texture1.wrapT = THREE.RepeatWrapping
-        //texture1.repeat.set(1, 1)
+        const textureLR = new THREE.TextureLoader().load(textureName)
+        textureLR.wrapS = THREE.RepeatWrapping
+        textureLR.wrapT = THREE.RepeatWrapping
+        textureLR.repeat.set(1, b/50)
+
+        const textureFB = new THREE.TextureLoader().load(textureName)
+        textureFB.wrapS = THREE.RepeatWrapping
+        textureFB.wrapT = THREE.RepeatWrapping
+        textureFB.repeat.set(a/50, 1)
+
+        const textureUD = new THREE.TextureLoader().load(textureName)
+        textureUD.wrapS = THREE.RepeatWrapping
+        textureUD.wrapT = THREE.RepeatWrapping
+
+        if (b > a)
+        {
+            textureUD.repeat.set(1, b/50)
+        }
+        else
+        {
+            textureUD.repeat.set(a/50, 1)
+        }
 
         const faces = [
-            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // right
-            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // left
-            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // front
-            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // back
-            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide}), // down
-            new THREE.MeshBasicMaterial({map: texture1, side: THREE.DoubleSide})  // top
+            new THREE.MeshBasicMaterial({map: textureLR, side: THREE.DoubleSide}), // right
+            new THREE.MeshBasicMaterial({map: textureLR, side: THREE.DoubleSide}), // left
+            new THREE.MeshBasicMaterial({map: textureFB, side: THREE.DoubleSide}), // front
+            new THREE.MeshBasicMaterial({map: textureFB, side: THREE.DoubleSide}), // back
+            new THREE.MeshBasicMaterial({map: textureUD, side: THREE.DoubleSide}), // down
+            new THREE.MeshBasicMaterial({map: textureUD, side: THREE.DoubleSide})  // top
         ]
 
         const mesh = new THREE.Mesh(geometry, faces)
