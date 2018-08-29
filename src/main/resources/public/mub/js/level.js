@@ -13,7 +13,7 @@ class Level
         const texture = new THREE.TextureLoader().load(TEXTURE.concrete)
         texture.wrapS = THREE.RepeatWrapping
         texture.wrapT = THREE.RepeatWrapping
-        texture.repeat.set(5, 5)
+        texture.repeat.set(15, 8)
         
         const material = new THREE.MeshLambertMaterial({ map: texture, side: THREE.BackSide })
         const plane = new THREE.Mesh(geometry, material)
