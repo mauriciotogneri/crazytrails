@@ -90,7 +90,7 @@ class Display
         textureUD.wrapS = THREE.RepeatWrapping
         textureUD.wrapT = THREE.RepeatWrapping
 
-        if (b > a)
+        if (a < b)
         {
             textureUD.repeat.set(1, b/50)
         }
