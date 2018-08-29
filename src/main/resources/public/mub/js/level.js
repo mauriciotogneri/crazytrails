@@ -8,7 +8,7 @@ class Level
 
     createFloor()
     {
-        const geometry = new THREE.PlaneBufferGeometry(2000, 1000)
+        const geometry = new THREE.PlaneBufferGeometry(MAP_SIZE.width, MAP_SIZE.height)
 
         const texture = new THREE.TextureLoader().load(TEXTURE.concrete)
         texture.wrapS = THREE.RepeatWrapping

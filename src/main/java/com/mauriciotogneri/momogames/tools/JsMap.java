@@ -14,14 +14,14 @@ public class JsMap
         this.path = path;
     }
 
-    public void generate(List<Shape> shapes) throws IOException
+    public void generate(int width, int height, List<Shape> shapes) throws IOException
     {
         BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-        writer.append(content(shapes));
+        writer.append(content(width, height, shapes));
         writer.close();
     }
 
-    private String content(List<Shape> shapes)
+    private String content(int width, int height, List<Shape> shapes)
     {
         StringBuilder builder = new StringBuilder();
 
@@ -35,6 +35,9 @@ public class JsMap
             builder.append(shape.toString());
         }
 
-        return String.format("const MAP = [%s]", builder.toString());
+        String shapesLine = String.format("const MAP = [%s]", builder.toString());
+        String sizeLine = String.format("const MAP_SIZE = {width: %s, height: %s}", width, height);
+
+        return String.format("%s\n%s", shapesLine, sizeLine);
     }
 }

@@ -7,8 +7,6 @@ const DIRECTION_RIGHT = 2
 const DIRECTION_UP    = 3
 const DIRECTION_DOWN  = 4
 
-const MAP_SIZE = 800
-
 const CHARACTER_SIZE = 25
 const BULLET_SIZE    = 1
 
@@ -66,11 +64,4 @@ const BINARY_TYPE = {
         code: 9,
         size: 8
     }
-}
-
-const COLOR = {
-    blue: '#00A1CA',
-    red: '#E93844',
-    green: '#1DE178',
-    yello: '#CED943'
 }

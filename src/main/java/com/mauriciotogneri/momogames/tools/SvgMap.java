@@ -17,13 +17,33 @@ public class SvgMap
         this.path = path;
     }
 
-    public List<Shape> shapes() throws Exception
+    private Element root() throws Exception
     {
-        List<Element> result = new ArrayList<>();
         SAXBuilder builder = new SAXBuilder();
         Document document = builder.build(path);
 
-        Element root = document.getRootElement();
+        return document.getRootElement();
+    }
+
+    public int width() throws Exception
+    {
+        Element root = root();
+
+        return root.getAttribute("width").getIntValue();
+    }
+
+    public int height() throws Exception
+    {
+        Element root = root();
+
+        return root.getAttribute("height").getIntValue();
+    }
+
+    public List<Shape> shapes() throws Exception
+    {
+        List<Element> result = new ArrayList<>();
+
+        Element root = root();
 
         for (Element element : root.getChildren())
         {

@@ -13,6 +13,6 @@ public class MapGenerator
         SvgMap svgMap = new SvgMap(inputPath);
         JsMap jsMap = new JsMap(outputPath);
 
-        jsMap.generate(svgMap.shapes());
+        jsMap.generate(svgMap.width(), svgMap.height(), svgMap.shapes());
     }
 }

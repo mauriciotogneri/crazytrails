@@ -26,12 +26,19 @@ public class Shape
 
     public static Shape fromElement(Element element)
     {
-        Style style = style(element.getAttribute("style").getValue());
-        float x = Float.parseFloat(element.getAttribute("x").getValue());
-        float y = Float.parseFloat(element.getAttribute("y").getValue());
-        float width = Float.parseFloat(element.getAttribute("width").getValue());
-        float height = Float.parseFloat(element.getAttribute("height").getValue());
+        try
+        {
+            Style style = style(element.getAttribute("style").getValue());
+            float x = element.getAttribute("x").getFloatValue();
+            float y = element.getAttribute("y").getFloatValue();
+            float width = element.getAttribute("width").getFloatValue();
+            float height = element.getAttribute("height").getFloatValue();
 
-        return new Rectangle(style, x, y, width, height);
+            return new Rectangle(style, x, y, width, height);
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
