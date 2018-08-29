@@ -5,7 +5,7 @@ class Wall
         this.body = physics.rectangle(x + (a/2), y + (b/2), a, b)
         physics.addBody(this.body, this)
 
-        this.mesh = display.cube(x + (a/2), y + (b/2), 0, a, b, c, TEXTURE.brick)
+        this.mesh = display.cube(x + (a/2), y + (b/2), 0, a, b, c, TEXTURE.brick, 25)
         display.addMesh(this.mesh)
     }
 }

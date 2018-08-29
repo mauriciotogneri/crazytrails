@@ -7,8 +7,13 @@ class Display
         this.camera.up.set(0,-1,0)
         this.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
+        this.topDownView = true
+
         // first person view
-        //this.camera.up.set(0, 1, 0)
+        if (!this.topDownView)
+        {
+            this.camera.up.set(0, 1, 0)
+        }
 
         this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: false})
         this.renderer.setClearColor(0x111111)
@@ -68,36 +73,31 @@ class Display
         this.camera.position.set(x, y, -1000)
 
         // first person view
-        //this.camera.position.set(x, y, -50)
-        //this.camera.lookAt(new THREE.Vector3(x, y - 50, -50))
+        if (!this.topDownView)
+        {
+            this.camera.position.set(x, y, -50)
+            this.camera.lookAt(new THREE.Vector3(x, y - 50, -50))
+        }
     }
 
-    cube(x, y, z, a, b, c, textureName)
+    cube(x, y, z, a, b, c, textureName, factor)
     {
         const geometry = new THREE.BoxGeometry(a, b, c)
 
         const textureLR = new THREE.TextureLoader().load(textureName)
         textureLR.wrapS = THREE.RepeatWrapping
         textureLR.wrapT = THREE.RepeatWrapping
-        textureLR.repeat.set(1, b/50)
+        textureLR.repeat.set(c/factor, b/factor)
 
         const textureFB = new THREE.TextureLoader().load(textureName)
         textureFB.wrapS = THREE.RepeatWrapping
         textureFB.wrapT = THREE.RepeatWrapping
-        textureFB.repeat.set(a/50, 1)
+        textureFB.repeat.set(a/factor, c/factor)
 
         const textureUD = new THREE.TextureLoader().load(textureName)
         textureUD.wrapS = THREE.RepeatWrapping
         textureUD.wrapT = THREE.RepeatWrapping
-
-        if (a < b)
-        {
-            textureUD.repeat.set(1, b/50)
-        }
-        else
-        {
-            textureUD.repeat.set(a/50, 1)
-        }
+        textureUD.repeat.set(a/factor, b/factor)
 
         const faces = [
             new THREE.MeshBasicMaterial({map: textureLR, side: THREE.DoubleSide}), // right
