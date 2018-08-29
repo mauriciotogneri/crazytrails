@@ -10,14 +10,16 @@ class Level
     {
         const geometry = new THREE.PlaneBufferGeometry(MAP_SIZE.width, MAP_SIZE.height)
 
-        const texture = new THREE.TextureLoader().load(TEXTURE.concrete)
-        texture.wrapS = THREE.RepeatWrapping
-        texture.wrapT = THREE.RepeatWrapping
-        texture.repeat.set(15, 8)
+        const texture = new THREE.TextureLoader().load(TEXTURE.concrete, function(texture)
+        {
+            texture.wrapS = THREE.RepeatWrapping
+            texture.wrapT = THREE.RepeatWrapping
+            texture.repeat.set(MAP_SIZE.width/texture.image.width, MAP_SIZE.height/texture.image.height)
+        })
         
         const material = new THREE.MeshLambertMaterial({ map: texture, side: THREE.BackSide })
         const plane = new THREE.Mesh(geometry, material)
-        plane.position.set(1000, 500, 25)
+        plane.position.set(MAP_SIZE.width/2, MAP_SIZE.height/2, 25)
 
         display.addMesh(plane)
     }
