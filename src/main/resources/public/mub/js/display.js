@@ -2,7 +2,7 @@ class Display
 {
     constructor()
     {
-        this.camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 1, 1025)
+        this.camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 1, 2000)
         this.camera.position.set(0, 0, -1000)
         this.camera.up.set(0,-1,0)
         this.camera.lookAt(new THREE.Vector3(0, 0, 0))
