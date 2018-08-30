@@ -10,7 +10,7 @@ class Level
     {
         const geometry = new THREE.PlaneBufferGeometry(MAP_SIZE.width, MAP_SIZE.height)
 
-        const texture = new THREE.TextureLoader().load(TEXTURE.concrete, function(texture)
+        const texture = new THREE.TextureLoader().load(TEXTURE.floor, function(texture)
         {
             texture.wrapS = THREE.RepeatWrapping
             texture.wrapT = THREE.RepeatWrapping

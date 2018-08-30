@@ -88,21 +88,21 @@ class Display
         }
     }
 
-    cube(x, y, z, a, b, c, textureName, factor)
+    cube(x, y, z, a, b, c, textureName1, textureName2, factor)
     {
         const geometry = new THREE.BoxGeometry(a, b, c)
 
-        const textureLR = new THREE.TextureLoader().load(textureName)
+        const textureLR = new THREE.TextureLoader().load(textureName2)
         textureLR.wrapS = THREE.RepeatWrapping
         textureLR.wrapT = THREE.RepeatWrapping
         textureLR.repeat.set(c/factor, b/factor)
 
-        const textureFB = new THREE.TextureLoader().load(textureName)
+        const textureFB = new THREE.TextureLoader().load(textureName1)
         textureFB.wrapS = THREE.RepeatWrapping
         textureFB.wrapT = THREE.RepeatWrapping
         textureFB.repeat.set(a/factor, c/factor)
 
-        const textureUD = new THREE.TextureLoader().load(textureName)
+        const textureUD = new THREE.TextureLoader().load((a > b) ?  textureName1 : textureName2)
         textureUD.wrapS = THREE.RepeatWrapping
         textureUD.wrapT = THREE.RepeatWrapping
         textureUD.repeat.set(a/factor, b/factor)
