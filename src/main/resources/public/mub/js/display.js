@@ -18,11 +18,22 @@ class Display
         this.renderer = new THREE.WebGLRenderer({canvas: $("#canvas"), antialias: false})
         this.renderer.setClearColor(0x111111)
         this.renderer.setSize(window.innerWidth, window.innerHeight)
+        this.renderer.shadowMap.enabled = true
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
         this.scene = new THREE.Scene()
 
-        const light = new THREE.AmbientLight(0xffffff, 1)
-        this.scene.add(light)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
+        this.scene.add(ambientLight)
+        
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
+        directionalLight.position.set(MAP_SIZE.width/2, 0, -1000)
+        directionalLight.castShadow = true
+        //directionalLight.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(100, 1, 10, 3000))
+        //directionalLight.shadow.mapSize.width = 2048
+        //directionalLight.shadow.mapSize.height = 2048
+
+        this.scene.add(directionalLight)
 
         const that = this
         window.onresize = function()
@@ -31,9 +42,6 @@ class Display
             that.camera.aspect = window.innerWidth / window.innerHeight
             that.camera.updateProjectionMatrix()
         }
-
-        //const axesHelper = new THREE.AxesHelper(2000)
-        //this.scene.add(axesHelper)
 
         // orbit controls
         //this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
@@ -100,16 +108,18 @@ class Display
         textureUD.repeat.set(a/factor, b/factor)
 
         const faces = [
-            new THREE.MeshBasicMaterial({map: textureLR, side: THREE.DoubleSide}), // right
-            new THREE.MeshBasicMaterial({map: textureLR, side: THREE.DoubleSide}), // left
-            new THREE.MeshBasicMaterial({map: textureFB, side: THREE.DoubleSide}), // front
-            new THREE.MeshBasicMaterial({map: textureFB, side: THREE.DoubleSide}), // back
-            new THREE.MeshBasicMaterial({map: textureUD, side: THREE.DoubleSide}), // down
-            new THREE.MeshBasicMaterial({map: textureUD, side: THREE.DoubleSide})  // top
+            new THREE.MeshLambertMaterial({map: textureLR, side: THREE.DoubleSide}), // right
+            new THREE.MeshLambertMaterial({map: textureLR, side: THREE.DoubleSide}), // left
+            new THREE.MeshLambertMaterial({map: textureFB, side: THREE.DoubleSide}), // front
+            new THREE.MeshLambertMaterial({map: textureFB, side: THREE.DoubleSide}), // back
+            new THREE.MeshLambertMaterial({map: textureUD, side: THREE.DoubleSide}), // down
+            new THREE.MeshLambertMaterial({map: textureUD, side: THREE.DoubleSide})  // top
         ]
 
         const mesh = new THREE.Mesh(geometry, faces)
         mesh.position.set(x, y, z)
+        mesh.castShadow = true
+        mesh.receiveShadow = true
 
         return mesh
     }
@@ -118,8 +128,11 @@ class Display
     {
         const geometry = new THREE.SphereGeometry(r, 16, 16)
         const material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load(texture)})
+        
         const mesh = new THREE.Mesh(geometry, material)
         mesh.position.set(x, y, z)
+        mesh.castShadow = true
+        mesh.receiveShadow = true
 
         return mesh
     }

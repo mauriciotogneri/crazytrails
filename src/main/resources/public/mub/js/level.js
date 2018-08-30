@@ -20,6 +20,7 @@ class Level
         const material = new THREE.MeshLambertMaterial({ map: texture, side: THREE.BackSide })
         const plane = new THREE.Mesh(geometry, material)
         plane.position.set(MAP_SIZE.width/2, MAP_SIZE.height/2, 25)
+        plane.receiveShadow = true
 
         display.addMesh(plane)
     }

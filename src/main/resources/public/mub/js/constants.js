@@ -23,7 +23,7 @@ const API_OPERATION = {
 
 const TEXTURE = {
     brick: 'resources/wall1.jpg',
-    concrete: 'resources/floor1.jpg',
+    concrete: 'resources/floor2.jpg',
     ball: 'resources/ball.jpg'
 }
 
