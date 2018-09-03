@@ -30,7 +30,7 @@ public class Main
         resourceHandler.setResourceBase(publicDir(isLocal));
         resourceHandler.setCacheControl("max-age=0,public");
 
-        Server server = new Server(Integer.valueOf(System.getenv("PORT")));
+        Server server = new Server(Integer.valueOf(args.length > 0 ? args[0] : System.getenv("PORT")));
         server.setHandler(new HandlerList(resourceHandler, servletContext));
         server.start();
         server.join();
