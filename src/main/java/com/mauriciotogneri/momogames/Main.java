@@ -1,6 +1,6 @@
 package com.mauriciotogneri.momogames;
 
-import com.mauriciotogneri.momogames.servers.MubServer;
+import com.mauriciotogneri.momogames.servers.CsServer;
 import com.mauriciotogneri.momogames.servers.PingServer;
 
 import org.eclipse.jetty.server.Server;
@@ -22,7 +22,7 @@ public class Main
         Boolean isLocal = Boolean.parseBoolean(System.getenv("IS_LOCAL"));
 
         ServletContextHandler servletContext = new ServletContextHandler(null, "/");
-        servletContext.addServlet(new ServletHolder(servletFor(MubServer.class)), "/ws/mub");
+        servletContext.addServlet(new ServletHolder(servletFor(CsServer.class)), "/ws/cs");
         servletContext.addServlet(new ServletHolder(servletFor(PingServer.class)), "/ws/ping");
 
         ResourceHandler resourceHandler = new ResourceHandler();

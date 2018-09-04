@@ -9,7 +9,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubServer extends WebSocketAdapter
+public class CsServer extends WebSocketAdapter
 {
     private static List<RemoteEndpoint> remotes = new ArrayList<>();
 

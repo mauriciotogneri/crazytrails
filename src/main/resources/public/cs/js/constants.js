@@ -22,10 +22,10 @@ const API_OPERATION = {
 }
 
 const TEXTURE = {
-    walla: 'resources/wall3a.jpg',
-    wallb: 'resources/wall3b.jpg',
-    floor: 'resources/floor1.jpg',
-    ball: 'resources/ball.jpg'
+    walla: 'assets/wall3a.jpg',
+    wallb: 'assets/wall3b.jpg',
+    floor: 'assets/floor1.jpg',
+    ball: 'assets/ball.jpg'
 }
 
 const BINARY_TYPE = {

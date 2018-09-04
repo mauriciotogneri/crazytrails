@@ -27,8 +27,6 @@ class Bullet
         
         display.removeMesh(this.mesh)
         this.mesh = undefined
-
-        sound.bulletHit()
     }
 
     render()
