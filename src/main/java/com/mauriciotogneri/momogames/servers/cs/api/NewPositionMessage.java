@@ -8,7 +8,6 @@ public class NewPositionMessage extends Message
     public float x;
     public float y;
     public float angle;
-    public String test;
     public boolean left;
     public boolean right;
     public boolean up;

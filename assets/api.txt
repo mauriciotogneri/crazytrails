@@ -1,0 +1,57 @@
+>>> CREATE_ROOM_REQUEST
+	size: int
+	nickname: string
+	team: int
+
+<<< CREATE_ROOM_RESPONSE
+	success: bool
+	room_id: int
+	player_id: int
+
+>>> JOIN_ROOM_REQUEST
+	room_id: int
+	nickname: string
+	team: int
+
+<<< JOIN_ROOM_RESPONSE
+	success: bool
+	player_id: int
+
+<<< ROOM_FILLED
+	players: []
+
+<<< MATCH_STARTED
+	x: float
+	y: float
+
+>>> NEW_POSITION_SENT
+	room_id: int
+	x: float
+	y: float
+	angle: float
+	left: bool
+	right: bool
+	up: bool
+	down: bool
+
+<<< NEW_POSITION_RECEIVED
+	player_id: int
+	x: float
+	y: float
+	angle: float
+	left: bool
+	right: bool
+	up: bool
+	down: bool
+
+>>> NEW_BULLET_SENT
+	room_id: int
+	x: float
+    y: float
+    angle: float
+
+<<< NEW_BULLET_RECEIVED
+	player_id: int
+	x: float
+    y: float
+    angle: float
