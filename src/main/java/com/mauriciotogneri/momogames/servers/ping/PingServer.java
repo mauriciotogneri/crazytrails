@@ -1,4 +1,4 @@
-package com.mauriciotogneri.momogames.servers;
+package com.mauriciotogneri.momogames.servers.ping;
 
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 

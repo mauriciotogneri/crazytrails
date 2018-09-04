@@ -1,4 +1,4 @@
-package com.mauriciotogneri.momogames.servers;
+package com.mauriciotogneri.momogames.servers.cs;
 
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
@@ -56,17 +56,8 @@ public class CsServer extends WebSocketAdapter
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int length)
     {
-        /*System.out.println(ByteBuffer.wrap(payload, 0, 4).getFloat());
-        System.out.println(ByteBuffer.wrap(payload, 4, 4).getFloat());
-
-        System.out.println(ByteBuffer.wrap(payload, 8, 4).getFloat());
-
-        System.out.println(ByteBuffer.wrap(payload, 12, 1).get());
-        System.out.println(ByteBuffer.wrap(payload, 13, 1).get());
-        System.out.println(ByteBuffer.wrap(payload, 14, 1).get());
-        System.out.println(ByteBuffer.wrap(payload, 15, 1).get());
-
-        System.out.println("===================================");*/
+        Message message = Message.from(payload);
+        System.out.println(message);
 
         RemoteEndpoint own = getRemote();
 

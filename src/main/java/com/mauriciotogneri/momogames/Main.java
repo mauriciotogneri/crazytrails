@@ -1,7 +1,7 @@
 package com.mauriciotogneri.momogames;
 
-import com.mauriciotogneri.momogames.servers.CsServer;
-import com.mauriciotogneri.momogames.servers.PingServer;
+import com.mauriciotogneri.momogames.servers.cs.CsServer;
+import com.mauriciotogneri.momogames.servers.ping.PingServer;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
