@@ -1,7 +1,7 @@
 package com.mauriciotogneri.momogames.servers.cs.api;
 
 import com.mauriciotogneri.momogames.servers.cs.Message;
-import com.mauriciotogneri.momogames.servers.cs.binary.Binary;
+import com.mauriciotogneri.momogames.servers.cs.binary.BinaryPayload;
 
 public class NewBulletMessage extends Message
 {
@@ -9,8 +9,8 @@ public class NewBulletMessage extends Message
     public float y;
     public float angle;
 
-    public NewBulletMessage(Operation operation, Binary binary)
+    public NewBulletMessage(Operation operation, BinaryPayload binaryPayload)
     {
-        super(operation, binary);
+        super(operation, binaryPayload);
     }
 }

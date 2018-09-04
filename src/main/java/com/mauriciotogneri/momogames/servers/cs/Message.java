@@ -3,7 +3,7 @@ package com.mauriciotogneri.momogames.servers.cs;
 import com.mauriciotogneri.momogames.servers.cs.api.NewBulletMessage;
 import com.mauriciotogneri.momogames.servers.cs.api.NewPositionMessage;
 import com.mauriciotogneri.momogames.servers.cs.api.Operation;
-import com.mauriciotogneri.momogames.servers.cs.binary.Binary;
+import com.mauriciotogneri.momogames.servers.cs.binary.BinaryPayload;
 import com.mauriciotogneri.momogames.servers.cs.binary.BinaryType;
 
 import java.lang.reflect.Field;
@@ -12,20 +12,20 @@ public class Message
 {
     protected final Operation operation;
 
-    protected Message(Operation operation, Binary binary)
+    protected Message(Operation operation, BinaryPayload binaryPayload)
     {
         this.operation = operation;
 
-        processBinary(binary);
+        processBinary(binaryPayload);
     }
 
-    private void processBinary(Binary binary)
+    private void processBinary(BinaryPayload binaryPayload)
     {
         for (Field field : getClass().getDeclaredFields())
         {
             try
             {
-                field.set(this, value(field, binary));
+                field.set(this, value(field, binaryPayload));
             }
             catch (Exception e)
             {
@@ -34,23 +34,23 @@ public class Message
         }
     }
 
-    private Object value(Field field, Binary binary)
+    private Object value(Field field, BinaryPayload binaryPayload)
     {
-        return binary.get(BinaryType.fromField(field));
+        return binaryPayload.get(BinaryType.fromField(field));
     }
 
     public static Message from(byte[] payload)
     {
-        Binary binary = new Binary(payload);
-        Operation operation = Operation.fromCode(binary.getUbyte());
+        BinaryPayload binaryPayload = new BinaryPayload(payload);
+        Operation operation = Operation.fromCode(binaryPayload.getUbyte());
 
         switch (operation)
         {
             case NEW_POSITION:
-                return new NewPositionMessage(operation, binary);
+                return new NewPositionMessage(operation, binaryPayload);
 
             case NEW_BULLET:
-                return new NewBulletMessage(operation, binary);
+                return new NewBulletMessage(operation, binaryPayload);
 
             default:
                 throw new RuntimeException();

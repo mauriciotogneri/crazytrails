@@ -58,6 +58,11 @@ class Binary
         return this.process(BINARY_TYPE.double, value)
     }
 
+    string(value)
+    {
+        return this.process(BINARY_TYPE.string, value)
+    }
+
     process(type, value)
     {
         if (typeof value != 'undefined')
@@ -68,19 +73,6 @@ class Binary
         {
             return this.get(type)
         }
-    }
-
-    put(type, value)
-    {
-        this.size += this.size % type.size
-
-        this.values.push(value)
-        this.types.push(type)
-        this.positions.push(this.size)
-
-        this.size += type.size
-
-        return this.size
     }
 
     get(type)
@@ -124,6 +116,38 @@ class Binary
         {
             return this.view.getFloat64(position)
         }
+        else if (type == BINARY_TYPE.string)
+        {
+            const length = this.view.getInt16(position)
+            var result = ''
+
+            for (var i = 0; i < length; i++)
+            {
+                var byte = this.view.getUint8(position + i + 1)
+                result += String.fromCharCode(byte)
+                this.size++
+            }
+
+            return result
+        }
+    }
+
+    put(type, value)
+    {
+        this.size += this.size % type.size
+
+        this.values.push(value)
+        this.types.push(type)
+        this.positions.push(this.size)
+
+        this.size += type.size
+
+        if (type == BINARY_TYPE.string)
+        {
+            this.size += value.length
+        }
+
+        return this.size
     }
 
     build()
@@ -172,6 +196,15 @@ class Binary
             else if (type == BINARY_TYPE.double)
             {
                 view.setFloat64(position, value)
+            }
+            else if (type == BINARY_TYPE.string)
+            {
+                view.setUint8(position, value.length)
+
+                for (var i = 0; i < value.length; i++)
+                {
+                    view.setUint8(position + i + 1, value.charCodeAt(i))
+                }
             }
         }
 

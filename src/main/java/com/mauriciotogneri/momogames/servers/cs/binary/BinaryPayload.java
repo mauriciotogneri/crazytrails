@@ -1,15 +1,13 @@
 package com.mauriciotogneri.momogames.servers.cs.binary;
 
-import java.nio.ByteBuffer;
-
-public class Binary
+public class BinaryPayload
 {
-    private int size = 0;
-    private final byte[] payload;
+    private int index = 0;
+    private final BinaryArray array;
 
-    public Binary(byte[] payload)
+    public BinaryPayload(byte[] payload)
     {
-        this.payload = payload;
+        this.array = new BinaryArray(payload);
     }
 
     public boolean getBool()
@@ -22,9 +20,9 @@ public class Binary
         return (Byte) get(BinaryType.BYTE);
     }
 
-    public short getUbyte()
+    public char getUbyte()
     {
-        return (Short) get(BinaryType.UBYTE);
+        return (Character) get(BinaryType.UBYTE);
     }
 
     public short getShort()
@@ -57,55 +55,62 @@ public class Binary
         return (Double) get(BinaryType.DOUBLE);
     }
 
+    public String getString()
+    {
+        return (String) get(BinaryType.STRING);
+    }
+
     public Object get(BinaryType type)
     {
-        int position = this.size + (this.size % type.size());
-        this.size = position + type.size();
+        int position = this.index + (this.index % type.size());
+        this.index = position + type.size();
 
         if (type == BinaryType.BOOL)
         {
-            return (buffer(position, type.size()).get() & 0xff) != 0;
+            return array.getBoolean(position);
         }
         else if (type == BinaryType.BYTE)
         {
-            return buffer(position, type.size()).get();
+            return array.getByte(position);
         }
         else if (type == BinaryType.UBYTE)
         {
-            return (short) (buffer(position, type.size()).get() & 0xff);
+            return array.getUbyte(position);
         }
         else if (type == BinaryType.SHORT)
         {
-            return buffer(position, type.size()).getShort();
+            return array.getShort(position);
         }
         else if (type == BinaryType.USHORT)
         {
-            return (buffer(position, type.size()).get() & 0xffff);
+            return array.getUshort(position);
         }
         else if (type == BinaryType.INT)
         {
-            return buffer(position, type.size()).getInt();
+            return array.getInt(position);
         }
         else if (type == BinaryType.UINT)
         {
-            return (buffer(position, type.size()).get() & 0xffffffffL);
+            return array.getUint(position);
         }
         else if (type == BinaryType.FLOAT)
         {
-            return buffer(position, type.size()).getFloat();
+            return array.getFloat(position);
         }
         else if (type == BinaryType.DOUBLE)
         {
-            return buffer(position, type.size()).getDouble();
+            return array.getDouble(position);
+        }
+        else if (type == BinaryType.STRING)
+        {
+            String result = array.getString(position);
+            this.index += result.length();
+
+            return result;
         }
         else
         {
             throw new RuntimeException();
         }
-    }
-
-    private ByteBuffer buffer(int offset, int length)
-    {
-        return ByteBuffer.wrap(payload, offset, length);
     }
 }

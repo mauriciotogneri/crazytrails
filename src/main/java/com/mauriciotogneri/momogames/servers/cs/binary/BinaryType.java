@@ -12,7 +12,8 @@ public enum BinaryType
     INT(4),
     UINT(4),
     FLOAT(4),
-    DOUBLE(4);
+    DOUBLE(4),
+    STRING(1);
 
     private final int size;
 
@@ -55,6 +56,10 @@ public enum BinaryType
         else if (field.getType().equals(double.class))
         {
             return BinaryType.DOUBLE;
+        }
+        else if (field.getType().equals(String.class))
+        {
+            return BinaryType.STRING;
         }
         else
         {

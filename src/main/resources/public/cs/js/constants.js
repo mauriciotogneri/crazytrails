@@ -64,5 +64,9 @@ const BINARY_TYPE = {
     double: {
         code: 9,
         size: 8
+    },
+    string: {
+        code: 10,
+        size: 1
     }
 }
