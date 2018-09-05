@@ -20,20 +20,24 @@ class Display
         this.renderer.setSize(window.innerWidth, window.innerHeight)
         this.renderer.shadowMap.enabled = true
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+        this.renderer.gammaInput = true
+        this.renderer.gammaOutput = true
+        this.renderer.physicallyCorrectLights = true
+        this.renderer.toneMapping = THREE.ReinhardToneMapping
+		this.renderer.setPixelRatio( window.devicePixelRatio )
 
         this.scene = new THREE.Scene()
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
-        this.scene.add(ambientLight)
+        this.pointLight = new THREE.PointLight(0xffffff, 0.2)
+        this.pointLight.position.set(200, 500, -25)
+        this.pointLight.castShadow = true
+        //this.pointLight.shadow.camera.near = 0.5
+        this.pointLight.shadow.camera.far = 1000
         
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
-        directionalLight.position.set(MAP_SIZE.width/2, 0, -1000)
-        directionalLight.castShadow = true
-        //directionalLight.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(100, 1, 10, 3000))
-        //directionalLight.shadow.mapSize.width = 2048
-        //directionalLight.shadow.mapSize.height = 2048
+        this.scene.add(this.pointLight)
 
-        this.scene.add(directionalLight)
+        const lightHelper = new THREE.PointLightHelper(this.pointLight)
+        this.scene.add(lightHelper)
 
         const that = this
         window.onresize = function()

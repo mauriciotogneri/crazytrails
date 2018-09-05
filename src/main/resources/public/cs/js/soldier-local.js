@@ -64,6 +64,14 @@ class SoldierLocal extends Soldier
     {
         super.render()
         display.centerAt(this.body.position.x, this.body.position.y)
+
+        const finalx = this.body.position.x - (Math.cos(this.angle) * (CHARACTER_SIZE + 5))
+        const finaly = this.body.position.y - (Math.sin(this.angle) * (CHARACTER_SIZE + 5))
+
+        console.log("a: " + this.body.position.x, this.body.position.y)
+        console.log("b: " + finalx, finaly)
+
+        display.pointLight.position.set(finalx, finaly, -10)
     }
 
     sendPositionUpdate()
